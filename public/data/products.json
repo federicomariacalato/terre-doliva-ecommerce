@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "title": "Olio Extra Vergine di Oliva - Monocultivar",
+    "price": 18.5,
+    "description": "Estratto a freddo da olive 100% Italiane. Note di carciofo e mandorla fresca, ideale a crudo.",
+    "category": "Olio EVOO",
+    "image": "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=500"
+  },
+  {
+    "id": 2,
+    "title": "Olio EVOO Biologico - Blend Frantoio",
+    "price": 22.0,
+    "description": "Certificato biologico, franto entro 4 ore dalla raccolta. Gusto equilibrato e fruttato medio.",
+    "category": "Olio EVOO",
+    "image": "https://images.unsplash.com/photo-1471193945509-9ad0617afabf?w=500"
+  },
+  {
+    "id": 3,
+    "title": "Paté di Olive Nere Leccine",
+    "price": 6.5,
+    "description": "Prodotte in modo artigianale con l'aggiunta del nostro miglior olio extravergine.",
+    "category": "Conserve",
+    "image": "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=500"
+  },
+  {
+    "id": 5,
+    "title": "Olio EVOO Aromatizzato al Limone del Gargano",
+    "price": 12.5,
+    "description": "Prodotto per frangitura contemporanea di olive e limoni freschi a km 0. Fragrante e agrumato, straordinario su carpacci di pesce, insalate estive e verdure al vapore.",
+    "category": "Oli Aromatizzati",
+    "image": "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=600"
+  },
+  {
+    "id": 6,
+    "title": "Olio EVOO Aromatizzato al Peperoncino Piccante",
+    "price": 12.5,
+    "description": "Infusione naturale di peperoncini selezionati nel nostro olio extravergine. Piccantezza decisa ma avvolgente, perfetto per impreziosire zuppe di legumi, pizze e primi piatti.",
+    "category": "Oli Aromatizzati",
+    "image": "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=600"
+  },
+  {
+    "id": 7,
+    "title": "Pomodori Secchi Artigianali in Olio EVOO",
+    "price": 7.8,
+    "description": "Pomodori maturati al sole, essiccati lentamente all'aria aperta e invasati a mano con capperi, origano e il nostro olio extravergine d'oliva. Un classico intramontabile.",
+    "category": "Conserve",
+    "image": "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=600"
+  },
+  {
+    "id": 8,
+    "title": "Carciofini Interi Spaccati alla Brace",
+    "price": 8.9,
+    "description": "Cuori di carciofo tenerissimi, grigliati leggermente sui carboni ardenti per donare una nota affumicata unica, poi conservati nel nostro olio d'oliva premium.",
+    "category": "Conserve",
+    "image": "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=600"
+  },
+  {
+    "id": 9,
+    "title": "Miele di Sulla delle Colline Locali",
+    "price": 9.5,
+    "description": "Miele biologico dal sapore delicato, quasi floreale, con una nota finale tipicamente agrumata. Cristallizzazione finissima, splendido in abbinamento a formaggi stagionati.",
+    "category": "Specialità",
+    "image": "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=600"
+  },
+  {
+    "id": 10,
+    "title": "Tarallini Artigianali Scaldati all'Olio EVOO",
+    "price": 4.2,
+    "description": "Prodotti secondo la ricetta tradizionale con farina di grano tenero tipo 0, vino bianco e il 20% del nostro olio extravergine. Croccanti, friabili e irresistibili.",
+    "category": "Specialità",
+    "image": "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=600"
+  }
+]
