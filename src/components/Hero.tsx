@@ -9,7 +9,7 @@ export const Hero = () => {
           className="w-full h-full object-cover opacity-60 scale-105 animate-[pulse_8s_infinite_alternate]"
         />
         {/* Overlay scuro per migliorare la leggibilità del testo */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/40"></div>
+        <div className="absolute inset-0 bg-linear-to-b from-black/30 via-transparent to-black/40"></div>
       </div>
 
       {/* Contenuto Testuale - Stile Editoriale */}
@@ -34,7 +34,7 @@ export const Hero = () => {
       {/* Indicatore di Scroll in basso */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 text-[#fbf9f4]/60 flex flex-col items-center gap-2 animate-bounce">
         <span className="font-sans text-[10px] uppercase tracking-widest">Scorri</span>
-        <div className="w-[1px] h-8 bg-[#fbf9f4]/40"></div>
+        <div className="w-px h-8 bg-[#fbf9f4]/40"></div>
       </div>
     </section>
   );
