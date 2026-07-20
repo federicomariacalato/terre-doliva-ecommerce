@@ -1,3 +1,5 @@
+import { CtaButton } from "../../../components/CtaButton";
+
 export const ShopCTA = () => {
   return (
     <section className="relative w-full py-32 bg-[#2c3e2b] text-[#fbf9f4] px-8 text-center overflow-hidden">
@@ -22,12 +24,7 @@ export const ShopCTA = () => {
           sott'olio e ai prodotti della tradizione. Ogni pezzo è unico, in
           edizione limitata per raccolta.
         </p>
-        <a
-          href="/shop"
-          className="inline-block font-sans text-xs uppercase tracking-widest font-semibold bg-[#fbf9f4] text-[#2c3e2b] px-10 py-4 border border-[#fbf9f4] hover:bg-transparent hover:text-[#fbf9f4] transition-all duration-300 transform hover:-translate-y-1 shadow-md cursor-pointer"
-        >
-          Vai allo Shop Completo
-        </a>
+        <CtaButton btnText="Vai allo shop" />
       </div>
     </section>
   );
