@@ -1,4 +1,4 @@
-import imgUliveto from "../../public/assets/uliveto-sicilia.jpeg";
+import imgUliveto from "../../public/assets/raccolta-olive-a-mano.jpeg";
 
 export const Manifest = () => {
   return (

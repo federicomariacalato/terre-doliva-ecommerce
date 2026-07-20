@@ -18,9 +18,9 @@ export const ShopCTA = () => {
           Porta l'autenticità sulla tua tavola.
         </h2>
         <p className="font-sans text-sm text-[#fbf9f4]/80 font-light leading-relaxed pb-4">
-          Dal nostro pluripremiato Olio Extravergine di Oliva fino alle conserve
-          artigianali sott'olio e ai prodotti della tradizione. Ogni pezzo è
-          unico, in edizione limitata per raccolta.
+          Dal nostro Olio Extravergine di Oliva fino alle conserve artigianali
+          sott'olio e ai prodotti della tradizione. Ogni pezzo è unico, in
+          edizione limitata per raccolta.
         </p>
         <a
           href="/shop"
