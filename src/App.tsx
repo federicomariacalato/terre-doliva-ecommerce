@@ -6,10 +6,8 @@ import { Shop } from "./pages/shop/Shop";
 export function App() {
   return (
     <>
-      <Navbar />
-      <main>
-        <HomePage />
-      </main>
+      {/* <HomePage /> */}
+
       <Shop />
     </>
   );
