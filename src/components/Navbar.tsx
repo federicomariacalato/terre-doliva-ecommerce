@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { ShoppingBag, Heart } from "lucide-react";
 import type { RootState } from "../store/store";
+import { openCart } from "../store/slices/cartSlice";
 
 type NavbarProps = {
   theme?: "dark" | "light"; // 'dark' per pagine a sfondo scuro (Home), 'light' per pagine a sfondo chiaro (Shop)
@@ -9,6 +10,7 @@ type NavbarProps = {
 
 export const Navbar = ({ theme = "dark" }: NavbarProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const dispatch = useDispatch();
 
   // Recuperiamo i dati in tempo reale da Redux
   const wishlistCount = useSelector(
@@ -103,7 +105,11 @@ export const Navbar = ({ theme = "dark" }: NavbarProps) => {
           </button>
 
           {/* Cart Icon */}
-          <button className="relative p-1 hover:scale-110 active:scale-95 transition-transform duration-200 cursor-pointer">
+          <button
+            onClick={() => dispatch(openCart())}
+            aria-label="Apri carrello"
+            className="relative p-1 hover:scale-110 active:scale-95 transition-transform duration-200 cursor-pointer"
+          >
             <ShoppingBag size={20} strokeWidth={1.5} />
             {cartCount > 0 && (
               <span className="absolute -top-1 -right-2 bg-[#b87d4b] text-[#fbf9f4] font-sans text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold animate-bounce">
