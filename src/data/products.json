@@ -3,7 +3,7 @@
     "id": 1,
     "name": "Olio Extra Vergine di Oliva - Monocultivar",
     "price": 18.5,
-    "description": "Estratto a freddo da olive 100% Italiane. Note di carciofo e mandorla fresca, ideale a crudo.",
+    "description": "Estratto a freddo da olive 100% italiane di un'unica varietà selezionata. Un profilo aromatico complesso con spiccate note di carciofo fresco, erba tagliata e mandorla amara. Ideale a crudo su carni rosse, zuppe calde e bruschette.",
     "category": "Olio EVOO",
     "image": "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=500"
   },
@@ -11,7 +11,7 @@
     "id": 2,
     "name": "Olio EVOO Biologico - Blend Frantoio",
     "price": 22.0,
-    "description": "Certificato biologico, franto entro 4 ore dalla raccolta. Gusto equilibrato e fruttato medio.",
+    "description": "Certificato biologico e molito entro sole 4 ore dalla raccolta per preservare tutti i polifenoli. Gusto armonioso ed equilibrato, con un fruttato medio che dona eleganza e delicatezza a insalate, verdure grigliate e pesce.",
     "category": "Olio EVOO",
     "image": "https://images.unsplash.com/photo-1471193945509-9ad0617afabf?w=500"
   },
@@ -19,7 +19,7 @@
     "id": 3,
     "name": "Paté di Olive Nere Leccine",
     "price": 6.5,
-    "description": "Prodotte in modo artigianale con l'aggiunta del nostro miglior olio extravergine.",
+    "description": "Cremosa specialità artigianale ottenuta esclusivamente da olive nere Leccine mature, lavorate lentamente con l'aggiunta del nostro miglior olio extravergine. Perfetto per crostini caldi, aperitivi raffinati e per insaporire primi piatti.",
     "category": "Conserve",
     "image": "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=500"
   },
