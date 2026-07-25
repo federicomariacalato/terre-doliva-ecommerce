@@ -4,11 +4,14 @@ import { CtaButton } from "../../components/CtaButton";
 import { Navbar } from "../../components/Navbar";
 import { QuickViewModal } from "../../components/QuickViewModal";
 import { useState } from "react";
+import { useDispatch } from "react-redux"; // 1. Importiamo useDispatch
+import { addToCart } from "../../store/slices/cartSlice"; // 2. Importa la tua azione Redux (aggiusta il path se diverso)
 
 const productsData: Product[] = rawProductData;
 
 export function Shop() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const dispatch = useDispatch(); // 3. Inizializziamo il dispatch
 
   const categoryColors: Record<string, string> = {
     "Olio EVOO": "bg-[#f2efe9]",
@@ -18,8 +21,13 @@ export function Shop() {
     default: "bg-[#f4f4f4]",
   };
 
+  // 4. Inviamo il prodotto e la quantità a Redux!
   const handleAddToCart = (product: Product, quantity: number) => {
-    console.log(`Aggiunto al carrello: ${product.name}, Quantità: ${quantity}`);
+    const productWithQuantity: Product & { quantity: number } = {
+      ...product,
+      quantity,
+    };
+    dispatch(addToCart(productWithQuantity));
   };
 
   return (
@@ -27,7 +35,7 @@ export function Shop() {
       <Navbar theme="light" />
       <div className="w-full min-h-screen bg-[#fbf9f4] pt-32 px-6 md:px-12 lg:px-20 mb-16">
         <div className="max-w-7xl mx-auto">
-          {/* Intestazione minimale */}
+          {/* Intestazione */}
           <header className="mb-16 space-y-2">
             <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-[#2c3e2b] font-semibold block">
               La Dispensa Autentica
@@ -37,7 +45,7 @@ export function Shop() {
             </h1>
           </header>
 
-          {/* Griglia dei prodotti */}
+          {/* Griglia Prodotti */}
           <div className="flex flex-wrap -mx-4 gap-y-16">
             {productsData.map((product) => {
               const bgClass =
@@ -47,7 +55,6 @@ export function Shop() {
                   key={product.id}
                   className="w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)] px-4 mx-4 flex flex-col justify-between group"
                 >
-                  {/* Box Immagine */}
                   <div
                     onClick={() => setSelectedProduct(product)}
                     className={`w-full aspect-4/5 ${bgClass} mb-6 flex items-center justify-center overflow-hidden relative cursor-pointer rounded-xl`}
@@ -59,7 +66,6 @@ export function Shop() {
                     />
                   </div>
 
-                  {/* Info prodotto */}
                   <div className="space-y-1">
                     <span className="font-sans text-[10px] uppercase tracking-wider text-[#7c7c7c]">
                       {product.category}
@@ -75,7 +81,6 @@ export function Shop() {
                     </p>
                   </div>
 
-                  {/* Pulsante di Acquisto Rapido */}
                   <div className="pt-4 mt-auto">
                     <CtaButton
                       btnText="Aggiungi al carrello"
@@ -90,8 +95,8 @@ export function Shop() {
         </div>
       </div>
 
-      {/* Componente Modale Separato */}
       <QuickViewModal
+        key={selectedProduct?.id}
         product={selectedProduct}
         onClose={() => setSelectedProduct(null)}
         onAddToCart={handleAddToCart}
