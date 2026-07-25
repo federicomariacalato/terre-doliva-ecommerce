@@ -14,7 +14,7 @@ export function Shop() {
     default: "bg-[#f4f4f4]",
   };
   return (
-    <div className="w-full min-h-screen bg-[#fbf9f4] pt-32 px-6 md:px-12 lg:px-20">
+    <div className="w-full min-h-screen bg-[#fbf9f4] pt-32 px-6 md:px-12 lg:px-20 mb-16">
       <div className="max-w-7xl mx-auto">
         {/* Intestazione minimale */}
         <header className="mb-16 space-y-2">

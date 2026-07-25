@@ -1,4 +1,5 @@
 import { CtaButton } from "../../../components/CtaButton";
+import imgUlivetoHomePage from "../../../../public/assets/uliveto-homepage.jpeg";
 
 export const ShopCTA = () => {
   return (
@@ -6,7 +7,7 @@ export const ShopCTA = () => {
       {/* Immagine di sfondo in trasparenza leggera per dare profondità */}
       <div className="absolute inset-0 w-full h-full opacity-10">
         <img
-          src="https://images.unsplash.com/photo-1471193945509-9ad0617afabf?w=1200"
+          src={imgUlivetoHomePage}
           alt="Dettaglio uliveto"
           className="w-full h-full object-cover"
         />

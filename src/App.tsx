@@ -7,9 +7,9 @@ export function App() {
   return (
     <>
       <Navbar />
-      {/* <main>
+      <main>
         <HomePage />
-      </main> */}
+      </main>
       <Shop />
     </>
   );
