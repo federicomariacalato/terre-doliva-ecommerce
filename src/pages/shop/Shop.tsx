@@ -1,17 +1,17 @@
 import type { Product } from "../../types/store.tipes";
 import rawProductData from "../../data/products.json";
-import { CtaButton } from "../../components/CtaButton";
 import { Navbar } from "../../components/Navbar";
+import { ProductCard } from "../../components/ProductCard";
 import { QuickViewModal } from "../../components/QuickViewModal";
 import { useState } from "react";
-import { useDispatch } from "react-redux"; // 1. Importiamo useDispatch
-import { addToCart } from "../../store/slices/cartSlice"; // 2. Importa la tua azione Redux (aggiusta il path se diverso)
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../store/slices/cartSlice";
 
 const productsData: Product[] = rawProductData;
 
 export function Shop() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const dispatch = useDispatch(); // 3. Inizializziamo il dispatch
+  const dispatch = useDispatch();
 
   const categoryColors: Record<string, string> = {
     "Olio EVOO": "bg-[#f2efe9]",
@@ -21,13 +21,10 @@ export function Shop() {
     default: "bg-[#f4f4f4]",
   };
 
-  // 4. Inviamo il prodotto e la quantità a Redux!
   const handleAddToCart = (product: Product, quantity: number) => {
-    const productWithQuantity: Product & { quantity: number } = {
-      ...product,
-      quantity,
-    };
-    dispatch(addToCart(productWithQuantity));
+    dispatch(
+      addToCart({ ...product, quantity } as Product & { quantity: number }),
+    );
   };
 
   return (
@@ -45,56 +42,23 @@ export function Shop() {
             </h1>
           </header>
 
-          {/* Griglia Prodotti */}
+          {/* Griglia dei prodotti */}
           <div className="flex flex-wrap -mx-4 gap-y-16">
-            {productsData.map((product) => {
-              const bgClass =
-                categoryColors[product.category] || categoryColors["default"];
-              return (
-                <div
-                  key={product.id}
-                  className="w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)] px-4 mx-4 flex flex-col justify-between group"
-                >
-                  <div
-                    onClick={() => setSelectedProduct(product)}
-                    className={`w-full aspect-4/5 ${bgClass} mb-6 flex items-center justify-center overflow-hidden relative cursor-pointer rounded-xl`}
-                  >
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105 rounded-xl"
-                    />
-                  </div>
-
-                  <div className="space-y-1">
-                    <span className="font-sans text-[10px] uppercase tracking-wider text-[#7c7c7c]">
-                      {product.category}
-                    </span>
-                    <h3
-                      onClick={() => setSelectedProduct(product)}
-                      className="font-serif text-lg text-[#1a1a1a] leading-snug group-hover:text-[#2c3e2b] transition-colors duration-300 cursor-pointer"
-                    >
-                      {product.name}
-                    </h3>
-                    <p className="font-sans text-sm font-medium text-[#b87d4b] pt-1">
-                      {product.price.toFixed(2)}€
-                    </p>
-                  </div>
-
-                  <div className="pt-4 mt-auto">
-                    <CtaButton
-                      btnText="Aggiungi al carrello"
-                      variant="light"
-                      onClick={() => setSelectedProduct(product)}
-                    />
-                  </div>
-                </div>
-              );
-            })}
+            {productsData.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                categoryBgClass={
+                  categoryColors[product.category] || categoryColors["default"]
+                }
+                onOpenQuickView={setSelectedProduct}
+              />
+            ))}
           </div>
         </div>
       </div>
 
+      {/* Modale Quick View */}
       <QuickViewModal
         key={selectedProduct?.id}
         product={selectedProduct}
