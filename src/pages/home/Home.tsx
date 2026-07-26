@@ -1,8 +1,8 @@
 import { Navbar } from "../../components/Navbar";
-import { Features } from "./components/Features";
+import { HomeFeatures } from "../../components/Features";
 import { Hero } from "../../components/Hero";
-import { Manifest } from "./components/Manifest";
-import { ShopCTA } from "./components/ShopCTA";
+import { HomeManifest } from "../../components/Manifest";
+import { HomeShopCTA } from "../../components/ShopCTA";
 
 export function Home() {
   return (
@@ -14,9 +14,9 @@ export function Home() {
         bgImage="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=1800"
         ctaText="Esplora la raccolta"
       />
-      <Manifest />
-      <Features />
-      <ShopCTA />
+      <HomeManifest />
+      <HomeFeatures />
+      <HomeShopCTA />
     </>
   );
 }

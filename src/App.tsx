@@ -7,10 +7,6 @@ import { Stories } from "./pages/stories/Stories";
 export function App() {
   return (
     <>
-      {/* <Home />
-
-      <Shop /> */}
-
       <Stories />
       <CartDrawer />
     </>

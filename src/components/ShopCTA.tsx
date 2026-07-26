@@ -1,7 +1,7 @@
-import { CtaButton } from "../../../components/CtaButton";
-import imgUlivetoHomePage from "../../../../public/assets/uliveto-homepage.jpeg";
+import { CtaButton } from "../components/CtaButton";
+import imgUlivetoHomePage from "../../public/assets/uliveto-homepage.jpeg";
 
-export const ShopCTA = () => {
+export const HomeShopCTA = () => {
   return (
     <section className="relative w-full py-32 bg-[#2c3e2b] text-[#fbf9f4] px-8 text-center overflow-hidden">
       {/* Immagine di sfondo in trasparenza leggera per dare profondità */}
@@ -30,3 +30,24 @@ export const ShopCTA = () => {
     </section>
   );
 };
+
+export function StoriesShopCTA() {
+  return (
+    <section className="bg-[#2c3e2b] text-[#fbf9f4] py-20 px-6 text-center">
+      <div className="max-w-2xl mx-auto space-y-6">
+        <h2 className="font-serif text-3xl sm:text-4xl font-light">
+          Assapora il frutto del nostro lavoro
+        </h2>
+        <p className="font-sans text-sm text-[#fbf9f4]/80 font-light">
+          Scopri gli oli e le specialità siciliane realizzate con cura e
+          dedizione.
+        </p>
+        <div className="pt-4 flex justify-center">
+          <a href="/shop">
+            <CtaButton btnText="Scopri lo Shop" variant="dark" />
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
