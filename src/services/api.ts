@@ -1,4 +1,4 @@
-import type { Product } from "../types/store.tipes";
+import type { Product } from "../types/store.types";
 
 export type ApiService = {
   getProducts: () => Promise<Product[]>;

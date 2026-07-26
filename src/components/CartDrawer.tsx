@@ -79,7 +79,7 @@ export function CartDrawer() {
                   className="flex gap-4 pb-6 border-b border-[#e8e4d9] last:border-b-0"
                 >
                   {/* Immagine Prodotto */}
-                  <div className="w-20 h-24 bg-[#f4f1ea] rounded-lg overflow-hidden flex-shrink-0">
+                  <div className="w-20 h-24 bg-[#f4f1ea] rounded-lg overflow-hidden shrink-0">
                     <img
                       src={item.image}
                       alt={item.name}
