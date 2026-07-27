@@ -1,35 +1,36 @@
-# 🫒 Terre d'Oliva — E-commerce Moderno
+# 🫒 Terre d'Oliva — Modern E-Commerce Application
 
-Un'applicazione e-commerce moderna, elegante e responsive per un brand fittizio d'olio extravergine d'oliva di alta qualità, sviluppata con **React**, **TypeScript** e le migliori librerie per lo sviluppo frontend moderno.
+A modern, elegant, and fully responsive e-commerce application built for a boutique Extra Virgin Olive Oil brand. Developed with **React**, **TypeScript**, and modern web tools focused on performance and user experience.
 
 ---
 
-## 🚀 Tecnologie Utilizzate
+## 🚀 Tech Stack
 
 - **Frontend Framework:** [React 19](https://react.dev/) + [Vite](https://vitejs.dev/)
-- **Linguaggio:** TypeScript
-- **State Management:** [Redux Toolkit](https://redux-toolkit.js.org/) (Gestione Carrello e Wishlist)
+- **Language:** TypeScript
+- **State Management:** [Redux Toolkit](https://redux-toolkit.js.org/) (Global Cart & Wishlist state)
 - **Data Fetching & Caching:** [TanStack Query v5](https://tanstack.com/query/latest)
 - **Routing:** [React Router](https://reactrouter.com/)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
-- **Icone:** [Lucide React](https://lucide.dev/)
+- **Icons:** [Lucide React](https://lucide.dev/)
 
 ---
 
-## ✨ Funzionalità Principali
+## ✨ Key Features
 
-- 🛒 **Gestione Carrello Globale:** Aggiunta, rimozione, modifica quantità e calcolo del totale in tempo reale con Redux.
-- ❤️ **Lista dei Preferiti (Wishlist):** Salvataggio dinamico dei prodotti con aggiornamento del contatore sulla Navbar in tempo reale.
-- 🧭 **Navigazione Dinamica:** Client-Side Routing con stato attivo visibile per le varie pagine (Home, Shop, Le Storie).
-- 🔍 **Quick View Prodotto:** Modale rapida per consultare i dettagli di un prodotto senza abbandonare la navigazione.
-- 🎨 **UI/UX Curata:** Layout completamente responsive, header ad animazione dinamica allo scroll e gestione dei temi.
+- 🛒 **Global Shopping Cart:** Add/remove items, update quantities, and calculate subtotal in real-time managed via Redux.
+- ❤️ **Wishlist Integration:** Toggle favorite items dynamically with live status updates reflected in the Navbar counter.
+- 🧭 **Client-Side Routing:** Multi-page navigation (Home, Shop, Stories) with active route indicator using `NavLink`.
+- 🔍 **Quick View Modal:** Fast product detail preview without leaving the current page view.
+- 🎨 **Refined UI/UX:** Responsive layout with dynamic theme adaptations and glassmorphism scroll effects on the Navbar.
 
 ---
 
-## 🛠️ Installazione e Avvio Locale
+## 🏛️ Project Structure
 
-1. **Clona la repository:**
-   ```bash
-   git clone [https://github.com/TUO-USERNAME/terre-doliva-ecommerce.git](https://github.com/TUO-USERNAME/terre-doliva-ecommerce.git)
-   cd terre-doliva-ecommerce
-   ```
+  src/
+  ├── components/ # Reusable UI components (Navbar, CartDrawer, ProductCard, etc.)
+  ├── pages/ # Main route views (Home, Shop, Stories)
+  ├── store/ # Redux Store configuration & slices (cartSlice, wishlistSlice)
+  ├── types/ # TypeScript interfaces & types
+  └── main.tsx # Application entry point with providers setup
