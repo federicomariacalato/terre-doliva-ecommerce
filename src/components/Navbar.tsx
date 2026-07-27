@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { ShoppingBag, Heart } from "lucide-react";
 import type { RootState } from "../store/store";
 import { openCart } from "../store/slices/cartSlice";
+import { Link, NavLink } from "react-router";
 
 type NavbarProps = {
   theme?: "dark" | "light"; // 'dark' per pagine a sfondo scuro (Home), 'light' per pagine a sfondo chiaro (Shop)
@@ -61,27 +62,27 @@ export const Navbar = ({ theme = "dark" }: NavbarProps) => {
         <div
           className={`flex gap-8 font-sans text-xs uppercase tracking-widest font-medium transition-colors duration-500 ${textColorClass}`}
         >
-          <a href="#shop" className="relative py-1 group">
+          <NavLink to="/shop" className="relative py-1 group">
             Shop
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2c3e2b] transition-all duration-300 group-hover:w-full"></span>
-          </a>
-          <a
-            href="#storie"
+          </NavLink>
+          <NavLink
+            to="/storie"
             className="relative py-1 group hidden md:inline-block"
           >
             Le Storie
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2c3e2b] transition-all duration-300 group-hover:w-full"></span>
-          </a>
+          </NavLink>
         </div>
 
         {/* Centro: Logo Serif */}
         <div className="absolute left-1/2 transform -translate-x-1/2 text-center">
-          <a
-            href="/"
+          <Link
+            to="/"
             className={`font-serif text-2xl lg:text-3xl tracking-wide font-light transition-colors duration-500 ${logoColorClass}`}
           >
             Terre d'Oliva
-          </a>
+          </Link>
         </div>
 
         {/* Destra: Azioni Utente */}

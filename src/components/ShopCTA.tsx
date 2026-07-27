@@ -25,7 +25,7 @@ export const HomeShopCTA = () => {
           sott'olio e ai prodotti della tradizione. Ogni pezzo è unico, in
           edizione limitata per raccolta.
         </p>
-        <CtaButton btnText="Vai allo shop" />
+        <CtaButton href="/shop" btnText="Vai allo shop" />
       </div>
     </section>
   );
@@ -44,7 +44,7 @@ export function StoriesShopCTA() {
         </p>
         <div className="pt-4 flex justify-center">
           <a href="/shop">
-            <CtaButton btnText="Scopri lo Shop" variant="dark" />
+            <CtaButton btnText="Scopri lo Shop" variant="dark" href="/shop" />
           </a>
         </div>
       </div>

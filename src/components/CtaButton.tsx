@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 type CtaButtonProps = {
   btnText: string;
   variant?: "dark" | "light";
@@ -27,9 +29,9 @@ export function CtaButton({
   // Se c'è un href, si comporta come un link
   if (href) {
     return (
-      <a href={href} className={combinedClasses}>
+      <Link to={href} className={combinedClasses}>
         {btnText}
-      </a>
+      </Link>
     );
   }
 

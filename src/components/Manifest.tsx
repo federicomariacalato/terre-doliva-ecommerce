@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import imgUliveto from "../../public/assets/raccolta-olive-a-mano.jpeg";
 
 export const HomeManifest = () => {
@@ -21,14 +22,14 @@ export const HomeManifest = () => {
             racconta la terra, il sole e la nostra ossessione per la qualità.
           </p>
           <div className="pt-4">
-            <a
-              href="#storia"
+            <Link
+              to="/storie"
               className="inline-block font-sans text-xs uppercase tracking-widest font-semibold text-[#2c3e2b] relative group py-1"
             >
               Scopri la nostra storia
               <span className="absolute bottom-0 left-0 w-full h-px bg-[#2c3e2b] transition-transform duration-300 scale-x-100 group-hover:scale-x-0 origin-right"></span>
               <span className="absolute bottom-0 left-0 w-full h-px bg-[#b87d4b] transition-transform duration-300 scale-x-0 group-hover:scale-x-100 origin-left"></span>
-            </a>
+            </Link>
           </div>
         </div>
 
