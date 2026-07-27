@@ -13,7 +13,7 @@ const wishlistSlice = createSlice({
   name: "wishlist",
   initialState,
   reducers: {
-    toogleWishlist: (state, action: PayloadAction<Product>) => {
+    toggleWishlist: (state, action: PayloadAction<Product>) => {
       const index = state.items.findIndex((i) => i.id === action.payload.id);
       if (index >= 0) {
         state.items.splice(index, 1);
@@ -24,5 +24,5 @@ const wishlistSlice = createSlice({
   },
 });
 
-export const { toogleWishlist } = wishlistSlice.actions;
+export const { toggleWishlist } = wishlistSlice.actions;
 export default wishlistSlice.reducer;
