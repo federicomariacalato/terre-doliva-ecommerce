@@ -26,11 +26,13 @@ A modern, elegant, and fully responsive e-commerce application built for a bouti
 
 ---
 
-## 🏛️ Project Structure
+## 📁 Project Structure
 
-  src/
-  ├── components/ # Reusable UI components (Navbar, CartDrawer, ProductCard, etc.)
-  ├── pages/ # Main route views (Home, Shop, Stories)
-  ├── store/ # Redux Store configuration & slices (cartSlice, wishlistSlice)
-  ├── types/ # TypeScript interfaces & types
-  └── main.tsx # Application entry point with providers setup
+```text
+src/
+├── components/     # Reusable UI components
+├── pages/          # Main route views
+├── store/          # Redux Store configuration & slices
+├── types/          # TypeScript interfaces & types
+└── main.tsx        # Application entry point
+```
