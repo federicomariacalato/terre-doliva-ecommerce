@@ -173,6 +173,7 @@ export function CartDrawer() {
                 btnText="Procedi al Checkout"
                 variant="light"
                 href="/checkout"
+                onClick={() => dispatch(closeCart())}
               />
             </div>
           )}

@@ -26,10 +26,10 @@ export function CtaButton({
 
   const combinedClasses = `${baseStyles} ${variantStyles[variant]}`;
 
-  // Se c'è un href, si comporta come un link
+  // Se c'è un href, si comporta come un link (ma esegue anche l'onClick se presente)
   if (href) {
     return (
-      <Link to={href} className={combinedClasses}>
+      <Link to={href} onClick={onClick} className={combinedClasses}>
         {btnText}
       </Link>
     );
