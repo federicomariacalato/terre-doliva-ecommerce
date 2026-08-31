@@ -101,9 +101,11 @@ export function Checkout() {
     // Simulazione del tempo di elaborazione del pagamento
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    // Svuota il carrello Redux e naviga alla conferma ordine
+    // Svuota il carrello Redux e torna alla Home mostrando un toast di conferma.
+    // Nota: non esiste ancora una pagina di conferma ordine dedicata;
+    // se in futuro verrà aggiunta, sostituire con navigate("/order-confirmation").
     dispatch(clearCart());
-    navigate("/order-confirmation");
+    navigate("/", { state: { orderSuccess: true } });
   };
 
   if (cartItems.length === 0) return null;

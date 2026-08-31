@@ -3,10 +3,12 @@ import { HomeFeatures } from "../../components/Features";
 import { Hero } from "../../components/Hero";
 import { HomeManifest } from "../../components/Manifest";
 import { HomeShopCTA } from "../../components/ShopCTA";
+import { OrderSuccessToast } from "../../components/OrderSuccessToast";
 
 export function Home() {
   return (
     <>
+      <OrderSuccessToast />
       <Navbar theme="dark" />
       <Hero
         subtitle="Raccolta 2026 • Edizione Limitata"
