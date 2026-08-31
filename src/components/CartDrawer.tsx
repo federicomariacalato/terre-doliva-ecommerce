@@ -1,6 +1,7 @@
 import { X, Plus, Minus, ShoppingBag, Trash2 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { CtaButton } from "./CtaButton";
+import { Link } from "react-router";
 // Importa le azioni e i selettori dalla tua cartSlice / store:
 import {
   selectCartItems,
@@ -65,12 +66,13 @@ export function CartDrawer() {
                   Esplora la nostra collezione e scopri le eccellenze della
                   nostra terra.
                 </p>
-                <button
+                <Link
+                  to="/shop"
                   onClick={() => dispatch(closeCart())}
                   className="font-sans text-xs font-semibold uppercase tracking-wider text-[#b87d4b] hover:underline pt-2 cursor-pointer"
                 >
                   Continua lo Shopping
-                </button>
+                </Link>
               </div>
             ) : (
               cartItems.map((item) => (
@@ -170,9 +172,7 @@ export function CartDrawer() {
               <CtaButton
                 btnText="Procedi al Checkout"
                 variant="light"
-                onClick={() => {
-                  console.log("Reindirizzamento al checkout...");
-                }}
+                href="/checkout"
               />
             </div>
           )}
