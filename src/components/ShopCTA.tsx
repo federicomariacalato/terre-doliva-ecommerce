@@ -1,5 +1,5 @@
 import { CtaButton } from "../components/CtaButton";
-import imgUlivetoHomePage from "../../public/assets/uliveto-homepage.jpeg";
+import imgUlivetoHomePage from "../assets/uliveto-homepage.jpeg";
 
 export const HomeShopCTA = () => {
   return (

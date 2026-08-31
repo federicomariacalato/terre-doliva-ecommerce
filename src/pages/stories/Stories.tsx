@@ -1,6 +1,6 @@
 import { Navbar } from "../../components/Navbar";
 import { Hero } from "../../components//Hero";
-import imgFrantoio from "../../../public/assets/lavorazione-in-frantoio.jpg";
+import imgFrantoio from "../../assets/lavorazione-in-frantoio.jpg";
 import { StoriesManifest } from "../../components/Manifest";
 import { StoriesFeatures } from "../../components/Features";
 import { StoriesShopCTA } from "../../components/ShopCTA";

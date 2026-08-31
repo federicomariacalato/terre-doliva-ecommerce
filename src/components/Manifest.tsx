@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import imgUliveto from "../../public/assets/raccolta-olive-a-mano.jpeg";
+import imgUliveto from "../assets/raccolta-olive-a-mano.jpeg";
 
 export const HomeManifest = () => {
   return (
