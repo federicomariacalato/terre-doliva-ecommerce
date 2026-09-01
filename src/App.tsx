@@ -5,8 +5,17 @@ import { Home } from "./pages/home/Home";
 import { Shop } from "./pages/shop/Shop";
 import { Stories } from "./pages/stories/Stories";
 import { Checkout } from "./pages/checkout/Checkout";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { selectCartItems } from "./store/slices/cartSlice";
+import { saveCartToStorage } from "./utils/cartStorage";
 
 export function App() {
+  const items = useSelector(selectCartItems);
+
+  useEffect(() => {
+    saveCartToStorage(items);
+  }, [items]);
   return (
     <>
       <Routes>
