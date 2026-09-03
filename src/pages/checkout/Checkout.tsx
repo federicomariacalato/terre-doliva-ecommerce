@@ -290,7 +290,7 @@ export function Checkout() {
                           <FormControl>
                             <RadioGroup
                               onValueChange={field.onChange}
-                              defaultValue={field.value}
+                              value={field.value}
                               className="space-y-3"
                             >
                               <div className="flex items-center justify-between p-3.5 border rounded-lg border-[#e8e4d9] bg-white [&:has(:checked)]:border-[#2c3e2b] [&:has(:checked)]:bg-[#f4f1ea]">
