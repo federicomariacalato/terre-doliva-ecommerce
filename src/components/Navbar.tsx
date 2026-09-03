@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { ShoppingBag, Heart } from "lucide-react";
+import { ShoppingBag } from "lucide-react";
 import type { RootState } from "../store/store";
 import { openCart } from "../store/slices/cartSlice";
 import { Link, NavLink } from "react-router";
@@ -14,9 +14,6 @@ export const Navbar = ({ theme = "dark" }: NavbarProps) => {
   const dispatch = useDispatch();
 
   // Recuperiamo i dati in tempo reale da Redux
-  const wishlistCount = useSelector(
-    (state: RootState) => state.wishlist.items.length,
-  );
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
@@ -89,22 +86,6 @@ export const Navbar = ({ theme = "dark" }: NavbarProps) => {
         <div
           className={`flex items-center gap-6 transition-colors duration-500 ${textColorClass}`}
         >
-          {/* Wishlist Icon */}
-          <button className="relative p-1 hover:scale-110 active:scale-95 transition-transform duration-200 cursor-pointer">
-            <Heart
-              size={20}
-              strokeWidth={1.5}
-              className={
-                wishlistCount > 0 ? "fill-[#2c3e2b] stroke-[#2c3e2b]" : ""
-              }
-            />
-            {wishlistCount > 0 && (
-              <span className="absolute -top-1 -right-2 bg-[#2c3e2b] text-[#fbf9f4] font-sans text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
-                {wishlistCount}
-              </span>
-            )}
-          </button>
-
           {/* Cart Icon */}
           <button
             onClick={() => dispatch(openCart())}
