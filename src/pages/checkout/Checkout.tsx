@@ -42,6 +42,8 @@ import {
   selectCartTotal,
   clearCart,
 } from "../../store/slices/cartSlice";
+import type { Order } from "@/types/order.types";
+import { addOrderToStorage } from "@/utils/orderStorage";
 
 // Schema di validazione Zod per il Checkout
 const checkoutSchema = z.object({
@@ -56,7 +58,7 @@ const checkoutSchema = z.object({
   }),
 });
 
-type CheckoutFormValues = z.infer<typeof checkoutSchema>;
+export type CheckoutFormValues = z.infer<typeof checkoutSchema>;
 
 export function Checkout() {
   const navigate = useNavigate();
@@ -97,11 +99,26 @@ export function Checkout() {
       setIsSubmitting(true);
       await simulatePayment();
 
-      console.log("Ordine Inviato:", {
-        customer: data,
+      const order: Order = {
+        id: crypto.randomUUID().slice(0, 8),
+        date: new Date().toISOString(),
+        status: "in lavorazione",
+        customer: {
+          fullName: data.fullName,
+          email: data.email,
+          phone: data.phone,
+          address: data.address,
+          city: data.city,
+          postalCode: data.postalCode,
+        },
         items: cartItems,
         totalAmount: grandTotal,
-      });
+        paymentMethod: data.paymentMethod,
+      };
+
+      addOrderToStorage(order);
+
+      console.log("Ordine Inviato:", order);
       dispatch(clearCart());
       navigate("/", { state: { orderSuccess: true } });
     } catch (error) {
