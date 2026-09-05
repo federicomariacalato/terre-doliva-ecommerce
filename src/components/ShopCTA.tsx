@@ -43,9 +43,7 @@ export function StoriesShopCTA() {
           dedizione.
         </p>
         <div className="pt-4 flex justify-center">
-          <a href="/shop">
-            <CtaButton btnText="Scopri lo Shop" variant="dark" href="/shop" />
-          </a>
+          <CtaButton btnText="Scopri lo Shop" variant="dark" href="/shop" />
         </div>
       </div>
     </section>
