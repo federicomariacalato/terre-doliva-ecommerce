@@ -3,6 +3,8 @@ import { useNavigate, Link } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { simulatePayment } from "@/services/simulatePayment";
+import { OrderErrorToast } from "@/components/OrderErrorToast";
 import * as z from "zod";
 import {
   ArrowLeft,
@@ -60,6 +62,7 @@ export function Checkout() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   // Lettura dati dallo store Redux
   const cartItems = useSelector(selectCartItems);
@@ -90,28 +93,36 @@ export function Checkout() {
   });
 
   const onSubmit = async (data: CheckoutFormValues) => {
-    setIsSubmitting(true);
+    try {
+      setIsSubmitting(true);
+      await simulatePayment();
 
-    console.log("Ordine Inviato:", {
-      customer: data,
-      items: cartItems,
-      totalAmount: grandTotal,
-    });
-
-    // Simulazione del tempo di elaborazione del pagamento
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    // Svuota il carrello Redux e torna alla Home mostrando un toast di conferma.
-    // Nota: non esiste ancora una pagina di conferma ordine dedicata;
-    // se in futuro verrà aggiunta, sostituire con navigate("/order-confirmation").
-    dispatch(clearCart());
-    navigate("/", { state: { orderSuccess: true } });
+      console.log("Ordine Inviato:", {
+        customer: data,
+        items: cartItems,
+        totalAmount: grandTotal,
+      });
+      dispatch(clearCart());
+      navigate("/", { state: { orderSuccess: true } });
+    } catch (error) {
+      setIsSubmitting(false);
+      if (error instanceof Error) {
+        setErrorMessage(error.message);
+      } else {
+        setErrorMessage("Si è verificato un errore imprevisto");
+      }
+      console.log(error);
+    }
   };
 
   if (cartItems.length === 0) return null;
 
   return (
     <div className="min-h-screen bg-[#fbf9f4] py-8 px-4 sm:px-6 lg:px-8 font-sans text-[#1a1a1a]">
+      <OrderErrorToast
+        message={errorMessage}
+        onClose={() => setErrorMessage(null)}
+      />
       <div className="max-w-6xl mx-auto space-y-8">
         {/* Header di navigazione */}
         <div className="flex items-center justify-between border-b border-[#e8e4d9] pb-4">

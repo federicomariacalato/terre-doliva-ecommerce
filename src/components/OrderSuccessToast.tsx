@@ -13,19 +13,22 @@ export function OrderSuccessToast() {
     (location.state as { orderSuccess?: boolean } | null)?.orderSuccess,
   );
 
+  // Effect 1: si occupa di "accendere" il toast
   useEffect(() => {
     if (!shouldShow) return;
 
     setIsVisible(true);
-
-    // Pulisce lo state di navigazione così il toast non ricompare
-    // ricaricando la pagina o tornando indietro
     navigate(location.pathname, { replace: true, state: null });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [shouldShow]);
+
+  // Effect 2: si occupa SOLO del timer di auto-chiusura.
+  useEffect(() => {
+    if (!isVisible) return;
 
     const timer = setTimeout(() => setIsVisible(false), 4500);
     return () => clearTimeout(timer);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [shouldShow]);
+  }, [isVisible]);
 
   if (!isVisible) return null;
 
