@@ -9,7 +9,7 @@ type UseProductsResult = {
   error: Error | null;
 };
 
-export const useProduct = (): UseProductsResult => {
+export const useProducts = (): UseProductsResult => {
   const { data, isLoading, isError, error } = useQuery<Product[], Error>({
     queryKey: ["products"],
     queryFn: apiService.getProducts,
