@@ -16,7 +16,6 @@ import {
   Lock,
 } from "lucide-react";
 
-// Componenti UI di shadcn con import relativi
 import {
   Form,
   FormControl,
@@ -36,7 +35,6 @@ import {
 import { RadioGroup, RadioGroupItem } from "../../components/ui/radio-group";
 import { Label } from "../../components/ui/label";
 
-// Importa selettori e azioni dal cartSlice
 import {
   selectCartItems,
   selectCartTotal,
@@ -45,7 +43,6 @@ import {
 import type { Order } from "@/types/order.types";
 import { addOrderToStorage } from "@/utils/orderStorage";
 
-// Schema di validazione Zod per il Checkout
 const checkoutSchema = z.object({
   fullName: z.string().min(3, "Inserisci nome e cognome"),
   email: z.string().email("Inserisci un'email valida"),
@@ -66,15 +63,12 @@ export function Checkout() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  // Lettura dati dallo store Redux
   const cartItems = useSelector(selectCartItems);
   const cartTotal = useSelector(selectCartTotal);
 
-  // Spedizione gratuita per ordini superiori a 50€
   const shippingCost = cartTotal >= 50 || cartTotal === 0 ? 0 : 6.9;
   const grandTotal = cartTotal + shippingCost;
 
-  // Reindirizza alla Home se il carrello viene svuotato
   useEffect(() => {
     if (cartItems.length === 0 && !isSubmitting) {
       navigate("/");
@@ -118,7 +112,6 @@ export function Checkout() {
 
       addOrderToStorage(order);
 
-      console.log("Ordine Inviato:", order);
       dispatch(clearCart());
       navigate("/", { state: { orderSuccess: true } });
     } catch (error) {
@@ -128,7 +121,6 @@ export function Checkout() {
       } else {
         setErrorMessage("Si è verificato un errore imprevisto");
       }
-      console.log(error);
     }
   };
 
@@ -141,7 +133,6 @@ export function Checkout() {
         onClose={() => setErrorMessage(null)}
       />
       <div className="max-w-6xl mx-auto space-y-8">
-        {/* Header di navigazione */}
         <div className="flex items-center justify-between border-b border-[#e8e4d9] pb-4">
           <Link
             to="/shop"
@@ -156,16 +147,13 @@ export function Checkout() {
           </div>
         </div>
 
-        {/* Struttura principale a 2 Colonne */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* COLONNA SINISTRA: Form di Spedizione & Pagamento (7/12) */}
           <div className="lg:col-span-7">
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
                 className="space-y-6"
               >
-                {/* 1. Dati di Spedizione */}
                 <Card className="bg-[#fbf9f4] border-[#e8e4d9] shadow-sm">
                   <CardHeader>
                     <CardTitle className="font-serif text-xl text-[#2c3e2b]">
@@ -302,7 +290,6 @@ export function Checkout() {
                   </CardContent>
                 </Card>
 
-                {/* 2. Metodo di Pagamento */}
                 <Card className="bg-[#fbf9f4] border-[#e8e4d9] shadow-sm">
                   <CardHeader>
                     <CardTitle className="font-serif text-xl text-[#2c3e2b]">
@@ -379,7 +366,6 @@ export function Checkout() {
                   </CardContent>
                 </Card>
 
-                {/* Pulsante Conferma Ordine */}
                 <Button
                   type="submit"
                   disabled={isSubmitting}
@@ -393,7 +379,6 @@ export function Checkout() {
             </Form>
           </div>
 
-          {/* COLONNA DESTRAM: Riepilogo Prodotti Carrello (5/12) */}
           <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-8">
             <Card className="bg-[#f4f1ea] border-[#e8e4d9] shadow-sm">
               <CardHeader className="border-b border-[#e8e4d9]">
@@ -403,7 +388,6 @@ export function Checkout() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="pt-6 space-y-4">
-                {/* Mappatura prodotti da cartSlice */}
                 <div className="space-y-4 max-h-80 overflow-y-auto pr-1">
                   {cartItems.map((item) => (
                     <div
@@ -437,7 +421,6 @@ export function Checkout() {
                   ))}
                 </div>
 
-                {/* Calcolo Totale e Spedizione */}
                 <div className="space-y-2 pt-4 border-t border-[#e8e4d9]">
                   <div className="flex justify-between text-xs text-[#7c7c7c]">
                     <span>Subtotale</span>
@@ -470,7 +453,6 @@ export function Checkout() {
                   </div>
                 </div>
 
-                {/* Badge di Affidabilità */}
                 <div className="pt-4 space-y-2.5 text-xs text-[#2c3e2b] border-t border-[#e8e4d9]">
                   <div className="flex items-center gap-2.5">
                     <ShieldCheck

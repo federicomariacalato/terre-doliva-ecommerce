@@ -6,18 +6,16 @@ import { openCart } from "../store/slices/cartSlice";
 import { Link, NavLink } from "react-router";
 
 type NavbarProps = {
-  theme?: "dark" | "light"; // 'dark' per pagine a sfondo scuro (Home), 'light' per pagine a sfondo chiaro (Shop)
+  theme?: "dark" | "light";
 };
 
 export const Navbar = ({ theme = "dark" }: NavbarProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const dispatch = useDispatch();
 
-  // Recuperiamo i dati in tempo reale da Redux
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
-  // Controlla lo scroll della pagina per attivare l'effetto "vetro/opaco"
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -31,7 +29,6 @@ export const Navbar = ({ theme = "dark" }: NavbarProps) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Gestione dinamica dei colori del testo in base allo scroll e al tema della pagina
   const isDarkText = isScrolled || theme === "light";
 
   const textColorClass = isDarkText ? "text-[#1a1a1a]" : "text-[#fbf9f4]";
@@ -39,7 +36,6 @@ export const Navbar = ({ theme = "dark" }: NavbarProps) => {
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 transition-all duration-500">
-      {/* Announcement Bar */}
       <div className="bg-[#2c3e2b] text-[#fbf9f4] text-xs uppercase tracking-widest py-2 text-center overflow-hidden whitespace-nowrap font-sans">
         <div className="inline-block animate-marquee">
           Spedizione gratuita in tutta Italia per ordini superiori a 50€ •
@@ -47,7 +43,6 @@ export const Navbar = ({ theme = "dark" }: NavbarProps) => {
         </div>
       </div>
 
-      {/* Main Navbar */}
       <nav
         className={`w-full px-8 py-6 flex justify-between items-center transition-all duration-500 border-b ${
           isScrolled
@@ -55,7 +50,6 @@ export const Navbar = ({ theme = "dark" }: NavbarProps) => {
             : "bg-transparent border-transparent"
         }`}
       >
-        {/* Sinistra: Navigazione */}
         <div
           className={`flex gap-8 font-sans text-xs uppercase tracking-widest font-medium transition-colors duration-500 ${textColorClass}`}
         >
@@ -72,7 +66,6 @@ export const Navbar = ({ theme = "dark" }: NavbarProps) => {
           </NavLink>
         </div>
 
-        {/* Centro: Logo Serif */}
         <div className="absolute left-1/2 transform -translate-x-1/2 text-center">
           <Link
             to="/"
@@ -82,11 +75,9 @@ export const Navbar = ({ theme = "dark" }: NavbarProps) => {
           </Link>
         </div>
 
-        {/* Destra: Azioni Utente */}
         <div
           className={`flex items-center gap-6 transition-colors duration-500 ${textColorClass}`}
         >
-          {/* Cart Icon */}
           <button
             onClick={() => dispatch(openCart())}
             aria-label="Apri carrello"

@@ -5,7 +5,6 @@ export const HomeManifest = () => {
   return (
     <section className="w-full bg-[#fbf9f4] py-24 px-8 md:px-16 lg:px-24">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        {/* Sinistra: Testo narrativo (6 colonne su desktop) */}
         <div className="lg:col-span-7 space-y-8 pr-0 lg:pr-12">
           <span className="font-sans text-xs uppercase tracking-widest text-[#2c3e2b]/60 font-medium block">
             La Nostra Filosofia
@@ -33,11 +32,9 @@ export const HomeManifest = () => {
           </div>
         </div>
 
-        {/* Destra: Immagine con cornice e layout asimmetrico (5 colonne su desktop) */}
         <div className="lg:col-span-5 lg:col-start-8">
           <div className="relative p-4 border border-[#e8e4d9] bg-white shadow-sm group">
             <div className="overflow-hidden aspect-3/4">
-              {/* Placeholder per foto dettagliata (es. olive sulla pianta o mani contadine) */}
               <img
                 src={imgUliveto}
                 alt="Uliveto secolare Terre d'Oliva in Sicilia"
@@ -59,7 +56,6 @@ export const HomeManifest = () => {
 export function StoriesManifest() {
   return (
     <div className="py-20 space-y-24 max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
-      {/* CAPITOLO I: TESTO -> IMMAGINE */}
       <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         <div className="lg:col-span-5 space-y-6">
           <span className="font-sans text-[10px] uppercase tracking-[0.25em] text-[#b87d4b] font-bold block">
@@ -93,7 +89,6 @@ export function StoriesManifest() {
         </div>
       </section>
 
-      {/* CAPITOLO II: IMMAGINE -> TESTO */}
       <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         <div className="lg:col-span-7 order-2 lg:order-1">
           <div className="relative rounded-2xl overflow-hidden shadow-xl bg-[#f4f1ea] aspect-4/3">
@@ -126,7 +121,6 @@ export function StoriesManifest() {
         </div>
       </section>
 
-      {/* CAPITOLO III: TESTO -> IMMAGINE */}
       <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         <div className="lg:col-span-5 space-y-6">
           <span className="font-sans text-[10px] uppercase tracking-[0.25em] text-[#b87d4b] font-bold block">

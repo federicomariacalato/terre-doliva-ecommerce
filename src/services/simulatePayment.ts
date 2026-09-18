@@ -3,7 +3,6 @@ export function simulatePayment(): Promise<void> {
     setTimeout(() => {
       const isSuccess = Math.random() >= 0.2;
       if (isSuccess) {
-        console.log("Ordine inviato!");
         resolve();
       } else {
         reject(new Error("L' ordine NON è stato inviato"));

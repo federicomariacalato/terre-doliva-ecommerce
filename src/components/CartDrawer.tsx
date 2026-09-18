@@ -2,20 +2,18 @@ import { X, Plus, Minus, ShoppingBag, Trash2 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { CtaButton } from "./CtaButton";
 import { Link } from "react-router";
-// Importa le azioni e i selettori dalla tua cartSlice / store:
 import {
   selectCartItems,
   selectCartTotal,
   updateQuantity,
   removeFromCart,
-  closeCart, // Action per chiudere il drawer
+  closeCart,
   selectIsCartOpen,
 } from "../store/slices/cartSlice";
 
 export function CartDrawer() {
   const dispatch = useDispatch();
 
-  // Leggiamo lo stato da Redux (adatta i selettori al tuo store)
   const isOpen = useSelector(selectIsCartOpen);
   const cartItems = useSelector(selectCartItems);
   const cartTotal = useSelector(selectCartTotal);
@@ -24,16 +22,13 @@ export function CartDrawer() {
 
   return (
     <div className="fixed inset-0 z-50 overflow-hidden">
-      {/* 1. Backdrop Scuro e Sfocato */}
       <div
         onClick={() => dispatch(closeCart())}
         className="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity animate-fadeIn"
       />
 
       <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
-        {/* 2. Pannello Drawer che Scivola da Destra */}
         <div className="w-screen max-w-md bg-[#fbf9f4] shadow-2xl flex flex-col border-l border-[#e8e4d9] animate-slideLeft">
-          {/* Header Drawer */}
           <div className="p-6 border-b border-[#e8e4d9] flex items-center justify-between bg-[#f4f1ea]">
             <div className="flex items-center gap-3">
               <ShoppingBag size={20} className="text-[#2c3e2b]" />
@@ -52,7 +47,6 @@ export function CartDrawer() {
             </button>
           </div>
 
-          {/* Lista Prodotti o Stato Vuoto */}
           <div className="flex-1 overflow-y-auto p-6 space-y-6">
             {cartItems.length === 0 ? (
               <div className="h-full flex flex-col items-center justify-center text-center space-y-4 py-12">
@@ -80,7 +74,6 @@ export function CartDrawer() {
                   key={item.id}
                   className="flex gap-4 pb-6 border-b border-[#e8e4d9] last:border-b-0"
                 >
-                  {/* Immagine Prodotto */}
                   <div className="w-20 h-24 bg-[#f4f1ea] rounded-lg overflow-hidden shrink-0">
                     <img
                       src={item.image}
@@ -89,7 +82,6 @@ export function CartDrawer() {
                     />
                   </div>
 
-                  {/* Dettagli & Controlli */}
                   <div className="flex-1 flex flex-col justify-between">
                     <div>
                       <div className="flex justify-between items-start gap-2">
@@ -109,7 +101,6 @@ export function CartDrawer() {
                     </div>
 
                     <div className="flex items-center justify-between mt-3">
-                      {/* Selettore Quantità Compatto */}
                       <div className="flex items-center gap-2 bg-white border border-[#e8e4d9] rounded-md px-2 py-1">
                         <button
                           onClick={() =>
@@ -142,7 +133,6 @@ export function CartDrawer() {
                         </button>
                       </div>
 
-                      {/* Prezzo Totale della Voce */}
                       <span className="font-sans text-sm font-semibold text-[#b87d4b]">
                         {(item.price * item.quantity).toFixed(2)}€
                       </span>
@@ -153,7 +143,6 @@ export function CartDrawer() {
             )}
           </div>
 
-          {/* Footer con Totale e Checkout */}
           {cartItems.length > 0 && (
             <div className="p-6 bg-[#f4f1ea] border-t border-[#e8e4d9] space-y-4">
               <div className="space-y-1.5">

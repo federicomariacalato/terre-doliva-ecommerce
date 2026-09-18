@@ -26,7 +26,6 @@ export function CtaButton({
 
   const combinedClasses = `${baseStyles} ${variantStyles[variant]}`;
 
-  // Se c'è un href, si comporta come un link (ma esegue anche l'onClick se presente)
   if (href) {
     return (
       <Link to={href} onClick={onClick} className={combinedClasses}>
@@ -35,7 +34,6 @@ export function CtaButton({
     );
   }
 
-  // Altrimenti, diventa un vero tag <button> con l'onClick per il carrello
   return (
     <button type="button" onClick={onClick} className={combinedClasses}>
       {btnText}

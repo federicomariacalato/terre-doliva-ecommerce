@@ -14,7 +14,6 @@ export function ProductCard({
 }: ProductCardProps) {
   return (
     <div className="w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)] px-4 mx-4 flex flex-col justify-between group">
-      {/* Box Immagine con Sfondo Dinamico ed Effetto Zoom */}
       <div
         onClick={() => onOpenQuickView(product)}
         className={`w-full aspect-4/5 ${categoryBgClass} mb-6 flex items-center justify-center overflow-hidden relative cursor-pointer rounded-xl`}
@@ -26,7 +25,6 @@ export function ProductCard({
         />
       </div>
 
-      {/* Info prodotto */}
       <div className="space-y-1">
         <span className="font-sans text-[10px] uppercase tracking-wider text-[#7c7c7c]">
           {product.category}
@@ -42,7 +40,6 @@ export function ProductCard({
         </p>
       </div>
 
-      {/* Pulsante di Acquisto Rapido (Apre la QuickView) */}
       <div className="pt-4 mt-auto">
         <CtaButton
           btnText="Aggiungi al carrello"

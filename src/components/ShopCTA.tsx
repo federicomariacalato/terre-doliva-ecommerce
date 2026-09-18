@@ -4,7 +4,6 @@ import imgUlivetoHomePage from "../assets/uliveto-homepage.jpeg";
 export const HomeShopCTA = () => {
   return (
     <section className="relative w-full py-32 bg-[#2c3e2b] text-[#fbf9f4] px-8 text-center overflow-hidden">
-      {/* Immagine di sfondo in trasparenza leggera per dare profondità */}
       <div className="absolute inset-0 w-full h-full opacity-10">
         <img
           src={imgUlivetoHomePage}

@@ -1,5 +1,5 @@
 import { Navbar } from "../../components/Navbar";
-import { Hero } from "../../components//Hero";
+import { Hero } from "../../components/Hero";
 import imgFrantoio from "../../assets/lavorazione-in-frantoio.jpg";
 import { StoriesManifest } from "../../components/Manifest";
 import { StoriesFeatures } from "../../components/Features";
@@ -21,7 +21,6 @@ export function Stories() {
 
       <StoriesFeatures />
 
-      {/* CITAZIONE EDITORIALE */}
       <section className="py-24 px-6 text-center max-w-4xl mx-auto space-y-6">
         <blockquote className="font-serif text-2xl sm:text-3xl lg:text-4xl text-[#2c3e2b] font-light italic leading-relaxed">
           “La Sicilia non è soltanto la terra dove siamo nati. È la promessa che
@@ -32,7 +31,6 @@ export function Stories() {
         </cite>
       </section>
 
-      {/* CTA FINALE */}
       <StoriesShopCTA />
     </div>
   );

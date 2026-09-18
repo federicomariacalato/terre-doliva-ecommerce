@@ -4,7 +4,7 @@ import { loadCartFromStorage } from "../../utils/cartStorage";
 
 type CartState = {
   items: CartItem[];
-  isCartOpen: boolean; // 1. Stato per visibilità del drawer
+  isCartOpen: boolean;
 };
 
 const initialState: CartState = {
@@ -12,7 +12,6 @@ const initialState: CartState = {
   isCartOpen: false,
 };
 
-// Tipo per gestire sia l'aggiunta con quantità personalizzata che senza
 type AddToCartPayload = Product & { quantity?: number };
 
 const cartSlice = createSlice({
@@ -34,7 +33,6 @@ const cartSlice = createSlice({
         });
       }
 
-      // Apre automaticamente il drawer al momento dell'aggiunta!
       state.isCartOpen = true;
     },
 
@@ -56,7 +54,6 @@ const cartSlice = createSlice({
       state.items = [];
     },
 
-    // --- Reducers per lo Slide-over Drawer ---
     openCart: (state) => {
       state.isCartOpen = true;
     },
@@ -79,7 +76,6 @@ export const {
   toggleCart,
 } = cartSlice.actions;
 
-// --- Selettori Redux ---
 export const selectCartItems = (state: { cart: CartState }) => state.cart.items;
 export const selectIsCartOpen = (state: { cart: CartState }) =>
   state.cart.isCartOpen;
