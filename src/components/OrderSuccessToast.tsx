@@ -2,27 +2,21 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { CheckCircle2, X } from "lucide-react";
 
-// Toast leggero, senza dipendenze esterne, per confermare l'ordine
-// quando si viene reindirizzati alla Home dal Checkout.
 export function OrderSuccessToast() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [isVisible, setIsVisible] = useState(false);
 
   const shouldShow = Boolean(
     (location.state as { orderSuccess?: boolean } | null)?.orderSuccess,
   );
 
-  // Effect 1: si occupa di "accendere" il toast
+  const [isVisible, setIsVisible] = useState(shouldShow);
+
   useEffect(() => {
     if (!shouldShow) return;
-
-    setIsVisible(true);
     navigate(location.pathname, { replace: true, state: null });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [shouldShow]);
+  }, [shouldShow, navigate, location.pathname]);
 
-  // Effect 2: si occupa SOLO del timer di auto-chiusura.
   useEffect(() => {
     if (!isVisible) return;
 

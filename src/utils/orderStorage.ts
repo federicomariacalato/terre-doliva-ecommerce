@@ -2,9 +2,13 @@ import type { Order } from "@/types/order.types";
 
 export function loadOrdersFromStorage(): Order[] {
   const saved = localStorage.getItem("orders");
-
   if (!saved) return [];
-  else return JSON.parse(saved);
+
+  try {
+    return JSON.parse(saved);
+  } catch {
+    return [];
+  }
 }
 
 export function saveOrdersToStorage(orders: Order[]) {

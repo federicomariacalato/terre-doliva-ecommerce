@@ -2,9 +2,13 @@ import type { CartItem } from "@/types/store.types";
 
 export function loadCartFromStorage(): CartItem[] {
   const saved = localStorage.getItem("cart");
-
   if (!saved) return [];
-  else return JSON.parse(saved);
+
+  try {
+    return JSON.parse(saved);
+  } catch {
+    return [];
+  }
 }
 
 export function saveCartToStorage(cart: CartItem[]) {
