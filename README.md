@@ -1,76 +1,63 @@
-# 🫒 Terre d'Oliva — Modern E-Commerce Application
+# Terre d'Oliva
 
-A modern, elegant, and fully responsive e-commerce application built for a boutique Extra Virgin Olive Oil brand. Developed with **React**, **TypeScript**, and modern web tools focused on performance and user experience.
+A modern, responsive e-commerce storefront for a boutique extra virgin olive oil brand, built with React, TypeScript and a modern frontend toolchain.
 
----
+**Live demo:** https://terre-doliva-ecommerce.vercel.app
 
-## 🚀 Tech Stack
+**Companion project:** [Management Software](https://github.com/federicomariacalato/management-software), an admin dashboard for managing e-commerce orders ([live demo](https://management-software-three.vercel.app)). The two projects are currently independent and use mock data; connecting them through a shared backend is the next step (see Roadmap).
 
-- **Frontend Framework:** [React 19](https://react.dev/) + [Vite](https://vitejs.dev/)
-- **Language:** TypeScript
-- **State Management:** [Redux Toolkit](https://redux-toolkit.js.org/) (Global Cart state, persisted to `localStorage`)
-- **Data Fetching & Caching:** [TanStack Query v5](https://tanstack.com/query/latest)
-- **Routing:** [React Router](https://reactrouter.com/)
-- **Forms & Validation:** [React Hook Form](https://react-hook-form.com/) + [Zod](https://zod.dev/)
-- **Styling:** [Tailwind CSS](https://tailwindcss.com/) + [shadcn/ui](https://ui.shadcn.com/)
-- **Icons:** [Lucide React](https://lucide.dev/)
+## Features
 
----
+- **Global shopping cart:** add/remove items, update quantities and see the subtotal in real time, managed with Redux Toolkit. Cart contents persist across reloads via `localStorage`.
+- **Product catalog with TanStack Query:** products are loaded through a query hook with caching and loading/error states.
+- **Quick view modal:** preview product details without leaving the shop page.
+- **Full checkout flow:** shipping details and payment method selection (card / PayPal / cash on delivery), validated with React Hook Form and Zod.
+- **Payment error handling:** the simulated payment randomly fails; a dedicated error toast is shown and the cart is preserved so the user can retry.
+- **Order history:** completed orders are saved to `localStorage`.
+- **Client-side routing:** Home, Shop, Stories and Checkout, with an active route indicator.
+- **Responsive UI:** dynamic navbar (glass effect on scroll), cart drawer and toast notifications.
 
-## ✨ Key Features
+## Tech Stack
 
-- 🛒 **Global Shopping Cart:** Add/remove items, update quantities, and calculate subtotal in real-time managed via Redux. Cart contents persist across page reloads via `localStorage`.
-- 💳 **Full Checkout Flow:** Shipping details and payment method selection (Card / PayPal / Cash on Delivery), fully validated with Zod.
-- ⚠️ **Payment Error Handling:** Simulated payment processing with realistic failure handling — failed payments show a dedicated error toast without losing cart contents, so the user can retry.
-- 📦 **Order History:** Successfully completed orders are saved to `localStorage` as a persistent order history, laying the groundwork for a future management dashboard.
-- 🧭 **Client-Side Routing:** Multi-page navigation (Home, Shop, Stories, Checkout) with active route indicator using `NavLink`.
-- 🔍 **Quick View Modal:** Fast product detail preview without leaving the current page view.
-- 🎨 **Refined UI/UX:** Responsive layout with dynamic theme adaptations, glassmorphism scroll effects on the Navbar, and toast notifications for order feedback.
+- React 19 + Vite
+- TypeScript
+- Redux Toolkit (cart state)
+- TanStack Query v5 (data fetching and caching)
+- React Router
+- React Hook Form + Zod
+- Tailwind CSS + shadcn/ui
+- Lucide React (icons)
 
----
-
-## 📁 Project Structure
+## Project Structure
 
 ```text
 src/
 ├── components/     # Reusable UI components (incl. shadcn/ui primitives)
-├── pages/          # Main route views (Home, Shop, Stories, Checkout)
-├── store/          # Redux Store configuration & slices
+├── pages/          # Route views (Home, Shop, Stories, Checkout)
+├── store/          # Redux store and slices
 ├── services/       # Simulated API calls (products, payment)
 ├── hooks/          # Custom React hooks
-├── utils/          # Persistence helpers (cart & order localStorage)
-├── types/          # TypeScript interfaces & types
-└── main.tsx        # Application entry point
+├── utils/          # localStorage helpers (cart and orders)
+├── types/          # TypeScript types
+└── main.tsx        # Entry point
 ```
 
----
-
-## 🏁 Getting Started
-
-Clone the repository and install the dependencies:
+## Getting Started
 
 ```bash
 git clone https://github.com/federicomariacalato/terre-doliva-ecommerce
 cd terre-doliva-ecommerce
 npm install
-```
-
-Start the development server:
-
-```bash
 npm run dev
 ```
 
-The app will be available at `http://localhost:5173` (default Vite port).
+The app runs at `http://localhost:5173`. To create a production build, run `npm run build`.
 
-To create a production build:
+## Note on Payment and Orders
 
-```bash
-npm run build
-```
+Payment is **simulated**: no real gateway is connected, and it randomly succeeds or fails to demonstrate success and error handling in the UI. Products come from a local JSON file served through a simulated async call, and orders are stored in the browser's `localStorage`. There is no backend or database yet.
 
----
+## Roadmap
 
-## 🛠️ Note on Payment & Orders
-
-Payment processing is currently **simulated** (no real payment gateway is connected) and randomly succeeds or fails, to demonstrate proper success/error handling in the UI. Orders are stored locally in the browser via `localStorage` — no backend or real database is involved at this stage.
+- Build a shared backend/API used by both this storefront and the Management Software dashboard.
+- Replace `localStorage` with a real database for products and orders.
