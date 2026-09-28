@@ -14,6 +14,7 @@ A modern, responsive e-commerce storefront for a boutique extra virgin olive oil
 - **Full checkout flow:** shipping details and payment method selection (card / PayPal / cash on delivery), validated with React Hook Form and Zod.
 - **Payment error handling:** the simulated payment randomly fails; a dedicated error toast is shown and the cart is preserved so the user can retry.
 - **Order history:** completed orders are saved to `localStorage`.
+- **Contact form:** validated with React Hook Form and Zod, submitted to [Formspree](https://formspree.io/), with a honeypot field against spam and accessible submitting/success/error states.
 - **Client-side routing:** Home, Shop, Stories and Checkout, with an active route indicator.
 - **Responsive UI:** dynamic navbar (glass effect on scroll), cart drawer and toast notifications.
 
@@ -48,10 +49,13 @@ src/
 git clone https://github.com/federicomariacalato/terre-doliva-ecommerce
 cd terre-doliva-ecommerce
 npm install
+cp .env.example .env.local
 npm run dev
 ```
 
 The app runs at `http://localhost:5173`. To create a production build, run `npm run build`.
+
+The contact form needs a Formspree endpoint to actually send messages. Create a form at [formspree.io](https://formspree.io/) and set its endpoint as `VITE_FORMSPREE_ENDPOINT` in `.env.local` (see `.env.example`). Without it, the form shows a generic error instead of submitting.
 
 ## Note on Payment and Orders
 
