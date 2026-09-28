@@ -4,8 +4,19 @@ import { Hero } from "../../components/Hero";
 import { HomeManifest } from "../../components/Manifest";
 import { HomeShopCTA } from "../../components/ShopCTA";
 import { OrderSuccessToast } from "../../components/OrderSuccessToast";
+import { HomeContactForm } from "@/components/ContactForm";
+import { useEffect } from "react";
+import { useLocation } from "react-router";
 
 export function Home() {
+  const location = useLocation();
+  useEffect(() => {
+    if (location.hash === "#contatti") {
+      document
+        .getElementById("contatti")
+        ?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [location.hash]);
   return (
     <>
       <OrderSuccessToast />
@@ -19,6 +30,7 @@ export function Home() {
       <HomeManifest />
       <HomeFeatures />
       <HomeShopCTA />
+      <HomeContactForm />
     </>
   );
 }

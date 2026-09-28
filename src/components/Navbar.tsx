@@ -64,6 +64,13 @@ export const Navbar = ({ theme = "dark" }: NavbarProps) => {
             Le Storie
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2c3e2b] transition-all duration-300 group-hover:w-full"></span>
           </NavLink>
+          <NavLink
+            to="/#contatti"
+            className="relative py-1 group hidden md:inline-block"
+          >
+            Contattaci{" "}
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2c3e2b] transition-all duration-300 group-hover:w-full"></span>
+          </NavLink>
         </div>
 
         <div className="absolute left-1/2 transform -translate-x-1/2 text-center">
