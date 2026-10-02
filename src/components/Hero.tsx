@@ -6,6 +6,7 @@ type HeroProps = {
   bgImage: string;
   showCta?: boolean;
   ctaText?: string;
+  ctaHref?: string;
   showScrollIndicator?: boolean;
 };
 
@@ -15,6 +16,7 @@ export const Hero = ({
   bgImage,
   showCta = true,
   ctaText,
+  ctaHref,
   showScrollIndicator = true,
 }: HeroProps) => {
   return (
@@ -36,7 +38,9 @@ export const Hero = ({
           {title}
         </h1>
 
-        {showCta && ctaText && <CtaButton btnText={ctaText} />}
+        {showCta && ctaText && (
+          <CtaButton btnText={ctaText} href={ctaHref} />
+        )}
       </div>
 
       {showScrollIndicator && (
