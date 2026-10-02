@@ -4,6 +4,8 @@ import { ShoppingBag } from "lucide-react";
 import type { RootState } from "../store/store";
 import { openCart } from "../store/slices/cartSlice";
 import { Link, NavLink } from "react-router";
+import { useAuth } from "@/hooks/useAuth";
+import { supabase } from "@/lib/supabaseClient";
 
 type NavbarProps = {
   theme?: "dark" | "light";
@@ -12,6 +14,7 @@ type NavbarProps = {
 export const Navbar = ({ theme = "dark" }: NavbarProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const dispatch = useDispatch();
+  const { isLoggedIn, session } = useAuth();
 
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
@@ -71,13 +74,6 @@ export const Navbar = ({ theme = "dark" }: NavbarProps) => {
             Contattaci
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2c3e2b] transition-all duration-300 group-hover:w-full"></span>
           </NavLink>
-          <NavLink
-            to="/accedi"
-            className="relative py-1 group hidden md:inline-block"
-          >
-            Accedi
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2c3e2b] transition-all duration-300 group-hover:w-full"></span>
-          </NavLink>
         </div>
 
         <div className="absolute left-1/2 transform -translate-x-1/2 text-center">
@@ -90,8 +86,33 @@ export const Navbar = ({ theme = "dark" }: NavbarProps) => {
         </div>
 
         <div
-          className={`flex items-center gap-6 transition-colors duration-500 ${textColorClass}`}
+          className={`flex items-center gap-6 font-sans text-xs uppercase tracking-widest font-medium transition-colors duration-500 ${textColorClass}`}
         >
+          {isLoggedIn ? (
+            <div className="hidden md:flex items-center gap-4">
+              <span
+                className="max-w-[140px] truncate normal-case tracking-normal font-normal"
+                title={session?.user.email}
+              >
+                {session?.user.email}
+              </span>
+              <button
+                onClick={() => supabase.auth.signOut()}
+                className="relative py-1 group cursor-pointer"
+              >
+                Esci
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2c3e2b] transition-all duration-300 group-hover:w-full"></span>
+              </button>
+            </div>
+          ) : (
+            <NavLink
+              to="/accedi"
+              className="relative py-1 group hidden md:inline-block"
+            >
+              Accedi
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2c3e2b] transition-all duration-300 group-hover:w-full"></span>
+            </NavLink>
+          )}
           <button
             onClick={() => dispatch(openCart())}
             aria-label="Apri carrello"
