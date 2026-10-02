@@ -1,7 +1,7 @@
 import { X, Plus, Minus } from "lucide-react";
 import { useState } from "react";
-import type { Product } from "../../../types/store.types";
-import { CtaButton } from "../../../components/CtaButton";
+import type { Product } from "../types/store.types";
+import { CtaButton } from "./CtaButton";
 
 type QuickViewModalProps = {
   product: Product | null;

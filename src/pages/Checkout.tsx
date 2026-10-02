@@ -23,23 +23,23 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../../components/ui/form";
-import { Input } from "../../components/ui/input";
-import { Button } from "../../components/ui/button";
+} from "@/components/ui/form";
+import { Input } from "../components/ui/input";
+import { Button } from "../components/ui/button";
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "../../components/ui/card";
-import { RadioGroup, RadioGroupItem } from "../../components/ui/radio-group";
-import { Label } from "../../components/ui/label";
+} from "../components/ui/card";
+import { RadioGroup, RadioGroupItem } from "../components/ui/radio-group";
+import { Label } from "../components/ui/label";
 
 import {
   selectCartItems,
   selectCartTotal,
   clearCart,
-} from "../../store/slices/cartSlice";
+} from "../store/slices/cartSlice";
 import type { Order } from "@/types/order.types";
 import { addOrderToStorage } from "@/utils/orderStorage";
 

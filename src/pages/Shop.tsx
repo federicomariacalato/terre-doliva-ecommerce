@@ -1,11 +1,11 @@
-import type { Product } from "../../types/store.types";
-import { Navbar } from "../../components/Navbar";
-import { ProductCard } from "../../pages/shop/components/ProductCard";
-import { QuickViewModal } from "../../pages/shop/components/QuickViewModal";
+import type { Product } from "../types/store.types";
+import { Navbar } from "../components/Navbar";
+import { ProductCard } from "../components/ProductCard";
+import { QuickViewModal } from "../components/QuickViewModal";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../store/slices/cartSlice";
-import { useProducts } from "../../hooks/useProducts";
+import { addToCart } from "../store/slices/cartSlice";
+import { useProducts } from "../hooks/useProducts";
 
 export function Shop() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);

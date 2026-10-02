@@ -1,5 +1,5 @@
-import type { Product } from "../../../types/store.types";
-import { CtaButton } from "../../../components/CtaButton";
+import type { Product } from "../types/store.types";
+import { CtaButton } from "./CtaButton";
 
 type ProductCardProps = {
   product: Product;
