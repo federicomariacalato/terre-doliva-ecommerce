@@ -5,6 +5,7 @@ import { Home } from "./pages/Home";
 import { Shop } from "./pages/Shop";
 import { Stories } from "./pages/Stories";
 import { Checkout } from "./pages/Checkout";
+import { Auth } from "./pages/Auth";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectCartItems } from "./store/slices/cartSlice";
@@ -23,6 +24,7 @@ export function App() {
         <Route path="/shop" element={<Shop />} />
         <Route path="/storie" element={<Stories />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/accedi" element={<Auth />} />
       </Routes>
 
       <CartDrawer />

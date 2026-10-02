@@ -68,7 +68,14 @@ export const Navbar = ({ theme = "dark" }: NavbarProps) => {
             to="/#contatti"
             className="relative py-1 group hidden md:inline-block"
           >
-            Contattaci{" "}
+            Contattaci
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2c3e2b] transition-all duration-300 group-hover:w-full"></span>
+          </NavLink>
+          <NavLink
+            to="/accedi"
+            className="relative py-1 group hidden md:inline-block"
+          >
+            Accedi
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2c3e2b] transition-all duration-300 group-hover:w-full"></span>
           </NavLink>
         </div>
