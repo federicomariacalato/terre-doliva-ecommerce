@@ -5,7 +5,6 @@ import type { RootState } from "../store/store";
 import { openCart } from "../store/slices/cartSlice";
 import { Link, NavLink } from "react-router";
 import { useAuth } from "@/hooks/useAuth";
-import { supabase } from "@/lib/supabaseClient";
 
 type NavbarProps = {
   theme?: "dark" | "light";
@@ -90,19 +89,14 @@ export const Navbar = ({ theme = "dark" }: NavbarProps) => {
         >
           {isLoggedIn ? (
             <div className="hidden md:flex items-center gap-4">
-              <span
-                className="max-w-[140px] truncate normal-case tracking-normal font-normal"
+              <NavLink
+                to="/account"
+                className="relative py-1 group max-w-[140px] truncate normal-case tracking-normal font-normal [&.active>span]:w-full"
                 title={session?.user.email}
               >
                 {session?.user.email}
-              </span>
-              <button
-                onClick={() => supabase.auth.signOut()}
-                className="relative py-1 group cursor-pointer"
-              >
-                Esci
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2c3e2b] transition-all duration-300 group-hover:w-full"></span>
-              </button>
+              </NavLink>
             </div>
           ) : (
             <NavLink

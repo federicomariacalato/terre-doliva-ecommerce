@@ -2,6 +2,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { Navigate } from "react-router";
 import { Navbar } from "@/components/Navbar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { supabase } from "@/lib/supabaseClient";
 
 export function Account() {
   const { isLoading, session } = useAuth();
@@ -42,6 +43,15 @@ export function Account() {
             </div>
           </CardContent>
         </Card>
+
+        <div className="mt-8 flex justify-end">
+          <button
+            onClick={() => supabase.auth.signOut()}
+            className="border border-[#2c3e2b] text-[#2c3e2b] hover:bg-[#2c3e2b] hover:text-[#fbf9f4] px-8 py-3 rounded-lg font-sans text-xs uppercase tracking-widest font-semibold transition-colors duration-300 cursor-pointer"
+          >
+            Esci
+          </button>
+        </div>
       </main>
     </div>
   );
