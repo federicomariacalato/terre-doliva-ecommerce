@@ -40,9 +40,8 @@ import {
   selectCartTotal,
   clearCart,
 } from "../store/slices/cartSlice";
-import type { Order } from "@/types/order.types";
-import { addOrderToStorage } from "@/utils/orderStorage";
 import { useAuth } from "@/hooks/useAuth";
+import { createOrder } from "@/services/orders";
 
 const checkoutSchema = z.object({
   fullName: z.string().min(3, "Inserisci nome e cognome"),
@@ -93,27 +92,20 @@ export function Checkout() {
 
   const onSubmit = async (data: CheckoutFormValues) => {
     try {
+      if (!session)
+        throw new Error(
+          "Sessione scaduta: accedi di nuovo per completare l'ordine",
+        );
       setIsSubmitting(true);
+
       await simulatePayment();
 
-      const order: Order = {
-        id: crypto.randomUUID().slice(0, 8),
-        date: new Date().toISOString(),
-        status: "in lavorazione",
-        customer: {
-          fullName: data.fullName,
-          email: data.email,
-          phone: data.phone,
-          address: data.address,
-          city: data.city,
-          postalCode: data.postalCode,
-        },
+      await createOrder({
+        customer: data,
+        userId: session.user.id,
         items: cartItems,
-        totalAmount: grandTotal,
-        paymentMethod: data.paymentMethod,
-      };
-
-      addOrderToStorage(order);
+        total: grandTotal,
+      });
 
       dispatch(clearCart());
       navigate("/", { state: { orderSuccess: true } });
