@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router";
+import { useNavigate, Link, Navigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -42,6 +42,7 @@ import {
 } from "../store/slices/cartSlice";
 import type { Order } from "@/types/order.types";
 import { addOrderToStorage } from "@/utils/orderStorage";
+import { useAuth } from "@/hooks/useAuth";
 
 const checkoutSchema = z.object({
   fullName: z.string().min(3, "Inserisci nome e cognome"),
@@ -68,6 +69,8 @@ export function Checkout() {
 
   const shippingCost = cartTotal >= 50 || cartTotal === 0 ? 0 : 6.9;
   const grandTotal = cartTotal + shippingCost;
+
+  const { isLoading, session } = useAuth();
 
   useEffect(() => {
     if (cartItems.length === 0 && !isSubmitting) {
@@ -125,6 +128,16 @@ export function Checkout() {
   };
 
   if (cartItems.length === 0) return null;
+
+  if (isLoading)
+    return (
+      <div className="min-h-screen bg-[#fbf9f4] flex items-center justify-center font-sans text-xs uppercase tracking-widest text-[#7c7c7c]">
+        Caricamento...
+      </div>
+    );
+
+  if (!session)
+    return <Navigate to="/accedi" replace state={{ from: "/checkout" }} />;
 
   return (
     <div className="min-h-screen bg-[#fbf9f4] py-8 px-4 sm:px-6 lg:px-8 font-sans text-[#1a1a1a]">
