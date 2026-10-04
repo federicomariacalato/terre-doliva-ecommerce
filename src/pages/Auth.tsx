@@ -21,7 +21,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/lib/supabaseClient";
 import { Navbar } from "@/components/Navbar";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 import imgUlivetoHomePage from "../assets/uliveto-homepage.jpeg";
 
 const signUpFormSchema = z
@@ -49,6 +49,7 @@ export function Auth() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const signUpForm = useForm<SignUpFormValues>({
     resolver: zodResolver(signUpFormSchema),
@@ -80,7 +81,7 @@ export function Auth() {
         throw new Error("Credenziali non valide!");
       }
 
-      navigate("/");
+      navigate(location.state?.from ?? "/");
     } catch (error) {
       if (error instanceof Error) {
         setErrorMessage(error.message);
@@ -106,7 +107,7 @@ export function Auth() {
         throw new Error("Credenziali sbagliate!");
       }
 
-      navigate("/");
+      navigate(location.state?.from ?? "/");
     } catch (error) {
       if (error instanceof Error) {
         setErrorMessage(error.message);
