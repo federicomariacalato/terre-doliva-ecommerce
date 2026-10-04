@@ -1,0 +1,67 @@
+-- Database schema for Terre d'Oliva.
+-- Run in the Supabase SQL Editor.
+
+-- Orders placed by logged-in users
+create table public.orders (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references auth.users(id) on delete cascade,
+  created_at timestamptz not null default now(),
+  full_name text not null,
+  email text not null,
+  phone text not null,
+  address text not null,
+  city text not null,
+  postal_code text not null,
+  status text not null default 'in lavorazione',
+  total_amount numeric(10,2) not null,
+  payment_method text not null
+);
+
+-- Products of each order, with name and price as paid at checkout
+create table public.order_items (
+  id uuid primary key default gen_random_uuid(),
+  order_id uuid not null references public.orders(id) on delete cascade,
+  product_id integer not null,
+  name text not null,
+  price numeric(10,2) not null check (price >= 0),
+  quantity integer not null check (quantity > 0)
+);
+
+-- Row Level Security: everything is denied until a policy allows it
+alter table public.orders enable row level security;
+alter table public.order_items enable row level security;
+
+-- Policies: logged-in users can read and create only their own orders.
+-- No update/delete: order status is managed by the shop, and orders are
+-- kept as a record (cancelled orders get status 'annullato').
+create policy "Users can view their own orders"
+on public.orders for select
+to authenticated
+using (user_id = (select auth.uid()));
+
+create policy "Users can create their own orders"
+on public.orders for insert
+to authenticated
+with check (user_id = (select auth.uid()));
+
+create policy "Users can view items of their own orders"
+on public.order_items for select
+to authenticated
+using (
+  exists (
+    select 1 from public.orders
+    where orders.id = order_items.order_id
+      and orders.user_id = (select auth.uid())
+  )
+);
+
+create policy "Users can add items to their own orders"
+on public.order_items for insert
+to authenticated
+with check (
+  exists (
+    select 1 from public.orders
+    where orders.id = order_items.order_id
+      and orders.user_id = (select auth.uid())
+  )
+);
