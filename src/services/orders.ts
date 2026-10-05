@@ -44,3 +44,17 @@ export async function createOrder(input: CreateOrderInput) {
 
   return order.id;
 }
+
+export async function getOrders() {
+  const { data, error } = await supabase
+    .from("orders")
+    .select("*, order_items(*)")
+    .order("created_at", { ascending: false });
+
+  if (error)
+    throw new Error(
+      "Si è verificato un problema nel recupero degli ordini, riprova",
+    );
+
+  return data;
+}
