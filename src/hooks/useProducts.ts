@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import type { Product } from "../types/store.types";
-import { apiService } from "../services/api";
+import { getProducts } from "../services/products";
 
 type UseProductsResult = {
   products: Product[] | undefined;
@@ -12,7 +12,7 @@ type UseProductsResult = {
 export const useProducts = (): UseProductsResult => {
   const { data, isLoading, isError, error } = useQuery<Product[], Error>({
     queryKey: ["products"],
-    queryFn: apiService.getProducts,
+    queryFn: getProducts,
     staleTime: 1000 * 60 * 5,
   });
   return { products: data, isLoading, isError, error };
