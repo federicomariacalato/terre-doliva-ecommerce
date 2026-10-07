@@ -107,6 +107,7 @@ export type Database = {
           description: string
           id: number
           image: string
+          is_available: boolean
           name: string
           price: number
         }
@@ -115,6 +116,7 @@ export type Database = {
           description: string
           id?: number
           image: string
+          is_available?: boolean
           name: string
           price: number
         }
@@ -123,6 +125,7 @@ export type Database = {
           description?: string
           id?: number
           image?: string
+          is_available?: boolean
           name?: string
           price?: number
         }

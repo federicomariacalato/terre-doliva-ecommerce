@@ -74,7 +74,9 @@ create table public.products (
   price numeric(10,2) not null check (price >= 0),
   description text not null,
   category text not null,
-  image text not null
+  image text not null,
+  -- Out-of-stock products stay visible in the catalog but cannot be ordered
+  is_available boolean not null default true
 );
 
 alter table public.products enable row level security;
@@ -116,6 +118,7 @@ declare
   v_order_id uuid;
   v_subtotal numeric(10,2);
   v_shipping numeric(10,2);
+  v_unavailable text;
 begin
   if auth.uid() is null then
     raise exception 'User must be logged in to place an order';
@@ -134,6 +137,19 @@ begin
     where product.id is null
   ) then
     raise exception 'Order contains an unknown product';
+  end if;
+
+  -- Out-of-stock products cannot be ordered. The error code is matched by the
+  -- client, and the names of the unavailable products are sent as detail.
+  select string_agg(product.name, ', ')
+  into v_unavailable
+  from jsonb_array_elements(p_items) as item
+  join public.products as product
+    on product.id = (item ->> 'product_id')::integer
+  where not product.is_available;
+
+  if v_unavailable is not null then
+    raise exception 'PRODUCT_UNAVAILABLE' using detail = v_unavailable;
   end if;
 
   -- Subtotal from the real catalog prices
@@ -174,3 +190,4 @@ $$;
 -- Only logged-in users can call the function
 revoke execute on function public.create_order from public, anon;
 grant execute on function public.create_order to authenticated;
+
