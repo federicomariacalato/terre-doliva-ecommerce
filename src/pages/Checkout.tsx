@@ -102,9 +102,7 @@ export function Checkout() {
 
       await createOrder({
         customer: data,
-        userId: session.user.id,
         items: cartItems,
-        total: grandTotal,
       });
 
       dispatch(clearCart());
