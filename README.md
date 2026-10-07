@@ -11,6 +11,7 @@ A modern, responsive e-commerce storefront for a boutique extra virgin olive oil
 - **Global shopping cart:** add/remove items, update quantities and see the subtotal in real time, managed with Redux Toolkit. Cart contents persist across reloads via `localStorage`.
 - **Product catalog from Supabase:** products are read from a Postgres table that anyone can browse, loaded through a TanStack Query hook with caching and loading/error states.
 - **Quick view modal:** preview product details without leaving the shop page.
+- **Out-of-stock products:** unavailable products stay visible in the catalog with an "Esaurito" badge and can still be opened for details, but cannot be added to the cart. The `create_order` database function also rejects them, so an item that runs out while it sits in the cart is caught at checkout with a clear message.
 - **Full checkout flow:** shipping details and payment method selection (card / PayPal / cash on delivery), validated with React Hook Form and Zod.
 - **Payment error handling:** the simulated payment randomly fails; a dedicated error toast is shown and the cart is preserved so the user can retry.
 - **Authentication with Supabase Auth:** a single `/accedi` page toggles between login and signup forms. The Navbar shows the logged-in user's email, linking to their account page.
