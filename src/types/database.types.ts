@@ -47,6 +47,13 @@ export type Database = {
             referencedRelation: "orders"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "order_items_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
         ]
       }
       orders: {
@@ -91,6 +98,33 @@ export type Database = {
           status?: string
           total_amount?: number
           user_id?: string
+        }
+        Relationships: []
+      }
+      products: {
+        Row: {
+          category: string
+          description: string
+          id: number
+          image: string
+          name: string
+          price: number
+        }
+        Insert: {
+          category: string
+          description: string
+          id?: number
+          image: string
+          name: string
+          price: number
+        }
+        Update: {
+          category?: string
+          description?: string
+          id?: number
+          image?: string
+          name?: string
+          price?: number
         }
         Relationships: []
       }
