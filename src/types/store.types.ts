@@ -1,11 +1,6 @@
-export type Product = {
-  id: number;
-  name: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-};
+import type { Tables } from "./database.types";
+
+export type Product = Tables<"products">;
 
 export type CartItem = Product & {
   quantity: number;

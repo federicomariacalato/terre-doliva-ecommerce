@@ -22,7 +22,17 @@ export async function createOrder(input: CreateOrderInput) {
     })),
   });
 
-  if (error) throw new Error("Impossibile completare l'ordine, riprova");
+  if (error) {
+    if (error.message === "PRODUCT_UNAVAILABLE") {
+      throw new Error(
+        `Non più disponibili: ${error.details ?? "alcuni prodotti"}. Rimuovili dal carrello per completare l'ordine.`,
+      );
+    }
+
+    throw new Error(
+      "Si è verificato un problema durante la creazione dell'ordine, riprova",
+    );
+  }
 
   return orderId;
 }
