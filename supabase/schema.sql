@@ -91,3 +91,86 @@ using (true);
 alter table public.order_items
 add constraint order_items_product_id_fkey
 foreign key (product_id) references public.products(id);
+
+-- Creates an order and its items in a single transaction.
+-- The client sends only customer details and, for each item, product_id and
+-- quantity: user, prices, names and total are taken from the database, so they
+-- cannot be tampered with from the browser.
+-- Keep the shipping rule in sync with the Checkout page (shippingCost).
+create or replace function public.create_order(
+  p_full_name text,
+  p_email text,
+  p_phone text,
+  p_address text,
+  p_city text,
+  p_postal_code text,
+  p_payment_method text,
+  p_items jsonb
+)
+returns uuid
+language plpgsql
+security invoker
+set search_path = ''
+as $$
+declare
+  v_order_id uuid;
+  v_subtotal numeric(10,2);
+  v_shipping numeric(10,2);
+begin
+  if auth.uid() is null then
+    raise exception 'User must be logged in to place an order';
+  end if;
+
+  if jsonb_typeof(p_items) <> 'array' or jsonb_array_length(p_items) = 0 then
+    raise exception 'Order must contain at least one item';
+  end if;
+
+  -- Every product_id must exist in the catalog
+  if exists (
+    select 1
+    from jsonb_array_elements(p_items) as item
+    left join public.products as product
+      on product.id = (item ->> 'product_id')::integer
+    where product.id is null
+  ) then
+    raise exception 'Order contains an unknown product';
+  end if;
+
+  -- Subtotal from the real catalog prices
+  select sum(product.price * (item ->> 'quantity')::integer)
+  into v_subtotal
+  from jsonb_array_elements(p_items) as item
+  join public.products as product
+    on product.id = (item ->> 'product_id')::integer;
+
+  v_shipping := case when v_subtotal >= 50 then 0 else 6.90 end;
+
+  insert into public.orders (
+    user_id, full_name, email, phone, address, city, postal_code,
+    total_amount, payment_method
+  )
+  values (
+    auth.uid(), p_full_name, p_email, p_phone, p_address, p_city,
+    p_postal_code, v_subtotal + v_shipping, p_payment_method
+  )
+  returning id into v_order_id;
+
+  -- Name and price are copied from the catalog as a snapshot of this order
+  insert into public.order_items (order_id, product_id, name, price, quantity)
+  select
+    v_order_id,
+    product.id,
+    product.name,
+    product.price,
+    (item ->> 'quantity')::integer
+  from jsonb_array_elements(p_items) as item
+  join public.products as product
+    on product.id = (item ->> 'product_id')::integer;
+
+  return v_order_id;
+end;
+$$;
+
+-- Only logged-in users can call the function
+revoke execute on function public.create_order from public, anon;
+grant execute on function public.create_order to authenticated;

@@ -133,7 +133,19 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      create_order: {
+        Args: {
+          p_address: string
+          p_city: string
+          p_email: string
+          p_full_name: string
+          p_items: Json
+          p_payment_method: string
+          p_phone: string
+          p_postal_code: string
+        }
+        Returns: string
+      }
     }
     Enums: {
       [_ in never]: never
