@@ -55,39 +55,50 @@ export function QuickViewModal({
           </div>
 
           <div className="space-y-4 pt-4 border-t border-[#e8e4d9]">
-            <div className="flex items-center justify-between bg-white px-4 py-2 rounded-lg border border-[#e8e4d9]">
-              <span className="font-sans text-xs uppercase tracking-wider text-[#2c3e2b] font-medium">
-                Quantità
-              </span>
-              <div className="flex items-center gap-4">
-                <button
-                  onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                  className="p-1 text-[#2c3e2b] hover:text-[#b87d4b] transition-colors cursor-pointer"
-                >
-                  <Minus size={14} />
-                </button>
-                <span className="font-sans text-sm font-semibold text-[#1a1a1a] w-4 text-center">
-                  {quantity}
-                </span>
-                <button
-                  onClick={() => setQuantity((q) => q + 1)}
-                  className="p-1 text-[#2c3e2b] hover:text-[#b87d4b] transition-colors cursor-pointer"
-                >
-                  <Plus size={14} />
-                </button>
-              </div>
-            </div>
+            {product.is_available ? (
+              <>
+                <div className="flex items-center justify-between bg-white px-4 py-2 rounded-lg border border-[#e8e4d9]">
+                  <span className="font-sans text-xs uppercase tracking-wider text-[#2c3e2b] font-medium">
+                    Quantità
+                  </span>
+                  <div className="flex items-center gap-4">
+                    <button
+                      onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                      className="p-1 text-[#2c3e2b] hover:text-[#b87d4b] transition-colors cursor-pointer"
+                    >
+                      <Minus size={14} />
+                    </button>
+                    <span className="font-sans text-sm font-semibold text-[#1a1a1a] w-4 text-center">
+                      {quantity}
+                    </span>
+                    <button
+                      onClick={() => setQuantity((q) => q + 1)}
+                      className="p-1 text-[#2c3e2b] hover:text-[#b87d4b] transition-colors cursor-pointer"
+                    >
+                      <Plus size={14} />
+                    </button>
+                  </div>
+                </div>
 
-            <CtaButton
-              btnText={`Aggiungi al carrello • ${(
-                product.price * quantity
-              ).toFixed(2)}€`}
-              variant="light"
-              onClick={() => {
-                onAddToCart(product, quantity);
-                onClose();
-              }}
-            />
+                <CtaButton
+                  btnText={`Aggiungi al carrello • ${(
+                    product.price * quantity
+                  ).toFixed(2)}€`}
+                  variant="light"
+                  onClick={() => {
+                    onAddToCart(product, quantity);
+                    onClose();
+                  }}
+                />
+              </>
+            ) : (
+              <>
+                <p className="font-sans text-xs text-[#7c7c7c] leading-relaxed">
+                  Questo prodotto è momentaneamente esaurito.
+                </p>
+                <CtaButton btnText="Esaurito" variant="light" disabled />
+              </>
+            )}
           </div>
         </div>
       </div>

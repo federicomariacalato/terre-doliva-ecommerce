@@ -5,6 +5,7 @@ type CtaButtonProps = {
   variant?: "dark" | "light";
   href?: string;
   onClick?: () => void;
+  disabled?: boolean;
 };
 
 export function CtaButton({
@@ -12,6 +13,7 @@ export function CtaButton({
   variant = "dark",
   href,
   onClick,
+  disabled,
 }: CtaButtonProps) {
   const baseStyles = `inline-block font-sans text-xs uppercase tracking-widest font-semibold 
                       border px-9 py-4 transition-all duration-300 transform 
@@ -26,6 +28,10 @@ export function CtaButton({
 
   const combinedClasses = `${baseStyles} ${variantStyles[variant]}`;
 
+  const disabledStyles = `disabled:cursor-not-allowed disabled:shadow-none disabled:translate-y-0
+                          disabled:bg-[#e8e4d9] disabled:border-[#e8e4d9] disabled:text-[#7c7c7c]
+                          disabled:hover:bg-[#e8e4d9] disabled:hover:text-[#7c7c7c]`;
+
   if (href) {
     return (
       <Link to={href} onClick={onClick} className={combinedClasses}>
@@ -35,7 +41,12 @@ export function CtaButton({
   }
 
   return (
-    <button type="button" onClick={onClick} className={combinedClasses}>
+    <button
+      type="button"
+      onClick={onClick}
+      className={`${combinedClasses} ${disabledStyles}`}
+      disabled={disabled}
+    >
       {btnText}
     </button>
   );
