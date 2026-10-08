@@ -1,6 +1,10 @@
 -- Database schema for Terre d'Oliva.
 -- Run in the Supabase SQL Editor.
 
+-- Order status codes. The database stores stable English codes; each
+-- frontend translates them for its users.
+create type public.order_status as enum ('processing', 'shipped', 'delivered', 'cancelled');
+
 -- Orders placed by logged-in users
 create table public.orders (
   id uuid primary key default gen_random_uuid(),
@@ -12,7 +16,7 @@ create table public.orders (
   address text not null,
   city text not null,
   postal_code text not null,
-  status text not null default 'in lavorazione',
+  status public.order_status not null default 'processing',
   total_amount numeric(10,2) not null,
   payment_method text not null
 );
@@ -33,7 +37,7 @@ alter table public.order_items enable row level security;
 
 -- Policies: logged-in users can read and create only their own orders.
 -- No update/delete: order status is managed by the shop, and orders are
--- kept as a record (cancelled orders get status 'annullato').
+-- kept as a record (cancelled orders get status 'cancelled').
 create policy "Users can view their own orders"
 on public.orders for select
 to authenticated
