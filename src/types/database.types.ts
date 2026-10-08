@@ -149,6 +149,7 @@ export type Database = {
         }
         Returns: string
       }
+      is_admin: { Args: never; Returns: boolean }
     }
     Enums: {
       order_status: "processing" | "shipped" | "delivered" | "cancelled"

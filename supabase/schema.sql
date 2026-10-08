@@ -195,3 +195,57 @@ $$;
 revoke execute on function public.create_order from public, anon;
 grant execute on function public.create_order to authenticated;
 
+
+-- Admin role, used by the Management Software dashboard.
+-- The role is stored in the user's app_metadata ({"role": "admin"}), which can
+-- only be set from the Supabase dashboard or with admin SQL: users cannot change
+-- their own app_metadata, so the role cannot be faked from the browser.
+create or replace function public.is_admin()
+returns boolean
+language sql
+stable
+set search_path = ''
+as $$
+  select coalesce((auth.jwt() -> 'app_metadata' ->> 'role') = 'admin', false);
+$$;
+
+-- Admin policies. They are added to the customer policies above: a customer
+-- still sees only their own orders, an admin sees everything.
+create policy "Admins can view all orders"
+on public.orders for select
+to authenticated
+using ((select public.is_admin()));
+
+create policy "Admins can update orders"
+on public.orders for update
+to authenticated
+using ((select public.is_admin()))
+with check ((select public.is_admin()));
+
+-- Only the status column can be updated, even by an admin: customer details,
+-- totals and dates are a record of what was ordered.
+revoke update on public.orders from anon, authenticated;
+grant update (status) on public.orders to authenticated;
+
+create policy "Admins can view all order items"
+on public.order_items for select
+to authenticated
+using ((select public.is_admin()));
+
+create policy "Admins can add products"
+on public.products for insert
+to authenticated
+with check ((select public.is_admin()));
+
+create policy "Admins can update products"
+on public.products for update
+to authenticated
+using ((select public.is_admin()))
+with check ((select public.is_admin()));
+
+-- Products that appear in an order cannot be deleted anyway: the foreign key
+-- from order_items blocks it. Those are marked as unavailable instead.
+create policy "Admins can delete products"
+on public.products for delete
+to authenticated
+using ((select public.is_admin()));
