@@ -10,12 +10,20 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import type { Enums } from "@/types/database.types";
 
-const statusStyles: Record<string, string> = {
-  "in lavorazione": "bg-[#f6ead9] text-[#8a5a2b]",
-  spedito: "bg-[#e4ebe0] text-[#3d5a3a]",
-  consegnato: "bg-[#2c3e2b] text-[#fbf9f4]",
-  annullato: "bg-[#efe9e4] text-[#7c7c7c]",
+const statusStyles: Record<Enums<"order_status">, string> = {
+  processing: "bg-[#f6ead9] text-[#8a5a2b]",
+  shipped: "bg-[#e4ebe0] text-[#3d5a3a]",
+  delivered: "bg-[#2c3e2b] text-[#fbf9f4]",
+  cancelled: "bg-[#efe9e4] text-[#7c7c7c]",
+};
+
+const statusLabels: Record<Enums<"order_status">, string> = {
+  processing: "in lavorazione",
+  shipped: "spedito",
+  delivered: "consegnato",
+  cancelled: "annullato",
 };
 
 const euro = new Intl.NumberFormat("it-IT", {
@@ -110,9 +118,9 @@ export function Account() {
                         </div>
                         <div className="flex items-center gap-3">
                           <span
-                            className={`rounded-full px-3 py-1 text-[10px] uppercase tracking-widest font-semibold ${statusStyles[order.status] ?? "bg-[#efe9e4] text-[#7c7c7c]"}`}
+                            className={`rounded-full px-3 py-1 text-[10px] uppercase tracking-widest font-semibold ${statusStyles[order.status]}`}
                           >
-                            {order.status}
+                            {statusLabels[order.status]}
                           </span>
                           <span className="text-sm font-semibold text-[#2c3e2b]">
                             {euro.format(order.total_amount)}
