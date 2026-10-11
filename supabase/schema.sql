@@ -249,3 +249,32 @@ create policy "Admins can delete products"
 on public.products for delete
 to authenticated
 using ((select public.is_admin()));
+
+-- Product images, uploaded from the Management Software dashboard.
+-- Public bucket: anyone can view an image from its URL, as the storefront needs.
+-- Only JPEG, PNG and WebP images up to 5 MB are accepted.
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+values (
+  'product-images',
+  'product-images',
+  true,
+  5242880,
+  array['image/jpeg', 'image/png', 'image/webp']
+);
+
+-- Only admins can upload, replace or delete product images.
+create policy "Admins can upload product images"
+on storage.objects for insert
+to authenticated
+with check (bucket_id = 'product-images' and (select public.is_admin()));
+
+create policy "Admins can update product images"
+on storage.objects for update
+to authenticated
+using (bucket_id = 'product-images' and (select public.is_admin()))
+with check (bucket_id = 'product-images' and (select public.is_admin()));
+
+create policy "Admins can delete product images"
+on storage.objects for delete
+to authenticated
+using (bucket_id = 'product-images' and (select public.is_admin()));
