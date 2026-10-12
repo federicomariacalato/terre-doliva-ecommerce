@@ -69,9 +69,10 @@ The app runs at `http://localhost:5173`. To create a production build, run `npm 
 Authentication and orders need a Supabase project:
 
 1. Create a project at [supabase.com](https://supabase.com/).
-2. In the SQL Editor, run the first part of [`supabase/schema.sql`](supabase/schema.sql) up to the `products` table and its policy, then [`supabase/seed.sql`](supabase/seed.sql) to load the catalog, then the rest of `schema.sql` (the foreign key to `products` and the `create_order` function).
-3. Set `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` in `.env.local` (see `.env.example`), using the values from the project's API settings.
-4. Optionally, disable email confirmation in Authentication settings, so new users are logged in right after signing up.
+2. In the SQL Editor, run the first part of [`supabase/schema.sql`](supabase/schema.sql) up to the `products` table and its policy, then [`supabase/seed.sql`](supabase/seed.sql) to load the catalog, then the rest of `schema.sql` (the foreign key to `products`, the database functions, the admin policies and the `product-images` Storage bucket).
+3. Upload the images in `public/products/` to the `product-images` bucket and run the `update` at the end of `seed.sql`, so product images are served from Supabase Storage.
+4. Set `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` in `.env.local` (see `.env.example`), using the values from the project's API settings.
+5. Optionally, disable email confirmation in Authentication settings, so new users are logged in right after signing up.
 
 After changing the database schema, regenerate the TypeScript types:
 

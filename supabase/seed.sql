@@ -1,5 +1,7 @@
 -- Initial product catalog, imported from src/data/products.json.
 -- Run in the Supabase SQL Editor after creating the products table.
+-- Images start as paths to the storefront's public/products folder; the last
+-- step of this file moves them to the product-images Storage bucket.
 insert into public.products (id, name, price, description, category, image) values
   (1, 'Olio Extra Vergine di Oliva - Monocultivar', 18.50, 'Estratto a freddo da olive 100% italiane di un''unica varietà selezionata. Un profilo aromatico complesso con spiccate note di carciofo fresco, erba tagliata e mandorla amara. Ideale a crudo su carni rosse, zuppe calde e bruschette.', 'Olio EVOO', '/products/1-monocultivar.jpg'),
   (2, 'Olio EVOO Biologico - Blend Frantoio', 22.00, 'Certificato biologico e molito entro sole 4 ore dalla raccolta per preservare tutti i polifenoli. Gusto armonioso ed equilibrato, con un fruttato medio che dona eleganza e delicatezza a insalate, verdure grigliate e pesce.', 'Olio EVOO', '/products/2-biologico-blend.jpg'),
@@ -17,3 +19,15 @@ select setval(
   pg_get_serial_sequence('public.products', 'id'),
   (select max(id) from public.products)
 );
+
+-- Move the catalog images to Supabase Storage, so the storefront and the
+-- Management Software dashboard share the same image URLs.
+-- 1. Create the product-images bucket (see schema.sql).
+-- 2. Upload every file in public/products/ to the bucket, keeping the names.
+-- 3. Replace <your-project-ref> with your project's reference
+--    (the subdomain of VITE_SUPABASE_URL) and run:
+--
+-- update public.products
+-- set image = 'https://<your-project-ref>.supabase.co/storage/v1/object/public/product-images/'
+--   || substr(image, length('/products/') + 1)
+-- where image like '/products/%';
