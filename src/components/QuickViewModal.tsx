@@ -19,10 +19,10 @@ export function QuickViewModal({
   if (!product) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4 animate-fadeIn">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4 animate-in fade-in duration-300">
       <div className="absolute inset-0" onClick={onClose} />
 
-      <div className="relative z-10 w-full max-w-3xl max-h-full overflow-y-auto bg-[#fbf9f4] rounded-2xl shadow-2xl flex flex-col md:flex-row border border-[#e8e4d9]">
+      <div className="relative z-10 w-full max-w-3xl max-h-full overflow-y-auto bg-[#fbf9f4] rounded-2xl shadow-2xl animate-in fade-in zoom-in-95 duration-300 flex flex-col md:flex-row border border-[#e8e4d9]">
         <button
           onClick={onClose}
           aria-label="Chiudi"
