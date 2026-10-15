@@ -8,6 +8,14 @@
 --
 -- Run in the Supabase SQL Editor (it runs as the database owner, so RLS
 -- does not apply). To remove the demo data, see the end of this file.
+--
+-- The same user is the login of the Management Software public demo. Its
+-- password is public, so after creating it, mark it with the demo role (see
+-- "Demo role" in schema.sql for what the role blocks):
+--
+--   update auth.users
+--   set raw_app_meta_data = raw_app_meta_data || '{"role": "demo"}'
+--   where email = 'demo-orders@example.com';
 
 do $$
 declare
