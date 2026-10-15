@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { ShoppingBag } from "lucide-react";
+import { Menu, ShoppingBag, X } from "lucide-react";
 import type { RootState } from "../store/store";
 import { openCart } from "../store/slices/cartSlice";
 import { Link, NavLink } from "react-router";
@@ -12,6 +12,7 @@ type NavbarProps = {
 
 export const Navbar = ({ theme = "dark" }: NavbarProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const dispatch = useDispatch();
   const { isLoggedIn, session } = useAuth();
 
@@ -30,6 +31,23 @@ export const Navbar = ({ theme = "dark" }: NavbarProps) => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsMenuOpen(false);
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isMenuOpen]);
+
+  const closeMenu = () => setIsMenuOpen(false);
 
   const isDarkText = isScrolled || theme === "light";
 
@@ -55,7 +73,19 @@ export const Navbar = ({ theme = "dark" }: NavbarProps) => {
         <div
           className={`flex gap-8 font-sans text-xs uppercase tracking-widest font-medium transition-colors duration-500 ${textColorClass}`}
         >
-          <NavLink to="/shop" className="relative py-1 group">
+          <button
+            onClick={() => setIsMenuOpen(true)}
+            aria-label="Apri menu"
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
+            className="md:hidden -m-2 p-2 cursor-pointer"
+          >
+            <Menu size={22} strokeWidth={1.5} />
+          </button>
+          <NavLink
+            to="/shop"
+            className="relative py-1 group hidden md:inline-block"
+          >
             Shop
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2c3e2b] transition-all duration-300 group-hover:w-full"></span>
           </NavLink>
@@ -121,6 +151,85 @@ export const Navbar = ({ theme = "dark" }: NavbarProps) => {
           </button>
         </div>
       </nav>
+
+      {isMenuOpen && (
+        <div className="fixed inset-0 z-[60] md:hidden">
+          <div
+            onClick={closeMenu}
+            className="absolute inset-0 bg-black/40 backdrop-blur-sm animate-in fade-in duration-300"
+          />
+
+          <div
+            id="mobile-menu"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Menu"
+            className="absolute inset-y-0 left-0 w-4/5 max-w-xs bg-[#fbf9f4] text-[#1a1a1a] shadow-2xl flex flex-col animate-in slide-in-from-left duration-300"
+          >
+            <div className="flex items-center justify-between px-6 py-5 border-b border-[#e8e4d9] bg-[#f4f1ea]">
+              <span className="font-serif text-2xl font-light text-[#2c3e2b]">
+                Terre d'Oliva
+              </span>
+              <button
+                onClick={closeMenu}
+                aria-label="Chiudi menu"
+                className="-m-2 p-2 rounded-full text-[#2c3e2b] hover:bg-white/80 transition-colors cursor-pointer"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            <nav className="flex flex-col px-6 py-4 font-serif text-2xl font-light">
+              <NavLink
+                to="/shop"
+                onClick={closeMenu}
+                className="py-4 border-b border-[#e8e4d9] [&.active]:text-[#b87d4b]"
+              >
+                Shop
+              </NavLink>
+              <NavLink
+                to="/storie"
+                onClick={closeMenu}
+                className="py-4 border-b border-[#e8e4d9] [&.active]:text-[#b87d4b]"
+              >
+                Le Storie
+              </NavLink>
+              <Link
+                to="/#contatti"
+                onClick={closeMenu}
+                className="py-4 border-b border-[#e8e4d9]"
+              >
+                Contattaci
+              </Link>
+            </nav>
+
+            <div className="mt-auto px-6 py-6 border-t border-[#e8e4d9] bg-[#f4f1ea] font-sans">
+              {isLoggedIn ? (
+                <NavLink
+                  to="/account"
+                  onClick={closeMenu}
+                  className="flex flex-col gap-1"
+                >
+                  <span className="text-xs uppercase tracking-widest font-semibold text-[#2c3e2b]">
+                    Il mio account
+                  </span>
+                  <span className="text-sm text-[#7c7c7c] truncate">
+                    {session?.user.email}
+                  </span>
+                </NavLink>
+              ) : (
+                <NavLink
+                  to="/accedi"
+                  onClick={closeMenu}
+                  className="block w-full text-center py-3 rounded-lg bg-[#2c3e2b] text-[#fbf9f4] text-xs uppercase tracking-widest font-semibold"
+                >
+                  Accedi
+                </NavLink>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 };
