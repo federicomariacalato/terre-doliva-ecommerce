@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import { selectCartItems } from "./store/slices/cartSlice";
 import { saveCartToStorage } from "./utils/cartStorage";
 import { Account } from "./pages/Account";
+import { NotFound } from "./pages/NotFound";
 
 export function App() {
   const items = useSelector(selectCartItems);
@@ -27,6 +28,7 @@ export function App() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/accedi" element={<Auth />} />
         <Route path="/account" element={<Account />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
       <CartDrawer />
