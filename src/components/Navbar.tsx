@@ -140,11 +140,11 @@ export const Navbar = ({ theme = "dark" }: NavbarProps) => {
           <button
             onClick={() => dispatch(openCart())}
             aria-label="Apri carrello"
-            className="relative p-1 hover:scale-110 active:scale-95 transition-transform duration-200 cursor-pointer"
+            className="relative -m-2 p-2 hover:scale-110 active:scale-95 transition-transform duration-200 cursor-pointer"
           >
             <ShoppingBag size={20} strokeWidth={1.5} />
             {cartCount > 0 && (
-              <span className="absolute -top-1 -right-2 bg-[#b87d4b] text-[#fbf9f4] font-sans text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold animate-bounce">
+              <span className="absolute top-0 -right-1 bg-[#b87d4b] text-[#fbf9f4] font-sans text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold animate-bounce">
                 {cartCount}
               </span>
             )}

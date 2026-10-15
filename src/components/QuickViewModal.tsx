@@ -25,6 +25,7 @@ export function QuickViewModal({
       <div className="relative z-10 w-full max-w-3xl max-h-full overflow-y-auto bg-[#fbf9f4] rounded-2xl shadow-2xl flex flex-col md:flex-row border border-[#e8e4d9]">
         <button
           onClick={onClose}
+          aria-label="Chiudi"
           className="absolute top-4 right-4 z-20 p-2 rounded-full bg-white/80 hover:bg-white text-[#2c3e2b] transition-colors cursor-pointer shadow-sm"
         >
           <X size={18} />
@@ -64,7 +65,8 @@ export function QuickViewModal({
                   <div className="flex items-center gap-4">
                     <button
                       onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                      className="p-1 text-[#2c3e2b] hover:text-[#b87d4b] transition-colors cursor-pointer"
+                      aria-label="Diminuisci quantità"
+                      className="-m-2 p-3 text-[#2c3e2b] hover:text-[#b87d4b] transition-colors cursor-pointer"
                     >
                       <Minus size={14} />
                     </button>
@@ -73,7 +75,8 @@ export function QuickViewModal({
                     </span>
                     <button
                       onClick={() => setQuantity((q) => q + 1)}
-                      className="p-1 text-[#2c3e2b] hover:text-[#b87d4b] transition-colors cursor-pointer"
+                      aria-label="Aumenta quantità"
+                      className="-m-2 p-3 text-[#2c3e2b] hover:text-[#b87d4b] transition-colors cursor-pointer"
                     >
                       <Plus size={14} />
                     </button>

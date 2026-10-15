@@ -41,6 +41,7 @@ export function CartDrawer() {
             </div>
             <button
               onClick={() => dispatch(closeCart())}
+              aria-label="Chiudi carrello"
               className="p-2 rounded-full hover:bg-white/80 text-[#2c3e2b] transition-colors cursor-pointer"
             >
               <X size={20} />
@@ -90,7 +91,8 @@ export function CartDrawer() {
                         </h3>
                         <button
                           onClick={() => dispatch(removeFromCart(item.id))}
-                          className="text-[#999] hover:text-[#b87d4b] transition-colors cursor-pointer"
+                          aria-label={`Rimuovi ${item.name}`}
+                          className="-m-3 p-3 text-[#999] hover:text-[#b87d4b] transition-colors cursor-pointer"
                         >
                           <Trash2 size={14} />
                         </button>
@@ -101,7 +103,7 @@ export function CartDrawer() {
                     </div>
 
                     <div className="flex items-center justify-between mt-3">
-                      <div className="flex items-center gap-2 bg-white border border-[#e8e4d9] rounded-md px-2 py-1">
+                      <div className="flex items-center bg-white border border-[#e8e4d9] rounded-md">
                         <button
                           onClick={() =>
                             dispatch(
@@ -111,7 +113,8 @@ export function CartDrawer() {
                               }),
                             )
                           }
-                          className="text-[#2c3e2b] hover:text-[#b87d4b] transition-colors cursor-pointer"
+                          aria-label="Diminuisci quantità"
+                          className="p-3 text-[#2c3e2b] hover:text-[#b87d4b] transition-colors cursor-pointer"
                         >
                           <Minus size={12} />
                         </button>
@@ -127,7 +130,8 @@ export function CartDrawer() {
                               }),
                             )
                           }
-                          className="text-[#2c3e2b] hover:text-[#b87d4b] transition-colors cursor-pointer"
+                          aria-label="Aumenta quantità"
+                          className="p-3 text-[#2c3e2b] hover:text-[#b87d4b] transition-colors cursor-pointer"
                         >
                           <Plus size={12} />
                         </button>
