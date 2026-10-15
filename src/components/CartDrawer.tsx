@@ -24,11 +24,11 @@ export function CartDrawer() {
     <div className="fixed inset-0 z-50 overflow-hidden">
       <div
         onClick={() => dispatch(closeCart())}
-        className="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity animate-fadeIn"
+        className="absolute inset-0 bg-black/40 backdrop-blur-sm animate-in fade-in duration-300"
       />
 
       <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
-        <div className="w-screen max-w-md bg-[#fbf9f4] shadow-2xl flex flex-col border-l border-[#e8e4d9] animate-slideLeft">
+        <div className="w-screen max-w-md bg-[#fbf9f4] shadow-2xl flex flex-col border-l border-[#e8e4d9] animate-in slide-in-from-right duration-300">
           <div className="p-6 border-b border-[#e8e4d9] flex items-center justify-between bg-[#f4f1ea]">
             <div className="flex items-center gap-3">
               <ShoppingBag size={20} className="text-[#2c3e2b]" />
