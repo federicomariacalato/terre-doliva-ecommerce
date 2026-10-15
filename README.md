@@ -4,7 +4,9 @@ A modern, responsive e-commerce storefront for a boutique extra virgin olive oil
 
 **Live demo:** https://terre-doliva-ecommerce.vercel.app
 
-**Companion project:** [Management Software](https://github.com/federicomariacalato/management-software), an admin dashboard for managing e-commerce orders ([live demo](https://management-software-three.vercel.app)). The two projects are currently independent; connecting them through a shared Supabase backend is on the Roadmap.
+**Companion project:** [Management Software](https://github.com/federicomariacalato/management-software), the admin dashboard for this store ([live demo](https://management-software-three.vercel.app), with a one-click read-only demo). Both apps share the same Supabase backend: orders placed here show up in the dashboard, and products added or marked as out of stock there are reflected in the shop.
+
+> The live demos run on Supabase's free plan, which pauses projects after a period of inactivity. If the shop shows no products, the database is waking up: try again in a minute.
 
 ## Features
 
@@ -20,7 +22,7 @@ A modern, responsive e-commerce storefront for a boutique extra virgin olive oil
 - **Account page with order history:** profile data and a list of past orders (newest first) in an accordion, with status badges, line items and totals formatted in euros.
 - **Contact form:** validated with React Hook Form and Zod, submitted to [Formspree](https://formspree.io/), with a honeypot field against spam and accessible submitting/success/error states.
 - **Client-side routing:** Home, Shop, Stories, Checkout, Login and Account, with an active route indicator.
-- **Responsive UI:** dynamic navbar (glass effect on scroll), cart drawer and toast notifications.
+- **Responsive UI:** dynamic navbar (glass effect on scroll), a mobile menu with every link and the account entry, animated cart drawer and quick view, touch-friendly controls and toast notifications.
 
 ## Tech Stack
 
@@ -69,10 +71,11 @@ The app runs at `http://localhost:5173`. To create a production build, run `npm 
 Authentication and orders need a Supabase project:
 
 1. Create a project at [supabase.com](https://supabase.com/).
-2. In the SQL Editor, run the first part of [`supabase/schema.sql`](supabase/schema.sql) up to the `products` table and its policy, then [`supabase/seed.sql`](supabase/seed.sql) to load the catalog, then the rest of `schema.sql` (the foreign key to `products`, the database functions, the admin policies and the `product-images` Storage bucket).
+2. In the SQL Editor, run the first part of [`supabase/schema.sql`](supabase/schema.sql) up to the `products` table and its policy, then [`supabase/seed.sql`](supabase/seed.sql) to load the catalog, then the rest of `schema.sql` (the foreign key to `products`, the database functions, the admin and demo roles and the `product-images` Storage bucket).
 3. Upload the images in `public/products/` to the `product-images` bucket and run the `update` at the end of `seed.sql`, so product images are served from Supabase Storage.
 4. Set `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` in `.env.local` (see `.env.example`), using the values from the project's API settings.
 5. Optionally, disable email confirmation in Authentication settings, so new users are logged in right after signing up.
+6. Optionally, run [`supabase/demo-data.sql`](supabase/demo-data.sql) to load ~150 sample orders for the dashboard; its header explains how to set up the read-only demo user.
 
 After changing the database schema, regenerate the TypeScript types:
 
@@ -90,7 +93,10 @@ Payment is **simulated**: no real gateway is connected, and it randomly succeeds
 
 The shipping rule (free from 50 €, otherwise 6.90 €) exists in two places: the Checkout page uses it to show the order summary, and the `create_order` database function uses it to calculate the total that is actually saved. Keep them in sync when changing it.
 
-## Roadmap
+## Database roles
 
-- Share the Supabase backend with the Management Software dashboard.
-- Responsive review of the whole site, including a mobile menu with access to login and account.
+The schema in [`supabase/schema.sql`](supabase/schema.sql) is shared with the Management Software dashboard and defines three kinds of users, all enforced with Row Level Security:
+
+- **Customers** can read and create only their own orders.
+- **Admin** (`app_metadata.role = "admin"`) can see every order, update order status and manage products and their images.
+- **Demo** (`app_metadata.role = "demo"`) is the public demo login of the dashboard. It owns the sample orders, so it never sees real customers' orders. Its password is public by design, so restrictive policies stop it from placing orders and a trigger stops it from changing its own password or email.
