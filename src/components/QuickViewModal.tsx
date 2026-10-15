@@ -22,7 +22,7 @@ export function QuickViewModal({
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4 animate-fadeIn">
       <div className="absolute inset-0" onClick={onClose} />
 
-      <div className="relative z-10 w-full max-w-3xl bg-[#fbf9f4] rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row border border-[#e8e4d9]">
+      <div className="relative z-10 w-full max-w-3xl max-h-full overflow-y-auto bg-[#fbf9f4] rounded-2xl shadow-2xl flex flex-col md:flex-row border border-[#e8e4d9]">
         <button
           onClick={onClose}
           className="absolute top-4 right-4 z-20 p-2 rounded-full bg-white/80 hover:bg-white text-[#2c3e2b] transition-colors cursor-pointer shadow-sm"
@@ -34,7 +34,7 @@ export function QuickViewModal({
           <img
             src={product.image}
             alt={product.name}
-            className="w-full h-72 md:h-96 object-cover rounded-xl shadow-sm"
+            className="w-full h-56 sm:h-72 md:h-96 object-cover rounded-xl shadow-sm"
           />
         </div>
 
