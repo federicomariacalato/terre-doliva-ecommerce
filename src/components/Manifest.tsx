@@ -81,8 +81,8 @@ export function StoriesManifest() {
         <div className="lg:col-span-7">
           <div className="relative rounded-2xl overflow-hidden shadow-xl bg-[#f4f1ea] aspect-4/3">
             <img
-              src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&q=80&w=1200"
-              alt="Uliveti in Sicilia"
+              src="https://images.unsplash.com/photo-1728940823516-ff387be88638?auto=format&fit=crop&q=80&w=1200"
+              alt="Ulivi secolari sotto il sole della Sicilia"
               className="w-full h-full object-cover"
             />
           </div>
@@ -93,7 +93,7 @@ export function StoriesManifest() {
         <div className="lg:col-span-7 order-2 lg:order-1">
           <div className="relative rounded-2xl overflow-hidden shadow-xl bg-[#f4f1ea] aspect-4/3">
             <img
-              src="https://images.unsplash.com/photo-1508807526345-15e9b5f4eaff?auto=format&fit=crop&q=80&w=1200"
+              src="https://images.unsplash.com/photo-1635097087993-1dbe24dbc2f9?auto=format&fit=crop&q=80&w=1200"
               alt="Raccolta a mano delle olive"
               className="w-full h-full object-cover"
             />
@@ -145,8 +145,8 @@ export function StoriesManifest() {
         <div className="lg:col-span-7">
           <div className="relative rounded-2xl overflow-hidden shadow-xl bg-[#f4f1ea] aspect-4/3">
             <img
-              src="https://images.unsplash.com/photo-1541480601022-2308c0f0a487?auto=format&fit=crop&q=80&w=1200"
-              alt="Olio estratto a freddo"
+              src="https://images.unsplash.com/photo-1768689033119-c3ac1e437d20?auto=format&fit=crop&q=80&w=1200"
+              alt="Olio appena estratto che scorre dal frantoio"
               className="w-full h-full object-cover"
             />
           </div>
