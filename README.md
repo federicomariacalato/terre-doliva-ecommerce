@@ -21,7 +21,7 @@ A modern, responsive e-commerce storefront for a boutique extra virgin olive oil
 - **Orders stored in Supabase:** orders are created by a Postgres function in a single transaction. The browser only sends customer details and, for each item, product id and quantity: user, prices and total (shipping included) are taken from the database, so they cannot be tampered with. Tables are protected by Row Level Security, so each user can only read and create their own orders. Product name and price are stored with each line item, so past orders stay accurate if the catalog changes.
 - **Account page with order history:** profile data and a list of past orders (newest first) in an accordion, with status badges, line items and totals formatted in euros.
 - **Contact form:** validated with React Hook Form and Zod, submitted to [Formspree](https://formspree.io/), with a honeypot field against spam and accessible submitting/success/error states.
-- **Client-side routing:** Home, Shop, Stories, Checkout, Login and Account, with an active route indicator.
+- **Client-side routing:** Home, Shop, Stories, Checkout, Login and Account, with an active route indicator and a 404 page for unknown routes.
 - **Responsive UI:** dynamic navbar (glass effect on scroll), a mobile menu with every link and the account entry, animated cart drawer and quick view, touch-friendly controls and toast notifications.
 
 ## Tech Stack
