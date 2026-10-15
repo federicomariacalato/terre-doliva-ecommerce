@@ -278,3 +278,58 @@ create policy "Admins can delete product images"
 on storage.objects for delete
 to authenticated
 using (bucket_id = 'product-images' and (select public.is_admin()));
+
+
+-- Demo role, used by the public demo of the Management Software.
+-- Visitors log in as demo-orders@example.com, the user that owns the demo
+-- orders (see demo-data.sql), with app_metadata {"role": "demo"}. The
+-- "Users can view their own orders" policy already limits it to the demo
+-- orders, so real customers' orders are never shown. Changes made in the
+-- dashboard are kept only in the visitor's browser and never reach the database.
+create or replace function public.is_demo()
+returns boolean
+language sql
+stable
+set search_path = ''
+as $$
+  select coalesce((auth.jwt() -> 'app_metadata' ->> 'role') = 'demo', false);
+$$;
+
+-- The demo password is public, so the database itself blocks what the demo user
+-- could otherwise do outside the dashboard. Restrictive policies must pass in
+-- addition to the permissive ones above: the demo user cannot create orders,
+-- either directly or through create_order (which runs with the caller's rights).
+create policy "Demo user cannot create orders"
+on public.orders as restrictive for insert
+to authenticated
+with check (not (select public.is_demo()));
+
+create policy "Demo user cannot add order items"
+on public.order_items as restrictive for insert
+to authenticated
+with check (not (select public.is_demo()));
+
+-- The demo user cannot change its password or email, which would lock every
+-- other visitor out. To change the demo password, remove the role first, update
+-- the password, then add the role back.
+create or replace function public.protect_demo_account()
+returns trigger
+language plpgsql
+set search_path = ''
+as $$
+begin
+  if old.raw_app_meta_data ->> 'role' = 'demo'
+    and (
+      new.encrypted_password is distinct from old.encrypted_password
+      or new.email is distinct from old.email
+    )
+  then
+    raise exception 'The demo account cannot be changed';
+  end if;
+  return new;
+end;
+$$;
+
+create trigger protect_demo_account
+before update on auth.users
+for each row execute function public.protect_demo_account();
