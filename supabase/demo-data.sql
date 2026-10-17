@@ -154,3 +154,54 @@ $$;
 --
 -- delete from public.orders
 -- where user_id = (select id from auth.users where email = 'demo-orders@example.com');
+
+
+-- Keep the demo data fresh.
+-- The orders above have fixed dates, so without this the dashboard's
+-- "last 30 days" KPIs would slowly drop to zero. Every night this job moves
+-- all demo orders forward by the same number of days, so the newest one is
+-- always from yesterday and the gaps between orders stay the same.
+-- Run this section on its own: running the whole file again would insert
+-- a second copy of the demo orders.
+--
+-- The function lives in a "private" schema: Supabase only exposes "public"
+-- through its API, so nobody can call it from the browser.
+create schema if not exists private;
+
+create or replace function private.shift_demo_orders()
+returns void
+language plpgsql
+set search_path = ''
+as $$
+declare
+  v_user_id uuid;
+  v_days integer;
+begin
+  select id into v_user_id from auth.users where email = 'demo-orders@example.com';
+  if v_user_id is null then
+    return;
+  end if;
+
+  select (current_date - 1) - max(created_at)::date into v_days
+  from public.orders
+  where user_id = v_user_id;
+
+  if v_days is null or v_days <= 0 then
+    return;
+  end if;
+
+  update public.orders
+  set created_at = created_at + make_interval(days => v_days)
+  where user_id = v_user_id;
+end;
+$$;
+
+-- Run it every night at 03:00 UTC with pg_cron
+-- (enable it first in Database → Extensions, or with the line below).
+create extension if not exists pg_cron with schema pg_catalog;
+
+select cron.schedule(
+  'shift-demo-orders',
+  '0 3 * * *',
+  'select private.shift_demo_orders()'
+);
