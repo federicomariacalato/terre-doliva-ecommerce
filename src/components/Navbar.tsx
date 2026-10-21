@@ -6,6 +6,7 @@ import { openCart } from "../store/slices/cartSlice";
 import { Link, NavLink } from "react-router";
 import { useAuth } from "@/hooks/useAuth";
 import { AnimatePresence, motion } from "motion/react";
+import { EASE_OUT } from "@/lib/motion";
 
 type NavbarProps = {
   theme?: "dark" | "light";
@@ -161,7 +162,7 @@ export const Navbar = ({ theme = "dark" }: NavbarProps) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.5 }}
               className="absolute inset-0 bg-black/40 backdrop-blur-sm"
             />
 
@@ -173,7 +174,7 @@ export const Navbar = ({ theme = "dark" }: NavbarProps) => {
               initial={{ x: "-100%" }}
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.6, ease: EASE_OUT }}
               className="absolute inset-y-0 left-0 w-4/5 max-w-xs bg-[#fbf9f4] text-[#1a1a1a] shadow-2xl flex flex-col"
             >
               <div className="flex items-center justify-between px-6 py-5 border-b border-[#e8e4d9] bg-[#f4f1ea]">
