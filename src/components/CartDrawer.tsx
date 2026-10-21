@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { CtaButton } from "./CtaButton";
 import { Link } from "react-router";
 import { AnimatePresence, motion } from "motion/react";
+import { CollapseOut } from "@/components/animations/CollapseOut";
+import { EASE_OUT } from "@/lib/motion";
 import {
   selectCartItems,
   selectCartTotal,
@@ -28,7 +30,7 @@ export function CartDrawer() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.5 }}
             className="absolute inset-0 bg-black/40 backdrop-blur-sm"
           />
 
@@ -37,7 +39,7 @@ export function CartDrawer() {
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.6, ease: EASE_OUT }}
               className="w-screen max-w-md bg-[#fbf9f4] shadow-2xl flex flex-col border-l border-[#e8e4d9]"
             >
               <div className="p-6 border-b border-[#e8e4d9] flex items-center justify-between bg-[#f4f1ea]">
@@ -59,9 +61,14 @@ export function CartDrawer() {
                 </button>
               </div>
 
-              <div className="flex-1 overflow-y-auto p-6 space-y-6">
-                {cartItems.length === 0 ? (
-                  <div className="h-full flex flex-col items-center justify-center text-center space-y-4 py-12">
+              <div className="relative flex-1 overflow-y-auto p-6">
+                {cartItems.length === 0 && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.6, delay: 0.5 }}
+                    className="absolute inset-0 flex flex-col items-center justify-center text-center space-y-4 p-6"
+                  >
                     <div className="p-4 bg-[#f4f1ea] rounded-full text-[#7c7c7c]">
                       <ShoppingBag size={32} />
                     </div>
@@ -79,83 +86,85 @@ export function CartDrawer() {
                     >
                       Continua lo Shopping
                     </Link>
-                  </div>
-                ) : (
-                  cartItems.map((item) => (
-                    <div
-                      key={item.id}
-                      className="flex gap-4 pb-6 border-b border-[#e8e4d9] last:border-b-0"
-                    >
-                      <div className="w-20 h-24 bg-[#f4f1ea] rounded-md overflow-hidden shrink-0">
-                        <img
-                          src={item.image}
-                          alt={item.name}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-
-                      <div className="flex-1 flex flex-col justify-between">
-                        <div>
-                          <div className="flex justify-between items-start gap-2">
-                            <h3 className="font-serif text-sm text-[#1a1a1a] leading-tight">
-                              {item.name}
-                            </h3>
-                            <button
-                              onClick={() => dispatch(removeFromCart(item.id))}
-                              aria-label={`Rimuovi ${item.name}`}
-                              className="-m-3 p-3 text-[#999] hover:text-[#b87d4b] transition-colors cursor-pointer"
-                            >
-                              <Trash2 size={14} />
-                            </button>
-                          </div>
-                          <span className="font-sans text-[10px] text-[#7c7c7c] uppercase tracking-wider block mt-1">
-                            {item.category}
-                          </span>
-                        </div>
-
-                        <div className="flex items-center justify-between mt-3">
-                          <div className="flex items-center bg-white border border-[#e8e4d9] rounded-sm">
-                            <button
-                              onClick={() =>
-                                dispatch(
-                                  updateQuantity({
-                                    id: item.id,
-                                    quantity: Math.max(1, item.quantity - 1),
-                                  }),
-                                )
-                              }
-                              aria-label="Diminuisci quantità"
-                              className="p-3 text-[#2c3e2b] hover:text-[#b87d4b] transition-colors cursor-pointer"
-                            >
-                              <Minus size={12} />
-                            </button>
-                            <span className="font-sans text-xs font-semibold w-4 text-center">
-                              {item.quantity}
-                            </span>
-                            <button
-                              onClick={() =>
-                                dispatch(
-                                  updateQuantity({
-                                    id: item.id,
-                                    quantity: item.quantity + 1,
-                                  }),
-                                )
-                              }
-                              aria-label="Aumenta quantità"
-                              className="p-3 text-[#2c3e2b] hover:text-[#b87d4b] transition-colors cursor-pointer"
-                            >
-                              <Plus size={12} />
-                            </button>
-                          </div>
-
-                          <span className="font-sans text-sm font-semibold text-[#b87d4b]">
-                            {(item.price * item.quantity).toFixed(2)}€
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  ))
+                  </motion.div>
                 )}
+
+                <AnimatePresence initial={false}>
+                  {cartItems.map((item) => (
+                    <CollapseOut
+                      key={item.id}
+                      className="flex gap-4 pt-6 first:pt-0 pb-6 border-b border-[#e8e4d9] last:border-b-0 overflow-hidden"
+                    >
+                        <div className="w-20 h-24 bg-[#f4f1ea] rounded-md overflow-hidden shrink-0">
+                          <img
+                            src={item.image}
+                            alt={item.name}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+
+                        <div className="flex-1 flex flex-col justify-between">
+                          <div>
+                            <div className="flex justify-between items-start gap-2">
+                              <h3 className="font-serif text-sm text-[#1a1a1a] leading-tight">
+                                {item.name}
+                              </h3>
+                              <button
+                                onClick={() => dispatch(removeFromCart(item.id))}
+                                aria-label={`Rimuovi ${item.name}`}
+                                className="-m-3 p-3 text-[#999] hover:text-[#b87d4b] transition-colors cursor-pointer"
+                              >
+                                <Trash2 size={14} />
+                              </button>
+                            </div>
+                            <span className="font-sans text-[10px] text-[#7c7c7c] uppercase tracking-wider block mt-1">
+                              {item.category}
+                            </span>
+                          </div>
+
+                          <div className="flex items-center justify-between mt-3">
+                            <div className="flex items-center bg-white border border-[#e8e4d9] rounded-sm">
+                              <button
+                                onClick={() =>
+                                  dispatch(
+                                    updateQuantity({
+                                      id: item.id,
+                                      quantity: Math.max(1, item.quantity - 1),
+                                    }),
+                                  )
+                                }
+                                aria-label="Diminuisci quantità"
+                                className="p-3 text-[#2c3e2b] hover:text-[#b87d4b] transition-colors cursor-pointer"
+                              >
+                                <Minus size={12} />
+                              </button>
+                              <span className="font-sans text-xs font-semibold w-4 text-center">
+                                {item.quantity}
+                              </span>
+                              <button
+                                onClick={() =>
+                                  dispatch(
+                                    updateQuantity({
+                                      id: item.id,
+                                      quantity: item.quantity + 1,
+                                    }),
+                                  )
+                                }
+                                aria-label="Aumenta quantità"
+                                className="p-3 text-[#2c3e2b] hover:text-[#b87d4b] transition-colors cursor-pointer"
+                              >
+                                <Plus size={12} />
+                              </button>
+                            </div>
+
+                            <span className="font-sans text-sm font-semibold text-[#b87d4b]">
+                              {(item.price * item.quantity).toFixed(2)}€
+                            </span>
+                          </div>
+                        </div>
+                    </CollapseOut>
+                  ))}
+                </AnimatePresence>
               </div>
 
               {cartItems.length > 0 && (
