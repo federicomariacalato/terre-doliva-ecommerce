@@ -96,7 +96,7 @@ export function HomeContactForm() {
             role="alert"
             className={
               errorMessage
-                ? "flex items-start gap-3 bg-[#5c2626] text-[#fbf9f4] rounded-lg shadow-sm px-4 py-3.5 mb-6"
+                ? "flex items-start gap-3 bg-[#5c2626] text-[#fbf9f4] rounded-md shadow-sm px-4 py-3.5 mb-6"
                 : ""
             }
           >
@@ -232,7 +232,7 @@ export function HomeContactForm() {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-[#2c3e2b] text-[#fbf9f4] hover:bg-[#1e2b1d] h-14 font-sans text-xs uppercase tracking-widest font-semibold rounded-lg shadow-md transition-all cursor-pointer"
+                  className="w-full bg-[#2c3e2b] text-[#fbf9f4] hover:bg-[#1e2b1d] h-14 font-sans text-xs uppercase tracking-widest font-semibold rounded-md shadow-md transition-all cursor-pointer"
                 >
                   {isSubmitting ? "Invio in corso..." : "Invia messaggio"}
                 </Button>

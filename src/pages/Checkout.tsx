@@ -311,7 +311,7 @@ export function Checkout() {
                               value={field.value}
                               className="space-y-3"
                             >
-                              <div className="flex items-center justify-between p-3.5 border rounded-lg border-[#e8e4d9] bg-white [&:has(:checked)]:border-[#2c3e2b] [&:has(:checked)]:bg-[#f4f1ea]">
+                              <div className="flex items-center justify-between p-3.5 border rounded-md border-[#e8e4d9] bg-white [&:has(:checked)]:border-[#2c3e2b] [&:has(:checked)]:bg-[#f4f1ea]">
                                 <div className="flex items-center gap-3">
                                   <RadioGroupItem value="card" id="card" />
                                   <Label
@@ -327,7 +327,7 @@ export function Checkout() {
                                 </div>
                               </div>
 
-                              <div className="flex items-center justify-between p-3.5 border rounded-lg border-[#e8e4d9] bg-white [&:has(:checked)]:border-[#2c3e2b] [&:has(:checked)]:bg-[#f4f1ea]">
+                              <div className="flex items-center justify-between p-3.5 border rounded-md border-[#e8e4d9] bg-white [&:has(:checked)]:border-[#2c3e2b] [&:has(:checked)]:bg-[#f4f1ea]">
                                 <div className="flex items-center gap-3">
                                   <RadioGroupItem value="paypal" id="paypal" />
                                   <Label
@@ -343,7 +343,7 @@ export function Checkout() {
                                 </div>
                               </div>
 
-                              <div className="flex items-center justify-between p-3.5 border rounded-lg border-[#e8e4d9] bg-white [&:has(:checked)]:border-[#2c3e2b] [&:has(:checked)]:bg-[#f4f1ea]">
+                              <div className="flex items-center justify-between p-3.5 border rounded-md border-[#e8e4d9] bg-white [&:has(:checked)]:border-[#2c3e2b] [&:has(:checked)]:bg-[#f4f1ea]">
                                 <div className="flex items-center gap-3">
                                   <RadioGroupItem value="cod" id="cod" />
                                   <Label
@@ -372,7 +372,7 @@ export function Checkout() {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-[#2c3e2b] text-[#fbf9f4] hover:bg-[#1e2b1d] h-14 font-sans text-xs uppercase tracking-widest font-semibold rounded-lg shadow-md transition-all cursor-pointer"
+                  className="w-full bg-[#2c3e2b] text-[#fbf9f4] hover:bg-[#1e2b1d] h-14 font-sans text-xs uppercase tracking-widest font-semibold rounded-md shadow-md transition-all cursor-pointer"
                 >
                   {isSubmitting
                     ? "Elaborazione dell'Ordine..."
@@ -397,7 +397,7 @@ export function Checkout() {
                       key={item.id}
                       className="flex gap-3 pb-3 border-b border-[#e8e4d9] last:border-b-0"
                     >
-                      <div className="w-14 h-16 bg-white rounded-md overflow-hidden shrink-0 border border-[#e8e4d9]">
+                      <div className="w-14 h-16 bg-white rounded-sm overflow-hidden shrink-0 border border-[#e8e4d9]">
                         <img
                           src={item.image}
                           alt={item.name}

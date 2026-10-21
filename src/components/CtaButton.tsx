@@ -23,7 +23,7 @@ export function CtaButton({
   const variantStyles = {
     dark: "bg-[#fbf9f4] text-[#2c3e2b] border-[#fbf9f4] hover:text-[#fbf9f4]",
     light:
-      "bg-[#2c3e2b] text-[#fbf9f4] border-[#2c3e2b] hover:text-[#2c3e2b] w-full rounded-lg",
+      "bg-[#2c3e2b] text-[#fbf9f4] border-[#2c3e2b] hover:text-[#2c3e2b] w-full rounded-md",
   };
 
   const combinedClasses = `${baseStyles} ${variantStyles[variant]}`;

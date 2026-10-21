@@ -79,7 +79,7 @@ export function StoriesManifest() {
         </div>
 
         <div className="lg:col-span-7">
-          <div className="relative rounded-2xl overflow-hidden shadow-xl bg-[#f4f1ea] aspect-4/3">
+          <div className="relative rounded-xl overflow-hidden shadow-xl bg-[#f4f1ea] aspect-4/3">
             <img
               src="https://images.unsplash.com/photo-1728940823516-ff387be88638?auto=format&fit=crop&q=80&w=1200"
               alt="Ulivi secolari sotto il sole della Sicilia"
@@ -91,7 +91,7 @@ export function StoriesManifest() {
 
       <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         <div className="lg:col-span-7 order-2 lg:order-1">
-          <div className="relative rounded-2xl overflow-hidden shadow-xl bg-[#f4f1ea] aspect-4/3">
+          <div className="relative rounded-xl overflow-hidden shadow-xl bg-[#f4f1ea] aspect-4/3">
             <img
               src="https://images.unsplash.com/photo-1635097087993-1dbe24dbc2f9?auto=format&fit=crop&q=80&w=1200"
               alt="Raccolta a mano delle olive"
@@ -143,7 +143,7 @@ export function StoriesManifest() {
         </div>
 
         <div className="lg:col-span-7">
-          <div className="relative rounded-2xl overflow-hidden shadow-xl bg-[#f4f1ea] aspect-4/3">
+          <div className="relative rounded-xl overflow-hidden shadow-xl bg-[#f4f1ea] aspect-4/3">
             <img
               src="https://images.unsplash.com/photo-1768689033119-c3ac1e437d20?auto=format&fit=crop&q=80&w=1200"
               alt="Olio appena estratto che scorre dal frantoio"

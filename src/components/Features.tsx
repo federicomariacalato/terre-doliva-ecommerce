@@ -66,7 +66,7 @@ export function StoriesFeatures() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-[#fbf9f4] p-8 rounded-xl space-y-4 border border-[#e8e4d9] shadow-sm">
+          <div className="bg-[#fbf9f4] p-8 rounded-lg space-y-4 border border-[#e8e4d9] shadow-sm">
             <div className="w-12 h-12 rounded-full bg-[#ebf0ec] flex items-center justify-center text-[#2c3e2b]">
               <Heart size={22} />
             </div>
@@ -80,7 +80,7 @@ export function StoriesFeatures() {
             </p>
           </div>
 
-          <div className="bg-[#fbf9f4] p-8 rounded-xl space-y-4 border border-[#e8e4d9] shadow-sm">
+          <div className="bg-[#fbf9f4] p-8 rounded-lg space-y-4 border border-[#e8e4d9] shadow-sm">
             <div className="w-12 h-12 rounded-full bg-[#f5e6db] flex items-center justify-center text-[#b87d4b]">
               <Sparkles size={22} />
             </div>
@@ -94,7 +94,7 @@ export function StoriesFeatures() {
             </p>
           </div>
 
-          <div className="bg-[#fbf9f4] p-8 rounded-xl space-y-4 border border-[#e8e4d9] shadow-sm">
+          <div className="bg-[#fbf9f4] p-8 rounded-lg space-y-4 border border-[#e8e4d9] shadow-sm">
             <div className="w-12 h-12 rounded-full bg-[#f7f4eb] flex items-center justify-center text-[#2c3e2b]">
               <ShieldCheck size={22} />
             </div>

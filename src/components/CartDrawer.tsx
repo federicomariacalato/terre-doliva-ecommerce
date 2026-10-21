@@ -86,7 +86,7 @@ export function CartDrawer() {
                       key={item.id}
                       className="flex gap-4 pb-6 border-b border-[#e8e4d9] last:border-b-0"
                     >
-                      <div className="w-20 h-24 bg-[#f4f1ea] rounded-lg overflow-hidden shrink-0">
+                      <div className="w-20 h-24 bg-[#f4f1ea] rounded-md overflow-hidden shrink-0">
                         <img
                           src={item.image}
                           alt={item.name}
@@ -114,7 +114,7 @@ export function CartDrawer() {
                         </div>
 
                         <div className="flex items-center justify-between mt-3">
-                          <div className="flex items-center bg-white border border-[#e8e4d9] rounded-md">
+                          <div className="flex items-center bg-white border border-[#e8e4d9] rounded-sm">
                             <button
                               onClick={() =>
                                 dispatch(

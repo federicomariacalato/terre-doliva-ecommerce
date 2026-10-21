@@ -22,7 +22,7 @@ export function QuickViewModal({
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4 animate-in fade-in duration-300">
       <div className="absolute inset-0" onClick={onClose} />
 
-      <div className="relative z-10 w-full max-w-3xl max-h-full overflow-y-auto bg-[#fbf9f4] rounded-2xl shadow-2xl animate-in fade-in zoom-in-95 duration-300 flex flex-col md:flex-row border border-[#e8e4d9]">
+      <div className="relative z-10 w-full max-w-3xl max-h-full overflow-y-auto bg-[#fbf9f4] rounded-xl shadow-2xl animate-in fade-in zoom-in-95 duration-300 flex flex-col md:flex-row border border-[#e8e4d9]">
         <button
           onClick={onClose}
           aria-label="Chiudi"
@@ -35,7 +35,7 @@ export function QuickViewModal({
           <img
             src={product.image}
             alt={product.name}
-            className="w-full h-56 sm:h-72 md:h-96 object-cover rounded-xl shadow-sm"
+            className="w-full h-56 sm:h-72 md:h-96 object-cover rounded-lg shadow-sm"
           />
         </div>
 
@@ -58,7 +58,7 @@ export function QuickViewModal({
           <div className="space-y-4 pt-4 border-t border-[#e8e4d9]">
             {product.is_available ? (
               <>
-                <div className="flex items-center justify-between bg-white px-4 py-2 rounded-lg border border-[#e8e4d9]">
+                <div className="flex items-center justify-between bg-white px-4 py-2 rounded-md border border-[#e8e4d9]">
                   <span className="font-sans text-xs uppercase tracking-wider text-[#2c3e2b] font-medium">
                     Quantità
                   </span>

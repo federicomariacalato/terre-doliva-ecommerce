@@ -102,7 +102,7 @@ export function Account() {
                   <AccordionItem
                     key={order.id}
                     value={order.id}
-                    className="rounded-lg border border-[#e8e4d9] bg-white px-4"
+                    className="rounded-md border border-[#e8e4d9] bg-white px-4"
                   >
                     <AccordionTrigger className="items-center py-4 hover:no-underline cursor-pointer">
                       <div className="flex flex-1 flex-wrap items-center justify-between gap-x-4 gap-y-2 pr-3">
@@ -158,7 +158,7 @@ export function Account() {
         <div className="mt-8 flex justify-end">
           <button
             onClick={() => supabase.auth.signOut()}
-            className="border border-[#2c3e2b] text-[#2c3e2b] hover:bg-[#2c3e2b] hover:text-[#fbf9f4] px-8 py-3 rounded-lg font-sans text-xs uppercase tracking-widest font-semibold transition-colors duration-300 cursor-pointer"
+            className="border border-[#2c3e2b] text-[#2c3e2b] hover:bg-[#2c3e2b] hover:text-[#fbf9f4] px-8 py-3 rounded-md font-sans text-xs uppercase tracking-widest font-semibold transition-colors duration-300 cursor-pointer"
           >
             Esci
           </button>

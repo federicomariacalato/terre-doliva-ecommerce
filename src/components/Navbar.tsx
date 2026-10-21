@@ -231,7 +231,7 @@ export const Navbar = ({ theme = "dark" }: NavbarProps) => {
                   <NavLink
                     to="/accedi"
                     onClick={closeMenu}
-                    className="block w-full text-center py-3 rounded-lg bg-[#2c3e2b] text-[#fbf9f4] text-xs uppercase tracking-widest font-semibold"
+                    className="block w-full text-center py-3 rounded-md bg-[#2c3e2b] text-[#fbf9f4] text-xs uppercase tracking-widest font-semibold"
                   >
                     Accedi
                   </NavLink>
