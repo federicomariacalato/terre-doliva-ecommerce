@@ -1,4 +1,5 @@
 import { Heart, Sparkles, ShieldCheck } from "lucide-react";
+import { RevealUp } from "@/components/animations/RevealUp";
 
 export const HomeFeatures = () => {
   const pilastri = [
@@ -28,9 +29,10 @@ export const HomeFeatures = () => {
     <section className="w-full bg-[#fbf9f4] border-t border-b border-[#e8e4d9]">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         {pilastri.map((p, index) => (
-          <div
+          <RevealUp
             key={index}
-            className="p-12 flex flex-col justify-between min-h-75 border-b md:border-b-0 border-[#e8e4d9] last:border-b-0 md:even:border-l lg:even:border-l-0 lg:not-first:border-l transition-all duration-500 hover:bg-[#2c3e2b]/5 group"
+            index={index}
+            className="p-12 flex flex-col justify-between min-h-75 border-b md:border-b-0 border-[#e8e4d9] last:border-b-0 md:even:border-l lg:even:border-l-0 lg:not-first:border-l hover:bg-[#2c3e2b]/5 group"
           >
             <span className="font-serif text-4xl font-light text-[#b87d4b] tracking-wide transition-transform duration-300 group-hover:-translate-y-1 block">
               {p.numero}
@@ -43,14 +45,12 @@ export const HomeFeatures = () => {
                 {p.desc}
               </p>
             </div>
-          </div>
+          </RevealUp>
         ))}
       </div>
     </section>
   );
 };
-
-
 
 export function StoriesFeatures() {
   return (
@@ -66,7 +66,10 @@ export function StoriesFeatures() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-[#fbf9f4] p-8 rounded-lg space-y-4 border border-[#e8e4d9] shadow-sm">
+          <RevealUp
+            index={0}
+            className="bg-[#fbf9f4] p-8 rounded-lg space-y-4 border border-[#e8e4d9] shadow-sm"
+          >
             <div className="w-12 h-12 rounded-full bg-[#ebf0ec] flex items-center justify-center text-[#2c3e2b]">
               <Heart size={22} />
             </div>
@@ -78,9 +81,12 @@ export function StoriesFeatures() {
               persona. Per noi non è solo lavoro, è il nostro motivo di orgoglio
               quotidiano.
             </p>
-          </div>
+          </RevealUp>
 
-          <div className="bg-[#fbf9f4] p-8 rounded-lg space-y-4 border border-[#e8e4d9] shadow-sm">
+          <RevealUp
+            index={1}
+            className="bg-[#fbf9f4] p-8 rounded-lg space-y-4 border border-[#e8e4d9] shadow-sm"
+          >
             <div className="w-12 h-12 rounded-full bg-[#f5e6db] flex items-center justify-center text-[#b87d4b]">
               <Sparkles size={22} />
             </div>
@@ -92,9 +98,12 @@ export function StoriesFeatures() {
               proteggere il terreno e garantire che ogni goccia rispetti
               l'ecosistema siciliano.
             </p>
-          </div>
+          </RevealUp>
 
-          <div className="bg-[#fbf9f4] p-8 rounded-lg space-y-4 border border-[#e8e4d9] shadow-sm">
+          <RevealUp
+            index={2}
+            className="bg-[#fbf9f4] p-8 rounded-lg space-y-4 border border-[#e8e4d9] shadow-sm"
+          >
             <div className="w-12 h-12 rounded-full bg-[#f7f4eb] flex items-center justify-center text-[#2c3e2b]">
               <ShieldCheck size={22} />
             </div>
@@ -106,7 +115,7 @@ export function StoriesFeatures() {
               a freddo pochissime ore dopo la raccolta per offrire solo il
               meglio della Sicilia.
             </p>
-          </div>
+          </RevealUp>
         </div>
       </div>
     </section>
