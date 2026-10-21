@@ -5,6 +5,7 @@ import type { RootState } from "../store/store";
 import { openCart } from "../store/slices/cartSlice";
 import { Link, NavLink } from "react-router";
 import { useAuth } from "@/hooks/useAuth";
+import { AnimatePresence, motion } from "motion/react";
 
 type NavbarProps = {
   theme?: "dark" | "light";
@@ -152,84 +153,94 @@ export const Navbar = ({ theme = "dark" }: NavbarProps) => {
         </div>
       </nav>
 
-      {isMenuOpen && (
-        <div className="fixed inset-0 z-[60] md:hidden">
-          <div
-            onClick={closeMenu}
-            className="absolute inset-0 bg-black/40 backdrop-blur-sm animate-in fade-in duration-300"
-          />
+      <AnimatePresence>
+        {isMenuOpen && (
+          <div className="fixed inset-0 z-[60] md:hidden">
+            <motion.div
+              onClick={closeMenu}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+            />
 
-          <div
-            id="mobile-menu"
-            role="dialog"
-            aria-modal="true"
-            aria-label="Menu"
-            className="absolute inset-y-0 left-0 w-4/5 max-w-xs bg-[#fbf9f4] text-[#1a1a1a] shadow-2xl flex flex-col animate-in slide-in-from-left duration-300"
-          >
-            <div className="flex items-center justify-between px-6 py-5 border-b border-[#e8e4d9] bg-[#f4f1ea]">
-              <span className="font-serif text-2xl font-light text-[#2c3e2b]">
-                Terre d'Oliva
-              </span>
-              <button
-                onClick={closeMenu}
-                aria-label="Chiudi menu"
-                className="-m-2 p-2 rounded-full text-[#2c3e2b] hover:bg-white/80 transition-colors cursor-pointer"
-              >
-                <X size={20} />
-              </button>
-            </div>
-
-            <nav className="flex flex-col px-6 py-4 font-serif text-2xl font-light">
-              <NavLink
-                to="/shop"
-                onClick={closeMenu}
-                className="py-4 border-b border-[#e8e4d9] [&.active]:text-[#b87d4b]"
-              >
-                Shop
-              </NavLink>
-              <NavLink
-                to="/storie"
-                onClick={closeMenu}
-                className="py-4 border-b border-[#e8e4d9] [&.active]:text-[#b87d4b]"
-              >
-                Le Storie
-              </NavLink>
-              <Link
-                to="/#contatti"
-                onClick={closeMenu}
-                className="py-4 border-b border-[#e8e4d9]"
-              >
-                Contattaci
-              </Link>
-            </nav>
-
-            <div className="mt-auto px-6 py-6 border-t border-[#e8e4d9] bg-[#f4f1ea] font-sans">
-              {isLoggedIn ? (
-                <NavLink
-                  to="/account"
+            <motion.div
+              id="mobile-menu"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Menu"
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute inset-y-0 left-0 w-4/5 max-w-xs bg-[#fbf9f4] text-[#1a1a1a] shadow-2xl flex flex-col"
+            >
+              <div className="flex items-center justify-between px-6 py-5 border-b border-[#e8e4d9] bg-[#f4f1ea]">
+                <span className="font-serif text-2xl font-light text-[#2c3e2b]">
+                  Terre d'Oliva
+                </span>
+                <button
                   onClick={closeMenu}
-                  className="flex flex-col gap-1"
+                  aria-label="Chiudi menu"
+                  className="-m-2 p-2 rounded-full text-[#2c3e2b] hover:bg-white/80 transition-colors cursor-pointer"
                 >
-                  <span className="text-xs uppercase tracking-widest font-semibold text-[#2c3e2b]">
-                    Il mio account
-                  </span>
-                  <span className="text-sm text-[#7c7c7c] truncate">
-                    {session?.user.email}
-                  </span>
-                </NavLink>
-              ) : (
+                  <X size={20} />
+                </button>
+              </div>
+
+              <nav className="flex flex-col px-6 py-4 font-serif text-2xl font-light">
                 <NavLink
-                  to="/accedi"
+                  to="/shop"
                   onClick={closeMenu}
-                  className="block w-full text-center py-3 rounded-lg bg-[#2c3e2b] text-[#fbf9f4] text-xs uppercase tracking-widest font-semibold"
+                  className="py-4 border-b border-[#e8e4d9] [&.active]:text-[#b87d4b]"
                 >
-                  Accedi
+                  Shop
                 </NavLink>
-              )}
-            </div>
+                <NavLink
+                  to="/storie"
+                  onClick={closeMenu}
+                  className="py-4 border-b border-[#e8e4d9] [&.active]:text-[#b87d4b]"
+                >
+                  Le Storie
+                </NavLink>
+                <Link
+                  to="/#contatti"
+                  onClick={closeMenu}
+                  className="py-4 border-b border-[#e8e4d9]"
+                >
+                  Contattaci
+                </Link>
+              </nav>
+
+              <div className="mt-auto px-6 py-6 border-t border-[#e8e4d9] bg-[#f4f1ea] font-sans">
+                {isLoggedIn ? (
+                  <NavLink
+                    to="/account"
+                    onClick={closeMenu}
+                    className="flex flex-col gap-1"
+                  >
+                    <span className="text-xs uppercase tracking-widest font-semibold text-[#2c3e2b]">
+                      Il mio account
+                    </span>
+                    <span className="text-sm text-[#7c7c7c] truncate">
+                      {session?.user.email}
+                    </span>
+                  </NavLink>
+                ) : (
+                  <NavLink
+                    to="/accedi"
+                    onClick={closeMenu}
+                    className="block w-full text-center py-3 rounded-lg bg-[#2c3e2b] text-[#fbf9f4] text-xs uppercase tracking-widest font-semibold"
+                  >
+                    Accedi
+                  </NavLink>
+                )}
+              </div>
+            </motion.div>
           </div>
-        </div>
-      )}
+        )}
+      </AnimatePresence>
     </header>
   );
 };
