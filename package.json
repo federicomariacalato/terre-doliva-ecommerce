@@ -23,6 +23,7 @@
     "clsx": "^2.1.1",
     "cn": "^0.4.0",
     "lucide-react": "^1.25.0",
+    "motion": "^14.4.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-hook-form": "^7.87.0",
