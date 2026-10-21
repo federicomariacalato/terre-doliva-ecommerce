@@ -1,11 +1,12 @@
 import { Link } from "react-router";
+import { Reveal } from "@/components/animations/Reveal";
 import imgUliveto from "../assets/raccolta-olive-a-mano.jpeg";
 
 export const HomeManifest = () => {
   return (
     <section className="w-full bg-[#fbf9f4] py-24 px-8 md:px-16 lg:px-24">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        <div className="lg:col-span-7 space-y-8 pr-0 lg:pr-12">
+        <Reveal from="left" className="lg:col-span-7 space-y-8 pr-0 lg:pr-12">
           <span className="font-sans text-xs uppercase tracking-widest text-[#2c3e2b]/60 font-medium block">
             La Nostra Filosofia
           </span>
@@ -30,7 +31,7 @@ export const HomeManifest = () => {
               <span className="absolute bottom-0 left-0 w-full h-px bg-[#b87d4b] transition-transform duration-300 scale-x-0 group-hover:scale-x-100 origin-left"></span>
             </Link>
           </div>
-        </div>
+        </Reveal>
 
         <div className="lg:col-span-5 lg:col-start-8">
           <div className="relative p-4 border border-[#e8e4d9] bg-white shadow-sm group">
@@ -55,7 +56,7 @@ export const HomeManifest = () => {
 
 export function StoriesManifest() {
   return (
-    <div className="py-20 space-y-24 max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+    <div className="py-20 space-y-24 max-w-7xl mx-auto px-6 md:px-12 lg:px-24 overflow-x-clip">
       <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         <div className="lg:col-span-5 space-y-6">
           <span className="font-sans text-[10px] uppercase tracking-[0.25em] text-[#b87d4b] font-bold block">
@@ -79,25 +80,30 @@ export function StoriesManifest() {
         </div>
 
         <div className="lg:col-span-7">
-          <div className="relative rounded-xl overflow-hidden shadow-xl bg-[#f4f1ea] aspect-4/3">
+          <Reveal
+            className="relative overflow-hidden bg-[#f4f1ea] rounded-xl shadow-xl aspect-4/3"
+          >
             <img
               src="https://images.unsplash.com/photo-1728940823516-ff387be88638?auto=format&fit=crop&q=80&w=1200"
               alt="Ulivi secolari sotto il sole della Sicilia"
               className="w-full h-full object-cover"
             />
-          </div>
+          </Reveal>
         </div>
       </section>
 
       <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         <div className="lg:col-span-7 order-2 lg:order-1">
-          <div className="relative rounded-xl overflow-hidden shadow-xl bg-[#f4f1ea] aspect-4/3">
+          <Reveal
+            from="left"
+            className="relative overflow-hidden bg-[#f4f1ea] rounded-xl shadow-xl aspect-4/3"
+          >
             <img
               src="https://images.unsplash.com/photo-1635097087993-1dbe24dbc2f9?auto=format&fit=crop&q=80&w=1200"
               alt="Raccolta a mano delle olive"
               className="w-full h-full object-cover"
             />
-          </div>
+          </Reveal>
         </div>
 
         <div className="lg:col-span-5 space-y-6 order-1 lg:order-2">
@@ -143,13 +149,15 @@ export function StoriesManifest() {
         </div>
 
         <div className="lg:col-span-7">
-          <div className="relative rounded-xl overflow-hidden shadow-xl bg-[#f4f1ea] aspect-4/3">
+          <Reveal
+            className="relative overflow-hidden bg-[#f4f1ea] rounded-xl shadow-xl aspect-4/3"
+          >
             <img
               src="https://images.unsplash.com/photo-1768689033119-c3ac1e437d20?auto=format&fit=crop&q=80&w=1200"
               alt="Olio appena estratto che scorre dal frantoio"
               className="w-full h-full object-cover"
             />
-          </div>
+          </Reveal>
         </div>
       </section>
     </div>
