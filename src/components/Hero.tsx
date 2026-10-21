@@ -5,7 +5,7 @@ const EASE_OUT = [0.22, 1, 0.36, 1] as const;
 
 const container = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.18, delayChildren: 0.2 } },
+  visible: { transition: { staggerChildren: 0.4, delayChildren: 0.4 } },
 };
 
 const item = {
@@ -13,7 +13,7 @@ const item = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.9, ease: EASE_OUT },
+    transition: { duration: 1.6, ease: EASE_OUT },
   },
 };
 
