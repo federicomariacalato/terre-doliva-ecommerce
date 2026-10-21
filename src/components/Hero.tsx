@@ -1,4 +1,21 @@
+import { motion } from "motion/react";
 import { CtaButton } from "./CtaButton";
+
+const EASE_OUT = [0.22, 1, 0.36, 1] as const;
+
+const container = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.18, delayChildren: 0.2 } },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 28 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.9, ease: EASE_OUT },
+  },
+};
 
 type HeroProps = {
   subtitle: string;
@@ -30,18 +47,31 @@ export const Hero = ({
         <div className="absolute inset-0 bg-linear-to-b from-black/30 via-transparent to-black/40"></div>
       </div>
 
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto mt-16">
-        <span className="font-sans text-xs uppercase tracking-widest text-[#fbf9f4]/80 mb-4 block font-medium">
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="visible"
+        className="relative z-10 text-center px-4 max-w-4xl mx-auto mt-16"
+      >
+        <motion.span
+          variants={item}
+          className="font-sans text-xs uppercase tracking-widest text-[#fbf9f4]/80 mb-4 block font-medium"
+        >
           {subtitle}
-        </span>
-        <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl text-[#fbf9f4] font-light tracking-wide leading-tight mb-8">
+        </motion.span>
+        <motion.h1
+          variants={item}
+          className="font-serif text-4xl sm:text-6xl lg:text-7xl text-[#fbf9f4] font-light tracking-wide leading-tight mb-8"
+        >
           {title}
-        </h1>
+        </motion.h1>
 
         {showCta && ctaText && (
-          <CtaButton btnText={ctaText} href={ctaHref} />
+          <motion.div variants={item}>
+            <CtaButton btnText={ctaText} href={ctaHref} />
+          </motion.div>
         )}
-      </div>
+      </motion.div>
 
       {showScrollIndicator && (
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 text-[#fbf9f4]/60 flex flex-col items-center gap-2 animate-bounce">
