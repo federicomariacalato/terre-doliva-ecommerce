@@ -53,9 +53,10 @@ export function Shop() {
           )}
 
           <div className="flex flex-wrap -mx-4 gap-y-16">
-            {products?.map((product) => (
+            {products?.map((product, index) => (
               <ProductCard
                 key={product.id}
+                index={index}
                 product={product}
                 categoryBgClass={
                   categoryColors[product.category] || categoryColors["default"]

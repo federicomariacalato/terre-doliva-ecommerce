@@ -1,19 +1,29 @@
 import type { Product } from "../types/store.types";
+import { motion } from "motion/react";
 import { CtaButton } from "./CtaButton";
+import { EASE_OUT } from "@/lib/motion";
 
 type ProductCardProps = {
   product: Product;
   categoryBgClass: string;
   onOpenQuickView: (product: Product) => void;
+  index: number;
 };
 
 export function ProductCard({
   product,
   categoryBgClass,
   onOpenQuickView,
+  index,
 }: ProductCardProps) {
   return (
-    <div className="w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)] px-4 mx-4 flex flex-col justify-between group">
+    <motion.div
+      initial={{ opacity: 0, y: 32 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "0px 0px -60px 0px" }}
+      transition={{ duration: 1.5, ease: EASE_OUT, delay: (index % 3) * 0.2 }}
+      className="w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)] px-4 mx-4 flex flex-col justify-between group"
+    >
       <div
         onClick={() => onOpenQuickView(product)}
         className={`w-full aspect-4/5 ${categoryBgClass} mb-6 flex items-center justify-center overflow-hidden relative cursor-pointer rounded-lg`}
@@ -54,6 +64,6 @@ export function ProductCard({
           onClick={() => onOpenQuickView(product)}
         />
       </div>
-    </div>
+    </motion.div>
   );
 }
