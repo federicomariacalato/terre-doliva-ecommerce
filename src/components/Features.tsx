@@ -4,47 +4,38 @@ import { RevealUp } from "@/components/animations/RevealUp";
 export const HomeFeatures = () => {
   const pilastri = [
     {
-      numero: "01",
       titolo: "Estratto a Freddo",
       desc: "Lavorato rigorosamente entro 4 ore dalla raccolta per preservare polifenoli e aromi vivi.",
     },
     {
-      numero: "02",
       titolo: "Monocultivar",
       desc: "Selezioniamo solo le varietà più nobili della nostra terra, senza blend industriali.",
     },
     {
-      numero: "03",
       titolo: "Bio Certificato",
       desc: "Rispettiamo il suolo bandendo la chimica, lasciando che la natura faccia il suo corso.",
     },
     {
-      numero: "04",
       titolo: "Oltre l'Olio",
       desc: "Dalle conserve artigianali ai condimenti rari: la dispensa della nostra passione.",
     },
   ];
 
   return (
-    <section className="w-full bg-[#fbf9f4] border-t border-b border-[#e8e4d9]">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+    <section className="w-full bg-panel py-28 lg:py-32 px-6 md:px-12 lg:px-20">
+      <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-16">
         {pilastri.map((p, index) => (
           <RevealUp
             key={index}
             index={index}
-            className="p-12 flex flex-col justify-between min-h-75 border-b md:border-b-0 border-[#e8e4d9] last:border-b-0 md:even:border-l lg:even:border-l-0 lg:not-first:border-l hover:bg-[#2c3e2b]/5 group"
+            className="border-t border-ink/30 pt-6"
           >
-            <span className="font-serif text-4xl font-light text-[#b87d4b] tracking-wide transition-transform duration-300 group-hover:-translate-y-1 block">
-              {p.numero}
-            </span>
-            <div className="mt-8">
-              <h3 className="font-serif text-lg font-normal text-[#1a1a1a] mb-3 group-hover:text-[#2c3e2b] transition-colors duration-300">
-                {p.titolo}
-              </h3>
-              <p className="font-sans text-xs text-[#1a1a1a]/70 font-light leading-relaxed">
-                {p.desc}
-              </p>
-            </div>
+            <h3 className="font-serif text-[1.75rem] leading-tight font-normal text-ink mb-4">
+              {p.titolo}
+            </h3>
+            <p className="font-sans text-base text-ink/75 leading-[1.7] max-w-[30ch]">
+              {p.desc}
+            </p>
           </RevealUp>
         ))}
       </div>
@@ -54,29 +45,29 @@ export const HomeFeatures = () => {
 
 export function StoriesFeatures() {
   return (
-    <section className="bg-[#f4f1ea] py-24 px-6 md:px-12 lg:px-24 border-y border-[#e8e4d9]">
-      <div className="max-w-7xl mx-auto space-y-16">
-        <div className="text-center max-w-2xl mx-auto space-y-3">
-          <span className="font-sans text-[10px] uppercase tracking-[0.25em] text-[#2c3e2b] font-semibold block">
+    <section className="bg-panel py-28 lg:py-32 px-6 md:px-12 lg:px-20">
+      <div className="max-w-[1400px] mx-auto space-y-20">
+        <div className="max-w-2xl space-y-3">
+          <span className="font-serif italic text-xl text-oil block">
             Il Nostro Impegno
           </span>
-          <h2 className="font-serif text-3xl text-[#1a1a1a] font-light">
+          <h2 className="font-serif text-[clamp(2rem,3.6vw,3.25rem)] text-ink font-normal leading-[1.05] tracking-[-0.02em]">
             Cosa ci guida ogni giorno
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-16">
           <RevealUp
             index={0}
-            className="bg-[#fbf9f4] p-8 rounded-lg space-y-4 border border-[#e8e4d9] shadow-sm"
+            className="bg-ground p-8 rounded-lg space-y-4 border border-line shadow-sm"
           >
-            <div className="w-12 h-12 rounded-full bg-[#ebf0ec] flex items-center justify-center text-[#2c3e2b]">
-              <Heart size={22} />
+            <div className="text-oil">
+              <Heart size={26} strokeWidth={1.25} />
             </div>
-            <h3 className="font-serif text-xl text-[#1a1a1a]">
+            <h3 className="font-serif text-[1.75rem] leading-tight font-normal text-ink">
               Passione Incondizionata
             </h3>
-            <p className="font-sans text-xs text-[#666] leading-relaxed font-light">
+            <p className="font-sans text-base text-ink/75 leading-[1.7] max-w-[34ch]">
               Dall'alba al tramonto seguiamo ogni fase della produzione in prima
               persona. Per noi non è solo lavoro, è il nostro motivo di orgoglio
               quotidiano.
@@ -85,15 +76,15 @@ export function StoriesFeatures() {
 
           <RevealUp
             index={1}
-            className="bg-[#fbf9f4] p-8 rounded-lg space-y-4 border border-[#e8e4d9] shadow-sm"
+            className="bg-ground p-8 rounded-lg space-y-4 border border-line shadow-sm"
           >
-            <div className="w-12 h-12 rounded-full bg-[#f5e6db] flex items-center justify-center text-[#b87d4b]">
-              <Sparkles size={22} />
+            <div className="text-oil">
+              <Sparkles size={26} strokeWidth={1.25} />
             </div>
-            <h3 className="font-serif text-xl text-[#1a1a1a]">
+            <h3 className="font-serif text-[1.75rem] leading-tight font-normal text-ink">
               Visione Giovane & Sostenibile
             </h3>
-            <p className="font-sans text-xs text-[#666] leading-relaxed font-light">
+            <p className="font-sans text-base text-ink/75 leading-[1.7] max-w-[34ch]">
               Applichiamo pratiche agricole sostenibili e innovative per
               proteggere il terreno e garantire che ogni goccia rispetti
               l'ecosistema siciliano.
@@ -102,15 +93,15 @@ export function StoriesFeatures() {
 
           <RevealUp
             index={2}
-            className="bg-[#fbf9f4] p-8 rounded-lg space-y-4 border border-[#e8e4d9] shadow-sm"
+            className="bg-ground p-8 rounded-lg space-y-4 border border-line shadow-sm"
           >
-            <div className="w-12 h-12 rounded-full bg-[#f7f4eb] flex items-center justify-center text-[#2c3e2b]">
-              <ShieldCheck size={22} />
+            <div className="text-oil">
+              <ShieldCheck size={26} strokeWidth={1.25} />
             </div>
-            <h3 className="font-serif text-xl text-[#1a1a1a]">
+            <h3 className="font-serif text-[1.75rem] leading-tight font-normal text-ink">
               Qualità Senza Compromessi
             </h3>
-            <p className="font-sans text-xs text-[#666] leading-relaxed font-light">
+            <p className="font-sans text-base text-ink/75 leading-[1.7] max-w-[34ch]">
               Mettiamo la firma e la faccia su ogni singola bottiglia. Spremiamo
               a freddo pochissime ore dopo la raccolta per offrire solo il
               meglio della Sicilia.

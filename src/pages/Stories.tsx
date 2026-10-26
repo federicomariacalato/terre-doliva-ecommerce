@@ -7,7 +7,7 @@ import { StoriesShopCTA } from "../components/ShopCTA";
 
 export function Stories() {
   return (
-    <div className="bg-[#fbf9f4] min-h-screen text-[#1a1a1a]">
+    <div className="bg-ground min-h-screen text-ink">
       <Navbar theme="dark" />
 
       <Hero
@@ -21,12 +21,12 @@ export function Stories() {
 
       <StoriesFeatures />
 
-      <section className="py-24 px-6 text-center max-w-4xl mx-auto space-y-6">
-        <blockquote className="font-serif text-2xl sm:text-3xl lg:text-4xl text-[#2c3e2b] font-light italic leading-relaxed">
+      <section className="py-32 px-6 md:px-12 lg:px-20 max-w-[1100px] mx-auto space-y-8">
+        <blockquote className="font-serif text-[clamp(1.75rem,3.6vw,3.25rem)] text-deep font-normal italic leading-[1.2] tracking-[-0.01em]">
           “La Sicilia non è soltanto la terra dove siamo nati. È la promessa che
           ci siamo fatti: fare le cose con il cuore, per davvero.”
         </blockquote>
-        <cite className="font-sans text-xs uppercase tracking-widest text-[#7c7c7c] block not-italic">
+        <cite className="font-sans text-[15px] text-mute block not-italic">
           — I Fondatori di Terre d'Oliva
         </cite>
       </section>

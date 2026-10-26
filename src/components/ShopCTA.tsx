@@ -3,7 +3,7 @@ import imgUlivetoHomePage from "../assets/uliveto-homepage.jpeg";
 
 export const HomeShopCTA = () => {
   return (
-    <section className="relative w-full py-32 bg-[#2c3e2b] text-[#fbf9f4] px-8 text-center overflow-hidden">
+    <section className="relative w-full py-36 lg:py-44 bg-deep text-ground px-6 md:px-12 lg:px-20 overflow-hidden">
       <div className="absolute inset-0 w-full h-full opacity-10">
         <img
           src={imgUlivetoHomePage}
@@ -12,19 +12,19 @@ export const HomeShopCTA = () => {
         />
       </div>
 
-      <div className="relative z-10 max-w-2xl mx-auto space-y-6">
-        <span className="font-sans text-xs uppercase tracking-widest text-[#fbf9f4]/60 font-medium">
+      <div className="relative z-10 max-w-[1400px] mx-auto space-y-8">
+        <span className="font-serif italic text-xl text-glow block">
           Esplora la Dispensa
         </span>
-        <h2 className="font-serif text-3xl sm:text-5xl font-light tracking-wide leading-tight">
+        <h2 className="font-serif text-[clamp(2.5rem,6vw,6rem)] font-normal tracking-[-0.02em] leading-[0.98] max-w-[16ch]">
           Porta l'autenticità sulla tua tavola.
         </h2>
-        <p className="font-sans text-sm text-[#fbf9f4]/80 font-light leading-relaxed pb-4">
+        <p className="font-sans text-[17px] text-ground/80 leading-[1.75] max-w-[34rem] pb-4">
           Dal nostro Olio Extravergine di Oliva fino alle conserve artigianali
           sott'olio e ai prodotti della tradizione. Ogni pezzo è unico, in
           edizione limitata per raccolta.
         </p>
-        <CtaButton href="/shop" btnText="Vai allo shop" />
+        <CtaButton href="/shop" btnText="Vai allo shop" variant="dark" />
       </div>
     </section>
   );
@@ -32,16 +32,16 @@ export const HomeShopCTA = () => {
 
 export function StoriesShopCTA() {
   return (
-    <section className="bg-[#2c3e2b] text-[#fbf9f4] py-20 px-6 text-center">
-      <div className="max-w-2xl mx-auto space-y-6">
-        <h2 className="font-serif text-3xl sm:text-4xl font-light">
+    <section className="bg-deep text-ground py-32 px-6 md:px-12 lg:px-20">
+      <div className="max-w-[1400px] mx-auto space-y-8">
+        <h2 className="font-serif text-[clamp(2.25rem,5vw,4.75rem)] font-normal tracking-[-0.02em] leading-[1] max-w-[18ch]">
           Assapora il frutto del nostro lavoro
         </h2>
-        <p className="font-sans text-sm text-[#fbf9f4]/80 font-light">
+        <p className="font-sans text-[17px] text-ground/80 leading-[1.75] max-w-[34rem]">
           Scopri gli oli e le specialità siciliane realizzate con cura e
           dedizione.
         </p>
-        <div className="pt-4 flex justify-center">
+        <div className="pt-4 flex">
           <CtaButton btnText="Scopri lo Shop" variant="dark" href="/shop" />
         </div>
       </div>
