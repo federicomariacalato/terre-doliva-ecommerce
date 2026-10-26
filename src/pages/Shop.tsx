@@ -13,11 +13,11 @@ export function Shop() {
   const { products, isLoading, isError } = useProducts();
 
   const categoryColors: Record<string, string> = {
-    "Olio EVOO": "bg-[#f2efe9]",
-    Conserve: "bg-[#ebf0ec]",
-    "Oli Aromatizzati": "bg-[#f5e6db]",
-    Specialità: "bg-[#f7f4eb]",
-    default: "bg-[#f4f4f4]",
+    "Olio EVOO": "bg-panel",
+    Conserve: "bg-line/50",
+    "Oli Aromatizzati": "bg-glow/20",
+    Specialità: "bg-deep/10",
+    default: "bg-panel",
   };
 
   const handleAddToCart = (product: Product, quantity: number) => {
@@ -29,19 +29,19 @@ export function Shop() {
   return (
     <>
       <Navbar theme="light" />
-      <div className="w-full min-h-screen bg-[#fbf9f4] pt-32 px-6 md:px-12 lg:px-20 mb-16">
-        <div className="max-w-7xl mx-auto">
-          <header className="mb-16 space-y-2">
-            <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-[#2c3e2b] font-semibold block">
+      <div className="w-full min-h-screen bg-ground pt-44 px-6 md:px-12 lg:px-20 pb-32">
+        <div className="max-w-[1400px] mx-auto">
+          <header className="mb-20 space-y-4">
+            <span className="font-serif italic text-xl text-oil block">
               La Dispensa Autentica
             </span>
-            <h1 className="font-serif text-3xl sm:text-4xl font-light text-[#1a1a1a] tracking-wide">
+            <h1 className="font-serif text-[clamp(2.75rem,7vw,6.5rem)] font-normal text-ink tracking-[-0.02em] leading-[0.98]">
               Collezione Terra
             </h1>
           </header>
 
           {isLoading && (
-            <p className="font-sans text-sm text-[#7c7c7c]">
+            <p className="font-sans text-sm text-mute">
               Caricamento prodotti...
             </p>
           )}

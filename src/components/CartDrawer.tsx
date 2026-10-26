@@ -40,22 +40,22 @@ export function CartDrawer() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.6, ease: EASE_OUT }}
-              className="w-screen max-w-md bg-[#fbf9f4] shadow-2xl flex flex-col border-l border-[#e8e4d9]"
+              className="w-screen max-w-md bg-ground shadow-2xl flex flex-col border-l border-line"
             >
-              <div className="p-6 border-b border-[#e8e4d9] flex items-center justify-between bg-[#f4f1ea]">
+              <div className="p-6 border-b border-line flex items-center justify-between bg-panel">
                 <div className="flex items-center gap-3">
-                  <ShoppingBag size={20} className="text-[#2c3e2b]" />
-                  <h2 className="font-serif text-xl text-[#1a1a1a]">
+                  <ShoppingBag size={20} className="text-deep" />
+                  <h2 className="font-serif text-xl text-ink">
                     Il tuo Carrello
                   </h2>
-                  <span className="font-sans text-xs bg-[#2c3e2b] text-[#fbf9f4] px-2 py-0.5 rounded-full font-semibold">
+                  <span className="font-sans text-xs bg-deep text-ground px-2 py-0.5 rounded-full font-semibold">
                     {cartItems.reduce((acc, item) => acc + item.quantity, 0)}
                   </span>
                 </div>
                 <button
                   onClick={() => dispatch(closeCart())}
                   aria-label="Chiudi carrello"
-                  className="p-2 rounded-full hover:bg-white/80 text-[#2c3e2b] transition-colors cursor-pointer"
+                  className="p-2 rounded-full hover:bg-white/80 text-deep transition-colors cursor-pointer"
                 >
                   <X size={20} />
                 </button>
@@ -69,20 +69,20 @@ export function CartDrawer() {
                     transition={{ duration: 0.6, delay: 0.5 }}
                     className="absolute inset-0 flex flex-col items-center justify-center text-center space-y-4 p-6"
                   >
-                    <div className="p-4 bg-[#f4f1ea] rounded-full text-[#7c7c7c]">
+                    <div className="p-4 bg-panel rounded-full text-mute">
                       <ShoppingBag size={32} />
                     </div>
-                    <p className="font-serif text-lg text-[#1a1a1a]">
+                    <p className="font-serif text-lg text-ink">
                       Il tuo carrello è vuoto
                     </p>
-                    <p className="font-sans text-xs text-[#7c7c7c] max-w-xs">
+                    <p className="font-sans text-[15px] text-mute max-w-xs">
                       Esplora la nostra collezione e scopri le eccellenze della
                       nostra terra.
                     </p>
                     <Link
                       to="/shop"
                       onClick={() => dispatch(closeCart())}
-                      className="font-sans text-xs font-semibold uppercase tracking-wider text-[#b87d4b] hover:underline pt-2 cursor-pointer"
+                      className="font-sans text-[15px] font-medium text-oil underline underline-offset-4 pt-2 cursor-pointer"
                     >
                       Continua lo Shopping
                     </Link>
@@ -93,9 +93,9 @@ export function CartDrawer() {
                   {cartItems.map((item) => (
                     <CollapseOut
                       key={item.id}
-                      className="flex gap-4 pt-6 first:pt-0 pb-6 border-b border-[#e8e4d9] last:border-b-0 overflow-hidden"
+                      className="flex gap-4 pt-6 first:pt-0 pb-6 border-b border-line last:border-b-0 overflow-hidden"
                     >
-                        <div className="w-20 h-24 bg-[#f4f1ea] rounded-md overflow-hidden shrink-0">
+                        <div className="w-20 h-24 bg-panel rounded-md overflow-hidden shrink-0">
                           <img
                             src={item.image}
                             alt={item.name}
@@ -106,24 +106,24 @@ export function CartDrawer() {
                         <div className="flex-1 flex flex-col justify-between">
                           <div>
                             <div className="flex justify-between items-start gap-2">
-                              <h3 className="font-serif text-sm text-[#1a1a1a] leading-tight">
+                              <h3 className="font-serif text-lg text-ink leading-[1.15]">
                                 {item.name}
                               </h3>
                               <button
                                 onClick={() => dispatch(removeFromCart(item.id))}
                                 aria-label={`Rimuovi ${item.name}`}
-                                className="-m-3 p-3 text-[#999] hover:text-[#b87d4b] transition-colors cursor-pointer"
+                                className="-m-3 p-3 text-mute hover:text-oil transition-colors cursor-pointer"
                               >
                                 <Trash2 size={14} />
                               </button>
                             </div>
-                            <span className="font-sans text-[10px] text-[#7c7c7c] uppercase tracking-wider block mt-1">
+                            <span className="font-serif italic text-[15px] text-oil block mt-1">
                               {item.category}
                             </span>
                           </div>
 
                           <div className="flex items-center justify-between mt-3">
-                            <div className="flex items-center bg-white border border-[#e8e4d9] rounded-sm">
+                            <div className="flex items-center bg-white border border-line rounded-sm">
                               <button
                                 onClick={() =>
                                   dispatch(
@@ -134,7 +134,7 @@ export function CartDrawer() {
                                   )
                                 }
                                 aria-label="Diminuisci quantità"
-                                className="p-3 text-[#2c3e2b] hover:text-[#b87d4b] transition-colors cursor-pointer"
+                                className="p-3 text-deep hover:text-oil transition-colors cursor-pointer"
                               >
                                 <Minus size={12} />
                               </button>
@@ -151,13 +151,13 @@ export function CartDrawer() {
                                   )
                                 }
                                 aria-label="Aumenta quantità"
-                                className="p-3 text-[#2c3e2b] hover:text-[#b87d4b] transition-colors cursor-pointer"
+                                className="p-3 text-deep hover:text-oil transition-colors cursor-pointer"
                               >
                                 <Plus size={12} />
                               </button>
                             </div>
 
-                            <span className="font-sans text-sm font-semibold text-[#b87d4b]">
+                            <span className="font-sans text-base font-medium text-ink tabular-nums">
                               {(item.price * item.quantity).toFixed(2)}€
                             </span>
                           </div>
@@ -168,15 +168,15 @@ export function CartDrawer() {
               </div>
 
               {cartItems.length > 0 && (
-                <div className="p-6 bg-[#f4f1ea] border-t border-[#e8e4d9] space-y-4">
+                <div className="p-6 bg-panel border-t border-line space-y-4">
                   <div className="space-y-1.5">
-                    <div className="flex justify-between text-xs text-[#7c7c7c]">
+                    <div className="flex justify-between text-sm text-mute">
                       <span>Spedizione</span>
                       <span>Calcolata al checkout</span>
                     </div>
-                    <div className="flex justify-between font-serif text-lg text-[#1a1a1a] font-medium pt-2 border-t border-[#e8e4d9]/60">
+                    <div className="flex justify-between font-serif text-lg text-ink font-medium pt-2 border-t border-line/60">
                       <span>Totale provvisorio</span>
-                      <span className="font-sans text-base font-semibold text-[#b87d4b]">
+                      <span className="font-sans text-base font-semibold text-oil">
                         {cartTotal.toFixed(2)}€
                       </span>
                     </div>

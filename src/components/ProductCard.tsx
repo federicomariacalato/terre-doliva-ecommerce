@@ -34,23 +34,23 @@ export function ProductCard({
           className={`w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105 rounded-lg ${product.is_available ? "" : "opacity-70 grayscale-[40%]"}`}
         />
         {!product.is_available && (
-          <span className="absolute top-3 left-3 rounded-full bg-[#fbf9f4]/95 px-3 py-1 font-sans text-[10px] uppercase tracking-widest font-semibold text-[#2c3e2b] shadow-sm">
+          <span className="absolute top-3 left-3 rounded-full bg-ground px-3.5 py-1 font-serif italic text-base text-deep">
             Esaurito
           </span>
         )}
       </div>
 
       <div className="space-y-1">
-        <span className="font-sans text-[10px] uppercase tracking-wider text-[#7c7c7c]">
+        <span className="font-serif italic text-base text-oil">
           {product.category}
         </span>
         <h3
           onClick={() => onOpenQuickView(product)}
-          className="font-serif text-lg text-[#1a1a1a] leading-snug group-hover:text-[#2c3e2b] transition-colors duration-300 cursor-pointer"
+          className="font-serif text-[1.5rem] text-ink leading-[1.15] tracking-[-0.01em] group-hover:text-oil transition-colors duration-300 cursor-pointer"
         >
           {product.name}
         </h3>
-        <p className="font-sans text-sm font-medium text-[#b87d4b] pt-1">
+        <p className="font-sans text-base font-medium text-ink pt-2 tabular-nums">
           {product.price.toFixed(2)}€
         </p>
       </div>
