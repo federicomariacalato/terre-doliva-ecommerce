@@ -2,6 +2,8 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
+@import "@fontsource-variable/bodoni-moda/opsz.css";
+@import "@fontsource-variable/bodoni-moda/opsz-italic.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -14,14 +16,36 @@
   }
 }
 
+@keyframes drift {
+  0% {
+    transform: scale(1.04);
+  }
+  100% {
+    transform: scale(1.14);
+  }
+}
+
 .animate-marquee {
   display: inline-block;
   animation: marquee 20s linear infinite;
 }
 
+@theme {
+  --color-ground: #eef0e8;
+  --color-panel: #e3e7d8;
+  --color-line: #cdd3bf;
+  --color-ink: #141a0e;
+  --color-deep: #17210f;
+  --color-deep-2: #0e1509;
+  --color-mute: #5b6451;
+  --color-oil: #5e6914;
+  --color-glow: #c9d43c;
+}
+
 @theme inline {
-  --font-heading: var(--font-sans);
+  --font-heading: var(--font-serif);
   --font-sans: 'Geist Variable', sans-serif;
+  --font-serif: 'Bodoni Moda Variable', 'Times New Roman', serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -63,14 +87,14 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --background: #eef0e8;
+  --foreground: #141a0e;
+  --card: #eef0e8;
+  --card-foreground: #141a0e;
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
+  --primary: #17210f;
+  --primary-foreground: #eef0e8;
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
@@ -78,9 +102,9 @@
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: #cdd3bf;
+  --input: #cdd3bf;
+  --ring: #5e6914;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -140,5 +164,10 @@
   }
   html {
     @apply font-sans;
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
   }
 }

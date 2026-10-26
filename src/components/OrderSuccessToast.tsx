@@ -28,18 +28,18 @@ export function OrderSuccessToast() {
 
   return (
     <div className="fixed top-24 left-1/2 -translate-x-1/2 z-[100] w-[calc(100%-2rem)] max-w-md animate-in fade-in slide-in-from-top-4 duration-300">
-      <div className="flex items-start gap-3 bg-[#2c3e2b] text-[#fbf9f4] rounded-md shadow-lg px-4 py-3.5">
-        <CheckCircle2 size={20} className="text-[#b87d4b] shrink-0 mt-0.5" />
+      <div className="flex items-start gap-3 bg-deep text-ground rounded-md shadow-lg px-4 py-3.5">
+        <CheckCircle2 size={20} className="text-oil shrink-0 mt-0.5" />
         <div className="flex-1">
           <p className="font-serif text-sm leading-snug">Ordine confermato!</p>
-          <p className="text-xs text-[#fbf9f4]/80 mt-0.5">
+          <p className="text-xs text-ground/80 mt-0.5">
             Grazie per il tuo acquisto, riceverai presto un'email di riepilogo.
           </p>
         </div>
         <button
           onClick={() => setIsVisible(false)}
           aria-label="Chiudi notifica"
-          className="text-[#fbf9f4]/70 hover:text-[#fbf9f4] transition-colors cursor-pointer"
+          className="text-ground/70 hover:text-ground transition-colors cursor-pointer"
         >
           <X size={16} />
         </button>
