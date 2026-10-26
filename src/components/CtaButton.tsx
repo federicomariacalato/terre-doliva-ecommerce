@@ -15,22 +15,18 @@ export function CtaButton({
   onClick,
   disabled,
 }: CtaButtonProps) {
-  const baseStyles = `inline-block font-sans text-xs uppercase tracking-widest font-semibold 
-                      border px-9 py-4 transition-all duration-300 transform 
-                      hover:-translate-y-0.5 active:translate-y-0 shadow-md hover:shadow-lg 
-                      cursor-pointer hover:bg-transparent text-center`;
+  const baseStyles = `inline-block font-sans text-[13px] uppercase tracking-[0.14em] font-medium
+                      px-9 py-4 transition-colors duration-300 cursor-pointer text-center`;
 
   const variantStyles = {
-    dark: "bg-[#fbf9f4] text-[#2c3e2b] border-[#fbf9f4] hover:text-[#fbf9f4]",
-    light:
-      "bg-[#2c3e2b] text-[#fbf9f4] border-[#2c3e2b] hover:text-[#2c3e2b] w-full rounded-md",
+    dark: "bg-glow text-deep hover:bg-ground",
+    light: "bg-deep text-ground hover:bg-oil w-full rounded-md",
   };
 
   const combinedClasses = `${baseStyles} ${variantStyles[variant]}`;
 
-  const disabledStyles = `disabled:cursor-not-allowed disabled:shadow-none disabled:translate-y-0
-                          disabled:bg-[#e8e4d9] disabled:border-[#e8e4d9] disabled:text-[#7c7c7c]
-                          disabled:hover:bg-[#e8e4d9] disabled:hover:text-[#7c7c7c]`;
+  const disabledStyles = `disabled:cursor-not-allowed disabled:bg-line disabled:text-mute
+                          disabled:hover:bg-line disabled:hover:text-mute`;
 
   if (href) {
     return (

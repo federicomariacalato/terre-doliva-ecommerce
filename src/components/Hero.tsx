@@ -21,43 +21,43 @@ export const Hero = ({
   showScrollIndicator = true,
 }: HeroProps) => {
   return (
-    <section className="relative w-full h-screen bg-[#1a1a1a] flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 w-full h-full">
+    <section className="relative w-full h-screen min-h-[640px] bg-deep text-ground overflow-hidden">
+      <div className="absolute inset-y-0 right-0 left-0 lg:left-[round(54%,1px)] overflow-hidden">
         <img
           src={bgImage}
           alt="Sfondo Hero"
-          className="w-full h-full object-cover opacity-60 scale-105 animate-[pulse_8s_infinite_alternate]"
+          className="w-full h-full object-cover animate-[drift_30s_ease-in-out_infinite_alternate]"
         />
-        <div className="absolute inset-0 bg-linear-to-b from-black/30 via-transparent to-black/40"></div>
+        <div className="absolute inset-0 bg-linear-to-t from-deep via-deep/40 to-deep/60 lg:bg-linear-to-r lg:from-deep lg:from-3% lg:via-deep/10 lg:to-transparent"></div>
       </div>
 
-      <Stagger className="relative z-10 text-center px-4 max-w-4xl mx-auto mt-16">
+      <Stagger className="relative z-10 h-full flex flex-col justify-end lg:justify-center px-6 md:px-12 lg:px-20 pt-40 pb-28 lg:pb-0">
         <StaggerItem
           as="span"
-          className="font-sans text-xs uppercase tracking-widest text-[#fbf9f4]/80 mb-4 block font-medium"
+          className="font-serif italic text-lg md:text-xl text-glow mb-6 block"
         >
           {subtitle}
         </StaggerItem>
         <StaggerItem
           as="h1"
-          className="font-serif text-4xl sm:text-6xl lg:text-7xl text-[#fbf9f4] font-light tracking-wide leading-tight mb-8"
+          className="font-serif text-[clamp(2.5rem,6.4vw,6.75rem)] leading-[0.98] tracking-[-0.02em] font-normal max-w-[16ch] lg:max-w-[13ch] mb-12"
         >
           {title}
         </StaggerItem>
 
         {showCta && ctaText && (
-          <StaggerItem>
-            <CtaButton btnText={ctaText} href={ctaHref} />
+          <StaggerItem className="self-start">
+            <CtaButton btnText={ctaText} href={ctaHref} variant="dark" />
           </StaggerItem>
         )}
       </Stagger>
 
       {showScrollIndicator && (
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 text-[#fbf9f4]/60 flex flex-col items-center gap-2 animate-bounce">
-          <span className="font-sans text-[10px] uppercase tracking-widest">
+        <div className="absolute bottom-8 left-6 md:left-12 lg:left-20 z-10 flex items-center gap-4 text-ground/60">
+          <div className="w-12 h-px bg-ground/40"></div>
+          <span className="font-sans text-[13px] tracking-[0.08em]">
             Scorri
           </span>
-          <div className="w-px h-8 bg-[#fbf9f4]/40"></div>
         </div>
       )}
     </section>

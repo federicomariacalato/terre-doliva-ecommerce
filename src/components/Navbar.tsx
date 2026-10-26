@@ -53,12 +53,12 @@ export const Navbar = ({ theme = "dark" }: NavbarProps) => {
 
   const isDarkText = isScrolled || theme === "light";
 
-  const textColorClass = isDarkText ? "text-[#1a1a1a]" : "text-[#fbf9f4]";
-  const logoColorClass = isDarkText ? "text-[#2c3e2b]" : "text-[#fbf9f4]";
+  const textColorClass = isDarkText ? "text-ink" : "text-ground";
+  const logoColorClass = isDarkText ? "text-deep" : "text-ground";
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 transition-all duration-500">
-      <div className="bg-[#2c3e2b] text-[#fbf9f4] text-xs uppercase tracking-widest py-2 text-center overflow-hidden whitespace-nowrap font-sans">
+      <div className="bg-deep-2 text-ground/75 text-[12px] tracking-[0.1em] py-2 text-center overflow-hidden whitespace-nowrap font-sans">
         <div className="inline-block animate-marquee">
           Spedizione gratuita in tutta Italia per ordini superiori a 50€ •
           Estratto a freddo 2026 •
@@ -68,12 +68,12 @@ export const Navbar = ({ theme = "dark" }: NavbarProps) => {
       <nav
         className={`w-full px-8 py-6 flex justify-between items-center transition-all duration-500 border-b ${
           isScrolled
-            ? "bg-[#fbf9f4] border-[#e8e4d9] shadow-sm py-4"
+            ? "bg-ground border-line shadow-sm py-4"
             : "bg-transparent border-transparent"
         }`}
       >
         <div
-          className={`flex gap-8 font-sans text-xs uppercase tracking-widest font-medium transition-colors duration-500 ${textColorClass}`}
+          className={`flex gap-8 font-sans text-[15px] font-normal transition-colors duration-500 ${textColorClass}`}
         >
           <button
             onClick={() => setIsMenuOpen(true)}
@@ -89,35 +89,35 @@ export const Navbar = ({ theme = "dark" }: NavbarProps) => {
             className="relative py-1 group hidden md:inline-block"
           >
             Shop
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2c3e2b] transition-all duration-300 group-hover:w-full"></span>
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-current transition-all duration-300 group-hover:w-full"></span>
           </NavLink>
           <NavLink
             to="/storie"
             className="relative py-1 group hidden md:inline-block"
           >
             Le Storie
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2c3e2b] transition-all duration-300 group-hover:w-full"></span>
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-current transition-all duration-300 group-hover:w-full"></span>
           </NavLink>
           <NavLink
             to="/#contatti"
             className="relative py-1 group hidden md:inline-block"
           >
             Contattaci
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2c3e2b] transition-all duration-300 group-hover:w-full"></span>
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-current transition-all duration-300 group-hover:w-full"></span>
           </NavLink>
         </div>
 
         <div className="absolute left-1/2 transform -translate-x-1/2 text-center">
           <Link
             to="/"
-            className={`font-serif text-2xl lg:text-3xl tracking-wide font-light transition-colors duration-500 ${logoColorClass}`}
+            className={`font-serif italic text-2xl lg:text-[1.75rem] tracking-[-0.01em] font-normal transition-colors duration-500 ${logoColorClass}`}
           >
             Terre d'Oliva
           </Link>
         </div>
 
         <div
-          className={`flex items-center gap-6 font-sans text-xs uppercase tracking-widest font-medium transition-colors duration-500 ${textColorClass}`}
+          className={`flex items-center gap-6 font-sans text-[15px] font-normal transition-colors duration-500 ${textColorClass}`}
         >
           {isLoggedIn ? (
             <div className="hidden md:flex items-center gap-4">
@@ -127,7 +127,7 @@ export const Navbar = ({ theme = "dark" }: NavbarProps) => {
                 title={session?.user.email}
               >
                 {session?.user.email}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2c3e2b] transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-current transition-all duration-300 group-hover:w-full"></span>
               </NavLink>
             </div>
           ) : (
@@ -136,7 +136,7 @@ export const Navbar = ({ theme = "dark" }: NavbarProps) => {
               className="relative py-1 group hidden md:inline-block"
             >
               Accedi
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2c3e2b] transition-all duration-300 group-hover:w-full"></span>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-current transition-all duration-300 group-hover:w-full"></span>
             </NavLink>
           )}
           <button
@@ -146,7 +146,7 @@ export const Navbar = ({ theme = "dark" }: NavbarProps) => {
           >
             <ShoppingBag size={20} strokeWidth={1.5} />
             {cartCount > 0 && (
-              <span className="absolute top-0 -right-1 bg-[#b87d4b] text-[#fbf9f4] font-sans text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold animate-bounce">
+              <span className="absolute top-0 -right-1 bg-oil text-ground font-sans text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
                 {cartCount}
               </span>
             )}
@@ -175,16 +175,16 @@ export const Navbar = ({ theme = "dark" }: NavbarProps) => {
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ duration: 0.6, ease: EASE_OUT }}
-              className="absolute inset-y-0 left-0 w-4/5 max-w-xs bg-[#fbf9f4] text-[#1a1a1a] shadow-2xl flex flex-col"
+              className="absolute inset-y-0 left-0 w-4/5 max-w-xs bg-ground text-ink shadow-2xl flex flex-col"
             >
-              <div className="flex items-center justify-between px-6 py-5 border-b border-[#e8e4d9] bg-[#f4f1ea]">
-                <span className="font-serif text-2xl font-light text-[#2c3e2b]">
+              <div className="flex items-center justify-between px-6 py-5 border-b border-line bg-panel">
+                <span className="font-serif text-2xl font-light text-deep">
                   Terre d'Oliva
                 </span>
                 <button
                   onClick={closeMenu}
                   aria-label="Chiudi menu"
-                  className="-m-2 p-2 rounded-full text-[#2c3e2b] hover:bg-white/80 transition-colors cursor-pointer"
+                  className="-m-2 p-2 rounded-full text-deep hover:bg-white/80 transition-colors cursor-pointer"
                 >
                   <X size={20} />
                 </button>
@@ -194,37 +194,37 @@ export const Navbar = ({ theme = "dark" }: NavbarProps) => {
                 <NavLink
                   to="/shop"
                   onClick={closeMenu}
-                  className="py-4 border-b border-[#e8e4d9] [&.active]:text-[#b87d4b]"
+                  className="py-4 border-b border-line [&.active]:text-oil"
                 >
                   Shop
                 </NavLink>
                 <NavLink
                   to="/storie"
                   onClick={closeMenu}
-                  className="py-4 border-b border-[#e8e4d9] [&.active]:text-[#b87d4b]"
+                  className="py-4 border-b border-line [&.active]:text-oil"
                 >
                   Le Storie
                 </NavLink>
                 <Link
                   to="/#contatti"
                   onClick={closeMenu}
-                  className="py-4 border-b border-[#e8e4d9]"
+                  className="py-4 border-b border-line"
                 >
                   Contattaci
                 </Link>
               </nav>
 
-              <div className="mt-auto px-6 py-6 border-t border-[#e8e4d9] bg-[#f4f1ea] font-sans">
+              <div className="mt-auto px-6 py-6 border-t border-line bg-panel font-sans">
                 {isLoggedIn ? (
                   <NavLink
                     to="/account"
                     onClick={closeMenu}
                     className="flex flex-col gap-1"
                   >
-                    <span className="text-xs uppercase tracking-widest font-semibold text-[#2c3e2b]">
+                    <span className="text-xs uppercase tracking-widest font-semibold text-deep">
                       Il mio account
                     </span>
-                    <span className="text-sm text-[#7c7c7c] truncate">
+                    <span className="text-sm text-mute truncate">
                       {session?.user.email}
                     </span>
                   </NavLink>
@@ -232,7 +232,7 @@ export const Navbar = ({ theme = "dark" }: NavbarProps) => {
                   <NavLink
                     to="/accedi"
                     onClick={closeMenu}
-                    className="block w-full text-center py-3 rounded-md bg-[#2c3e2b] text-[#fbf9f4] text-xs uppercase tracking-widest font-semibold"
+                    className="block w-full text-center py-3 rounded-md bg-deep text-ground text-xs uppercase tracking-widest font-semibold"
                   >
                     Accedi
                   </NavLink>
