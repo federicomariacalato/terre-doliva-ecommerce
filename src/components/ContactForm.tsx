@@ -90,13 +90,13 @@ export function HomeContactForm() {
   };
   return (
     <>
-      <section id="contatti" className="py-24 px-6 bg-[#fbf9f4]">
-        <div className="max-w-lg mx-auto">
+      <section id="contatti" className="py-32 lg:py-40 px-6 md:px-12 lg:px-20 bg-ground">
+        <div className="max-w-2xl mx-auto">
           <div
             role="alert"
             className={
               errorMessage
-                ? "flex items-start gap-3 bg-[#5c2626] text-[#fbf9f4] rounded-md shadow-sm px-4 py-3.5 mb-6"
+                ? "flex items-start gap-3 bg-[#5c2626] text-ground rounded-md shadow-sm px-4 py-3.5 mb-6"
                 : ""
             }
           >
@@ -116,11 +116,11 @@ export function HomeContactForm() {
               aria-live="polite"
               className="text-center py-16 space-y-4"
             >
-              <CheckCircle2 size={40} className="text-[#b87d4b] mx-auto" />
-              <h2 className="font-serif text-2xl text-[#1a1a1a]">
+              <CheckCircle2 size={40} className="text-oil mx-auto" />
+              <h2 className="font-serif text-2xl text-ink">
                 Messaggio inviato!
               </h2>
-              <p className="font-sans text-sm text-[#7c7c7c] max-w-sm mx-auto">
+              <p className="font-sans text-sm text-mute max-w-sm mx-auto">
                 Grazie per averci scritto, ti risponderemo il prima possibile.
               </p>
             </div>
@@ -131,25 +131,25 @@ export function HomeContactForm() {
                 onSubmit={form.handleSubmit(onSubmit)}
                 className="space-y-6"
               >
-                <Card className="bg-[#fbf9f4] border-[#e8e4d9] shadow-sm">
-                  <CardHeader>
-                    <CardTitle className="font-serif text-xl text-[#2c3e2b]">
+                <Card className="bg-transparent shadow-none ring-0 p-0">
+                  <CardHeader className="px-0 pb-4">
+                    <CardTitle className="font-serif text-[clamp(2.5rem,5vw,4.5rem)] font-normal tracking-[-0.02em] leading-none text-ink">
                       Contattaci
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-4">
+                  <CardContent className="space-y-6 px-0">
                     <FormField
                       control={form.control}
                       name="fullName"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-xs font-semibold text-[#2c3e2b]">
+                          <FormLabel className="text-sm font-medium text-ink">
                             Nome e Cognome
                           </FormLabel>
                           <FormControl>
                             <Input
                               placeholder="Mario Rossi"
-                              className="bg-white border-[#e8e4d9]"
+                              className="bg-ground border-ink/25 h-12 rounded-md focus-visible:border-oil"
                               {...field}
                             />
                           </FormControl>
@@ -162,14 +162,14 @@ export function HomeContactForm() {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-xs font-semibold text-[#2c3e2b]">
+                          <FormLabel className="text-sm font-medium text-ink">
                             Email
                           </FormLabel>
                           <FormControl>
                             <Input
                               type="email"
                               placeholder="mario@esempio.it"
-                              className="bg-white border-[#e8e4d9]"
+                              className="bg-ground border-ink/25 h-12 rounded-md focus-visible:border-oil"
                               {...field}
                             />
                           </FormControl>
@@ -182,16 +182,16 @@ export function HomeContactForm() {
                       name="subject"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-xs font-semibold text-[#2c3e2b]">
+                          <FormLabel className="text-sm font-medium text-ink">
                             Oggetto{" "}
-                            <span className="normal-case text-[#7c7c7c] font-normal">
+                            <span className="normal-case text-mute font-normal">
                               (facoltativo)
                             </span>
                           </FormLabel>
                           <FormControl>
                             <Input
                               placeholder="Informazioni su un ordine"
-                              className="bg-white border-[#e8e4d9]"
+                              className="bg-ground border-ink/25 h-12 rounded-md focus-visible:border-oil"
                               {...field}
                             />
                           </FormControl>
@@ -204,13 +204,13 @@ export function HomeContactForm() {
                       name="message"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-xs font-semibold text-[#2c3e2b]">
+                          <FormLabel className="text-sm font-medium text-ink">
                             Messaggio
                           </FormLabel>
                           <FormControl>
                             <Textarea
                               placeholder="Scrivi qui il tuo messaggio..."
-                              className="bg-white border-[#e8e4d9]"
+                              className="bg-ground border-ink/25 h-12 rounded-md focus-visible:border-oil"
                               {...field}
                             />
                           </FormControl>
@@ -232,7 +232,7 @@ export function HomeContactForm() {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-[#2c3e2b] text-[#fbf9f4] hover:bg-[#1e2b1d] h-14 font-sans text-xs uppercase tracking-widest font-semibold rounded-md shadow-md transition-all cursor-pointer"
+                  className="w-full bg-deep text-ground hover:bg-oil h-14 font-sans text-[13px] uppercase tracking-[0.14em] font-medium rounded-md transition-colors cursor-pointer"
                 >
                   {isSubmitting ? "Invio in corso..." : "Invia messaggio"}
                 </Button>

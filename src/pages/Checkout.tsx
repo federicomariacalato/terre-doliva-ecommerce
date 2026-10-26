@@ -121,7 +121,7 @@ export function Checkout() {
 
   if (isLoading)
     return (
-      <div className="min-h-screen bg-[#fbf9f4] flex items-center justify-center font-sans text-xs uppercase tracking-widest text-[#7c7c7c]">
+      <div className="min-h-screen bg-ground flex items-center justify-center font-sans text-xs uppercase tracking-widest text-mute">
         Caricamento...
       </div>
     );
@@ -130,22 +130,22 @@ export function Checkout() {
     return <Navigate to="/accedi" replace state={{ from: "/checkout" }} />;
 
   return (
-    <div className="min-h-screen bg-[#fbf9f4] py-8 px-4 sm:px-6 lg:px-8 font-sans text-[#1a1a1a]">
+    <div className="min-h-screen bg-ground py-8 px-4 sm:px-6 lg:px-8 font-sans text-ink">
       <OrderErrorToast
         message={errorMessage}
         onClose={() => setErrorMessage(null)}
       />
       <div className="max-w-6xl mx-auto space-y-8">
-        <div className="flex items-center justify-between border-b border-[#e8e4d9] pb-4">
+        <div className="flex items-center justify-between border-b border-line pb-4">
           <Link
             to="/shop"
-            className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#2c3e2b] hover:text-[#b87d4b] transition-colors"
+            className="flex items-center gap-2 text-[15px] font-medium text-deep hover:text-oil transition-colors"
           >
             <ArrowLeft size={16} />
             Torna allo Shopping
           </Link>
-          <div className="flex items-center gap-2 text-xs text-[#7c7c7c]">
-            <Lock size={14} className="text-[#2c3e2b]" />
+          <div className="flex items-center gap-2 text-xs text-mute">
+            <Lock size={14} className="text-deep" />
             <span>Checkout Sicuro 256-bit</span>
           </div>
         </div>
@@ -157,9 +157,9 @@ export function Checkout() {
                 onSubmit={form.handleSubmit(onSubmit)}
                 className="space-y-6"
               >
-                <Card className="bg-[#fbf9f4] border-[#e8e4d9] shadow-sm">
+                <Card className="bg-ground shadow-none">
                   <CardHeader>
-                    <CardTitle className="font-serif text-xl text-[#2c3e2b]">
+                    <CardTitle className="font-serif text-2xl font-normal text-ink">
                       1. Indirizzo di Spedizione
                     </CardTitle>
                   </CardHeader>
@@ -169,13 +169,13 @@ export function Checkout() {
                       name="fullName"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-xs font-semibold text-[#2c3e2b]">
+                          <FormLabel className="text-sm font-medium text-ink">
                             Nome e Cognome
                           </FormLabel>
                           <FormControl>
                             <Input
                               placeholder="Mario Rossi"
-                              className="bg-white border-[#e8e4d9]"
+                              className="bg-white border-line"
                               {...field}
                             />
                           </FormControl>
@@ -190,14 +190,14 @@ export function Checkout() {
                         name="email"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-xs font-semibold text-[#2c3e2b]">
+                            <FormLabel className="text-sm font-medium text-ink">
                               Email per la spedizione
                             </FormLabel>
                             <FormControl>
                               <Input
                                 type="email"
                                 placeholder="mario@esempio.it"
-                                className="bg-white border-[#e8e4d9]"
+                                className="bg-white border-line"
                                 {...field}
                               />
                             </FormControl>
@@ -211,13 +211,13 @@ export function Checkout() {
                         name="phone"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-xs font-semibold text-[#2c3e2b]">
+                            <FormLabel className="text-sm font-medium text-ink">
                               Telefono (per il corriere)
                             </FormLabel>
                             <FormControl>
                               <Input
                                 placeholder="+39 333 1234567"
-                                className="bg-white border-[#e8e4d9]"
+                                className="bg-white border-line"
                                 {...field}
                               />
                             </FormControl>
@@ -232,13 +232,13 @@ export function Checkout() {
                       name="address"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-xs font-semibold text-[#2c3e2b]">
+                          <FormLabel className="text-sm font-medium text-ink">
                             Indirizzo e Numero Civico
                           </FormLabel>
                           <FormControl>
                             <Input
                               placeholder="Via dei Cipressi, 12"
-                              className="bg-white border-[#e8e4d9]"
+                              className="bg-white border-line"
                               {...field}
                             />
                           </FormControl>
@@ -254,13 +254,13 @@ export function Checkout() {
                           name="city"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-xs font-semibold text-[#2c3e2b]">
+                              <FormLabel className="text-sm font-medium text-ink">
                                 Città
                               </FormLabel>
                               <FormControl>
                                 <Input
                                   placeholder="Firenze"
-                                  className="bg-white border-[#e8e4d9]"
+                                  className="bg-white border-line"
                                   {...field}
                                 />
                               </FormControl>
@@ -275,13 +275,13 @@ export function Checkout() {
                         name="postalCode"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-xs font-semibold text-[#2c3e2b]">
+                            <FormLabel className="text-sm font-medium text-ink">
                               CAP
                             </FormLabel>
                             <FormControl>
                               <Input
                                 placeholder="50100"
-                                className="bg-white border-[#e8e4d9]"
+                                className="bg-white border-line"
                                 {...field}
                               />
                             </FormControl>
@@ -293,9 +293,9 @@ export function Checkout() {
                   </CardContent>
                 </Card>
 
-                <Card className="bg-[#fbf9f4] border-[#e8e4d9] shadow-sm">
+                <Card className="bg-ground shadow-none">
                   <CardHeader>
-                    <CardTitle className="font-serif text-xl text-[#2c3e2b]">
+                    <CardTitle className="font-serif text-2xl font-normal text-ink">
                       2. Metodo di Pagamento
                     </CardTitle>
                   </CardHeader>
@@ -311,7 +311,7 @@ export function Checkout() {
                               value={field.value}
                               className="space-y-3"
                             >
-                              <div className="flex items-center justify-between p-3.5 border rounded-md border-[#e8e4d9] bg-white [&:has(:checked)]:border-[#2c3e2b] [&:has(:checked)]:bg-[#f4f1ea]">
+                              <div className="flex items-center justify-between p-3.5 border rounded-md border-line bg-white [&:has(:checked)]:border-deep [&:has(:checked)]:bg-panel">
                                 <div className="flex items-center gap-3">
                                   <RadioGroupItem value="card" id="card" />
                                   <Label
@@ -320,14 +320,14 @@ export function Checkout() {
                                   >
                                     <CreditCard
                                       size={18}
-                                      className="text-[#2c3e2b]"
+                                      className="text-deep"
                                     />
                                     <span>Carta di Credito / Debito</span>
                                   </Label>
                                 </div>
                               </div>
 
-                              <div className="flex items-center justify-between p-3.5 border rounded-md border-[#e8e4d9] bg-white [&:has(:checked)]:border-[#2c3e2b] [&:has(:checked)]:bg-[#f4f1ea]">
+                              <div className="flex items-center justify-between p-3.5 border rounded-md border-line bg-white [&:has(:checked)]:border-deep [&:has(:checked)]:bg-panel">
                                 <div className="flex items-center gap-3">
                                   <RadioGroupItem value="paypal" id="paypal" />
                                   <Label
@@ -336,14 +336,14 @@ export function Checkout() {
                                   >
                                     <Wallet
                                       size={18}
-                                      className="text-[#2c3e2b]"
+                                      className="text-deep"
                                     />
                                     <span>PayPal</span>
                                   </Label>
                                 </div>
                               </div>
 
-                              <div className="flex items-center justify-between p-3.5 border rounded-md border-[#e8e4d9] bg-white [&:has(:checked)]:border-[#2c3e2b] [&:has(:checked)]:bg-[#f4f1ea]">
+                              <div className="flex items-center justify-between p-3.5 border rounded-md border-line bg-white [&:has(:checked)]:border-deep [&:has(:checked)]:bg-panel">
                                 <div className="flex items-center gap-3">
                                   <RadioGroupItem value="cod" id="cod" />
                                   <Label
@@ -352,7 +352,7 @@ export function Checkout() {
                                   >
                                     <Truck
                                       size={18}
-                                      className="text-[#2c3e2b]"
+                                      className="text-deep"
                                     />
                                     <span>
                                       Contrassegno (Pagamento alla Consegna)
@@ -372,7 +372,7 @@ export function Checkout() {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-[#2c3e2b] text-[#fbf9f4] hover:bg-[#1e2b1d] h-14 font-sans text-xs uppercase tracking-widest font-semibold rounded-md shadow-md transition-all cursor-pointer"
+                  className="w-full bg-deep text-ground hover:bg-oil h-14 font-sans text-[13px] uppercase tracking-[0.14em] font-medium rounded-md transition-colors cursor-pointer"
                 >
                   {isSubmitting
                     ? "Elaborazione dell'Ordine..."
@@ -383,9 +383,9 @@ export function Checkout() {
           </div>
 
           <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-8">
-            <Card className="bg-[#f4f1ea] border-[#e8e4d9] shadow-sm">
-              <CardHeader className="border-b border-[#e8e4d9]">
-                <CardTitle className="font-serif text-lg text-[#1a1a1a]">
+            <Card className="bg-panel border-line shadow-sm">
+              <CardHeader className="border-b border-line">
+                <CardTitle className="font-serif text-lg text-ink">
                   Riepilogo Ordine (
                   {cartItems.reduce((acc, item) => acc + item.quantity, 0)})
                 </CardTitle>
@@ -395,9 +395,9 @@ export function Checkout() {
                   {cartItems.map((item) => (
                     <div
                       key={item.id}
-                      className="flex gap-3 pb-3 border-b border-[#e8e4d9] last:border-b-0"
+                      className="flex gap-3 pb-3 border-b border-line last:border-b-0"
                     >
-                      <div className="w-14 h-16 bg-white rounded-sm overflow-hidden shrink-0 border border-[#e8e4d9]">
+                      <div className="w-14 h-16 bg-white rounded-sm overflow-hidden shrink-0 border border-line">
                         <img
                           src={item.image}
                           alt={item.name}
@@ -406,35 +406,35 @@ export function Checkout() {
                       </div>
                       <div className="flex-1 min-w-0 flex flex-col justify-between">
                         <div>
-                          <h4 className="font-serif text-sm text-[#1a1a1a] truncate leading-tight">
+                          <h4 className="font-serif text-sm text-ink truncate leading-tight">
                             {item.name}
                           </h4>
-                          <span className="text-[10px] text-[#7c7c7c] uppercase tracking-wider block mt-0.5">
+                          <span className="text-[10px] text-mute uppercase tracking-wider block mt-0.5">
                             {item.category}
                           </span>
                         </div>
-                        <span className="text-xs text-[#7c7c7c]">
+                        <span className="text-xs text-mute">
                           Quantità: {item.quantity}
                         </span>
                       </div>
-                      <span className="font-sans text-sm font-semibold text-[#b87d4b] self-center">
+                      <span className="font-sans text-sm font-semibold text-oil self-center">
                         {(item.price * item.quantity).toFixed(2)}€
                       </span>
                     </div>
                   ))}
                 </div>
 
-                <div className="space-y-2 pt-4 border-t border-[#e8e4d9]">
-                  <div className="flex justify-between text-xs text-[#7c7c7c]">
+                <div className="space-y-2 pt-4 border-t border-line">
+                  <div className="flex justify-between text-xs text-mute">
                     <span>Subtotale</span>
-                    <span className="font-semibold text-[#1a1a1a]">
+                    <span className="font-semibold text-ink">
                       {cartTotal.toFixed(2)}€
                     </span>
                   </div>
 
-                  <div className="flex justify-between text-xs text-[#7c7c7c]">
+                  <div className="flex justify-between text-xs text-mute">
                     <span>Spedizione Espresso</span>
-                    <span className="font-semibold text-[#1a1a1a]">
+                    <span className="font-semibold text-ink">
                       {shippingCost === 0
                         ? "Gratuita"
                         : `${shippingCost.toFixed(2)}€`}
@@ -442,32 +442,32 @@ export function Checkout() {
                   </div>
 
                   {shippingCost > 0 && (
-                    <p className="text-[11px] text-[#b87d4b] pt-1">
+                    <p className="text-[11px] text-oil pt-1">
                       Mancano €{(50 - cartTotal).toFixed(2)} per la spedizione
                       gratuita!
                     </p>
                   )}
 
-                  <div className="flex justify-between font-serif text-lg font-medium text-[#1a1a1a] pt-3 border-t border-[#e8e4d9]">
+                  <div className="flex justify-between font-serif text-lg font-medium text-ink pt-3 border-t border-line">
                     <span>Totale da Pagare</span>
-                    <span className="font-sans text-base font-semibold text-[#b87d4b]">
+                    <span className="font-sans text-base font-semibold text-oil">
                       {grandTotal.toFixed(2)}€
                     </span>
                   </div>
                 </div>
 
-                <div className="pt-4 space-y-2.5 text-xs text-[#2c3e2b] border-t border-[#e8e4d9]">
+                <div className="pt-4 space-y-2.5 text-xs text-deep border-t border-line">
                   <div className="flex items-center gap-2.5">
                     <ShieldCheck
                       size={18}
-                      className="text-[#b87d4b] shrink-0"
+                      className="text-oil shrink-0"
                     />
                     <span>Spedizione sicura con imballo anti-rottura</span>
                   </div>
                   <div className="flex items-center gap-2.5">
                     <CheckCircle2
                       size={18}
-                      className="text-[#b87d4b] shrink-0"
+                      className="text-oil shrink-0"
                     />
                     <span>Olio 100% Extravergine di Oliva Italiano</span>
                   </div>

@@ -22,7 +22,6 @@ import { Input } from "@/components/ui/input";
 import { supabase } from "@/lib/supabaseClient";
 import { Navbar } from "@/components/Navbar";
 import { useNavigate, useLocation } from "react-router";
-import imgUlivetoHomePage from "../assets/uliveto-homepage.jpeg";
 
 const signUpFormSchema = z
   .object({
@@ -122,21 +121,14 @@ export function Auth() {
   return (
     <>
       <Navbar theme="dark" />
-      <div className="relative min-h-screen flex items-center justify-center py-32 px-6 overflow-hidden">
-        <div className="absolute inset-0 w-full h-full">
-          <img
-            src={imgUlivetoHomePage}
-            alt="Oliveto Terre d'Oliva"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-linear-to-b from-black/50 via-black/40 to-black/60"></div>
-        </div>
-        <div className="relative z-10 w-full max-w-md">
+      <div className="relative min-h-screen bg-deep">
+        <div className="flex items-center justify-center min-h-screen py-40 px-6">
+          <div className="w-full max-w-md">
           <div
             role="alert"
             className={
               errorMessage
-                ? "flex items-start gap-3 bg-[#5c2626] text-[#fbf9f4] rounded-md shadow-sm px-4 py-3.5 mb-6"
+                ? "flex items-start gap-3 bg-[#5c2626] text-ground rounded-md shadow-sm px-4 py-3.5 mb-6"
                 : ""
             }
           >
@@ -150,13 +142,13 @@ export function Auth() {
               </>
             )}
           </div>
-          <Card className="bg-[#fbf9f4] border-[#e8e4d9] shadow-sm">
-            <CardHeader>
-              <CardTitle className="font-serif text-xl text-[#2c3e2b]">
+          <Card className="bg-ground shadow-none ring-0 py-6 md:py-8">
+            <CardHeader className="px-6 md:px-8 pb-2">
+              <CardTitle className="font-serif text-4xl font-normal tracking-[-0.02em] leading-none text-ink">
                 {mode === "login" ? "Accedi" : "Registrati"}
               </CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="px-6 md:px-8">
               {mode === "login" ? (
                 <>
                   <Form {...loginForm}>
@@ -169,14 +161,14 @@ export function Auth() {
                         name="email"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-xs font-semibold text-[#2c3e2b]">
+                            <FormLabel className="text-sm font-medium text-ink">
                               Email
                             </FormLabel>
                             <FormControl>
                               <Input
                                 placeholder="mario@esempio.it"
                                 type="email"
-                                className="bg-white border-[#e8e4d9]"
+                                className="bg-white border-line"
                                 {...field}
                               />
                             </FormControl>
@@ -189,14 +181,14 @@ export function Auth() {
                         name="password"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-xs font-semibold text-[#2c3e2b]">
+                            <FormLabel className="text-sm font-medium text-ink">
                               Password
                             </FormLabel>
                             <FormControl>
                               <Input
                                 placeholder="••••••••"
                                 type="password"
-                                className="bg-white border-[#e8e4d9]"
+                                className="bg-white border-line"
                                 {...field}
                               />
                             </FormControl>
@@ -207,7 +199,7 @@ export function Auth() {
                       <Button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full bg-[#2c3e2b] text-[#fbf9f4] hover:bg-[#1e2b1d] h-12 font-sans text-xs uppercase tracking-widest font-semibold rounded-md shadow-md transition-all cursor-pointer mt-2"
+                        className="w-full bg-deep text-ground hover:bg-oil h-12 font-sans text-[13px] uppercase tracking-[0.14em] font-medium rounded-md transition-colors cursor-pointer mt-2"
                       >
                         {isSubmitting ? "Accesso in corso..." : "Accedi"}
                       </Button>
@@ -220,7 +212,7 @@ export function Auth() {
                       setMode("sign up");
                       setErrorMessage(null);
                     }}
-                    className="w-full mt-4 text-xs text-[#7c7c7c] hover:text-[#2c3e2b] cursor-pointer"
+                    className="w-full mt-4 text-xs text-mute hover:text-deep cursor-pointer"
                   >
                     Non sei ancora registrato? Registrati
                   </Button>
@@ -237,14 +229,14 @@ export function Auth() {
                         name="email"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-xs font-semibold text-[#2c3e2b]">
+                            <FormLabel className="text-sm font-medium text-ink">
                               Email
                             </FormLabel>
                             <FormControl>
                               <Input
                                 placeholder="mario@esempio.it"
                                 type="email"
-                                className="bg-white border-[#e8e4d9]"
+                                className="bg-white border-line"
                                 {...field}
                               />
                             </FormControl>
@@ -257,14 +249,14 @@ export function Auth() {
                         name="password"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-xs font-semibold text-[#2c3e2b]">
+                            <FormLabel className="text-sm font-medium text-ink">
                               Password
                             </FormLabel>
                             <FormControl>
                               <Input
                                 placeholder="••••••••"
                                 type="password"
-                                className="bg-white border-[#e8e4d9]"
+                                className="bg-white border-line"
                                 {...field}
                               />
                             </FormControl>
@@ -277,14 +269,14 @@ export function Auth() {
                         name="confirmPassword"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-xs font-semibold text-[#2c3e2b]">
+                            <FormLabel className="text-sm font-medium text-ink">
                               Conferma Password
                             </FormLabel>
                             <FormControl>
                               <Input
                                 placeholder="••••••••"
                                 type="password"
-                                className="bg-white border-[#e8e4d9]"
+                                className="bg-white border-line"
                                 {...field}
                               />
                             </FormControl>
@@ -295,7 +287,7 @@ export function Auth() {
                       <Button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full bg-[#2c3e2b] text-[#fbf9f4] hover:bg-[#1e2b1d] h-12 font-sans text-xs uppercase tracking-widest font-semibold rounded-md shadow-md transition-all cursor-pointer mt-2"
+                        className="w-full bg-deep text-ground hover:bg-oil h-12 font-sans text-[13px] uppercase tracking-[0.14em] font-medium rounded-md transition-colors cursor-pointer mt-2"
                       >
                         {isSubmitting
                           ? "Registrazione in corso..."
@@ -310,7 +302,7 @@ export function Auth() {
                       setMode("login");
                       setErrorMessage(null);
                     }}
-                    className="w-full mt-4 text-xs text-[#7c7c7c] hover:text-[#2c3e2b] cursor-pointer"
+                    className="w-full mt-4 text-xs text-mute hover:text-deep cursor-pointer"
                   >
                     Sei già registrato? Accedi
                   </Button>
@@ -318,6 +310,7 @@ export function Auth() {
               )}
             </CardContent>
           </Card>
+          </div>
         </div>
       </div>
     </>
